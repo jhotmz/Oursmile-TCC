@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #dbdbdb ;
+  }
+.box-container{
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    height: auto;
+    max-width: 70vw; 
+    background-color: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius:0.8rem;  
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.perfil{
+
+    margin: 5px;
+}
+
+.legenda{
+    color: #052A5E;
+
+}
+.legendaA{
+    color: #052A5E;
+    padding:0rem 1rem;
+}
+.fav{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.clinica-salva, .post-salvo{
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.img-perfil{
+    border-radius: 50rem;
+    border-style:solid;
+    cursor:pointer;
+}
+
+.aside{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+ 
+ 
+button {
+    background-color: #FFFFFF;
+    border: 1px solid rgb(209,213,219);
+    border-radius: .5rem;
+    color: #111827;
+    font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: .75rem 1rem;
+    text-align: center;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+  }
+  
+  button:hover {
+    background-color: #f9fafb;
+  }
+  
+  button:focus {
+    outline: 2px solid rgba(0,0,0,0.1);
+    outline-offset: 2px;
+  }
+  
+  button:focus-visible {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  input {
+    width: 100%;
+    max-width: 220px;
+    height: 45px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid lightgrey;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 20px -18px;
+  }
+  
+  input:hover {
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 20px -17px;
+  }
+  
+  input:active {
+    transform: scale(0.95);
+  }
+  
+  input:focus {
+    border: 2px solid grey;
+  }
+
+  

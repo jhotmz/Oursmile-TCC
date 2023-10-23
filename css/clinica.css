@@ -1,0 +1,585 @@
+
+body{
+  background-color: #dbdbdb ;
+}
+br{
+  user-select:none;
+}
+p{
+  color:rgb(99, 99, 99);
+}
+.css-input {
+     padding: 7px;
+     font-size: 17px;
+     border-width: 1px;
+     border-color: #279989;
+     background-color: #fdfdfd;
+     color: #000000;
+     border-style: solid;
+     border-radius: 7px;
+
+}
+ .css-input:focus {
+     outline:none;
+}
+h3{
+  display:flex;
+  justify-content:start;
+  color:#ffffff;
+}
+.titulo{
+     display:flex;
+     justify-content:center;
+     align-items:center;
+}
+
+
+.ctnFlex{
+  display: flex;
+  justify-content: space-between;
+}
+
+ div.op1 {
+        display: inline-block;
+        text-align: center;
+    }
+
+    div.op2 {
+        display: inline-block;
+        text-align: center;
+    }
+
+ 
+
+    .search {
+      flex: 0 0 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .search__input {
+      font-family: "Open Sans", sans-serif;
+      font-size: 17px;
+      color: #333333;
+      background-color: #f4f2f2;
+      border: none;
+      padding: 14px 72px 14px 42px;
+      border-radius: 0.5rem;
+      width: 25rem;
+      margin-left: -34px;
+      margin-right: -66px;
+      transition: all 0.2s;
+    }
+    
+    .search__input:focus {
+      outline: none;
+      width: 30rem;
+      background-color: #f0eeee;
+    }
+    
+    .search__input::-webkit-input-placeholder {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-weight: 500;
+      color: #999999;
+    }
+    
+    .search__button {
+      border: none;
+      background-color: transparent;
+      z-index: 999;
+      cursor: pointer;
+    }
+    
+    .search__button:focus {
+      outline: none;
+    }
+    
+    .search__button:active {
+      transform: translateY(2px);
+    }
+    
+    .search__icon {
+      height: 20px;
+      width: 20px;
+      fill: #999999;
+    }
+
+.wrapper{
+  margin-top: 50px;
+
+}
+
+
+.team{
+  flex-direction: row;
+  width: auto;
+  text-align: center;
+  flex-wrap:wrap;
+  
+}
+
+.team .team_member{
+  margin-left: 30px;
+  border-style:none;
+  margin-bottom: 50px;
+  width: 300px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  border-radius:0.5rem;
+  position: relative;
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+*
+{
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body
+{
+    font-family: 'Roboto', sans-serif;
+}
+a
+{
+    text-decoration: none;
+}
+.product-card {
+    width: 380px;
+    position: relative;
+    box-shadow: 0 2px 7px #dfdfdf;
+
+    background: #fafafa;
+}
+
+.badge {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    background: red;
+    color: #fff;
+    padding: 3px 10px;
+}
+
+.product-tumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    padding: 50px;
+    background: #f0f0f0;
+}
+
+.product-tumb img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product-details {
+    padding: 30px;
+}
+
+.product-catagory {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #929292;
+    margin-bottom: 18px;
+}
+
+.product-details h4 a {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    color: #363636;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.product-details h4 a:hover {
+    color: #3cb0fd;
+}
+
+.product-details p {
+    font-size: 0.8rem;
+    line-height: 22px;
+    margin-bottom: 10px;
+    color: #232323;
+
+}
+
+.product-bottom-details {
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.product-bottom-details div {
+    float: left;
+    width: 50%;
+
+}
+
+.product-price {
+    font-size: 18px;
+    color: #3cb0fd;
+    font-weight: 600;
+}
+
+.product-price small {
+    font-size: 80%;
+    font-weight: 400;
+    text-decoration: line-through;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.product-links {
+    text-align: right;
+}
+
+.product-links a {
+    display: inline-block;
+    margin-left: 5px;
+    color: #e1e1e1;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.product-links a:hover {
+    color: #3cb0fd;
+}
+
+
+.rating:not(:checked) > input {
+  position: absolute;
+  appearance: none;
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 30px;
+  color: #666;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #3cb0fd;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #3cb0fd;
+}
+
+.rating > input:checked ~ label {
+  color: #3cb0fd;
+}
+
+.subTitulos{
+  font-size:0.8rem;
+  color:rgb(139, 139, 139);
+}
+
+
+
+/*------ Settings ------*/
+.container {
+  --color: rgb(39, 107, 255);
+  --size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+}
+
+.container .save-regular {
+  position: absolute;
+  animation: keyframes-fill .5s;
+  transform-origin: top;
+}
+
+.container .save-solid {
+  position: absolute;
+  animation: keyframes-fill .5s;
+  display: none;
+  transform-origin: top;
+}
+
+/* ------ On check event ------ */
+.container input:checked ~ .save-regular {
+  display: none;
+}
+
+.container input:checked ~ .save-solid {
+  display: block;
+}
+
+/* ------ Hide the default checkbox ------ */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* ------ Animation ------ */
+@keyframes keyframes-fill {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scaleY(1.2);
+  }
+}
+
+
+/* botão de saiba mais */
+button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color:rgb(39, 107, 255);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 16px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+ }
+ 
+ button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+ }
+ 
+ button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+ }
+ 
+ button:hover span {
+  padding-right: 15px;
+ }
+ 
+ button:hover span:after {
+  opacity: 1;
+  right: 0;
+ }
+
+
+ .titulos{
+  font-size:1rem;
+  color:rgb(48, 48, 48);
+  font-weight:bold;
+ }
+
+ 
+ 
+ .edits {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(-50deg,rgb(39, 107, 255),rgb(112, 186, 255),rgb(39, 107, 255));
+  background-size: 250%;
+  background-position: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition-duration: .5s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.11);
+  float:left
+}
+
+.logoIcon {
+  fill: white;
+}
+
+.tooltip {
+  position: absolute;
+  top: -20px;
+  opacity: 0;
+  background: linear-gradient(to right,rgb(39, 107, 255),rgb(108, 184, 255));
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: .2s;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.tooltip::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(45deg,rgb(39, 107, 255),rgb(108, 184, 255));
+  background-size: 1000%;
+  background-position: center;
+  transform: rotate(45deg);
+  bottom: -15%;
+  transition-duration: .3s;
+}
+
+.edits:hover .tooltip {
+  top: -50px;
+  opacity: 1;
+  transition-duration: .3s;
+}
+
+.edits:hover {
+  background-position: right;
+  transition-duration: .5s;
+}
+
+.dot {
+  height: 7rem;
+  width: 7rem;
+ background-image: url(https://media.istockphoto.com/id/1196233488/pt/vetorial/tooth-icon-dentistry-logo-template-illustration-design-vector-eps-10.jpg?s=612x612&w=0&k=20&c=QnXtHV-3bEljtFCQD3jczlgjxQl-a7ymQDngmInZd90=);
+ background-size:100%;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  min-height: 50px;
+  max-width: 150px;
+  padding: 0 1rem;
+  color: #242424;
+  font-size: 15px;
+
+  border: 1px solid rgb(39, 107, 255);
+  border-radius: 6px 0 0 6px;
+
+}
+
+.button--submit {
+  min-height: 50px;
+  padding: .5em 1em;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  background-color:rgb(39, 107, 255);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+
+}
+
+
+
+.input:focus, .input:focus-visible {
+  border-color: #3898EC;
+  outline: none;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border-radius:1rem;
+  border: 1px solid #888;
+  width: 30rem; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.input {
+  width: 20rem;
+  max-width: 20rem;
+  height: 45px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
+}
+
+.input:hover {
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 20px -17px;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  border: 2px solid grey;
+}
