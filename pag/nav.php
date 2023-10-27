@@ -4,9 +4,9 @@
 
 	<!-- Put your collapsing content in here -->
 	<div class="nav__collapsable">
-		<a href="#">Home</a>
-		<a href="pag/blog.php">Blog</a>
-		<a href="#">Clínicas</a>
+		<a href="../index.php">Home</a>
+		<a href="blog.php">Blog</a>
+		<a href="clinicas.php">Clínicas</a>
 		
     <?php
 if (!isset($_SESSION['id_user'])) {
@@ -20,12 +20,12 @@ if (!isset($_SESSION['id_user'])) {
 <?php
     if($nivel === '2'){
     ?>
-<a href="pag/listar_usuarioAdm.php">Gerenciar</a>
+<a href="listar_usuarioAdm.php">Gerenciar</a>
 
 <?php
     }
 ?>
-<a href="#contact" onclick="window.location='php/sair.php'">Sair</a>
+<a href="#contact" onclick="window.location='../php/sair.php'">Sair</a>
 <?php
 }
 ?>
