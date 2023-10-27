@@ -54,35 +54,9 @@ $(function(){
 
     <body>
       <!-- NAV DO SITE -->
-      <nav class="nav">
-    <img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-    <img src="../img/logo.png" alt="" id="logotipo">
-
-    <!-- Put your collapsing content in here -->
-    <div class="nav__collapsable">
-      <a href="#">Home</a>
-      <a href="blog.php">Blog</a>
-      <a href="#">Clínicas</a>
-      
-      <?php
-  if (!isset($_SESSION['id_user'])) {
-  ?>
-
-  <a href="pag/cadastrar.php">Entrar</a>
-  <?php
-  }else{
-  ?>
-  <a href="pag/perfil.php">Meu perfil</a>
-  <a href="pag/listar_usuarioAdm.php">Gerenciar</a>
-  <a href="#contact" onclick="window.location='php/sair.php'">Sair</a>
-  <?php
-  }
-  ?>
-      <div class="nav__cta">
-      </div>
-    </div>
-
-  </nav>
+<?php
+include("nav.php");
+?>
       <div class="wrapper d-flex align-items-stretch">
   <?php
   include('sidebar-adm.html');

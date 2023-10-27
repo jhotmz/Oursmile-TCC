@@ -227,7 +227,6 @@ include('../modal/alterarDados.php');
   <section class="container-perfil">
 
     
-
   </section>
 <br><br>
   <section class="fav">
