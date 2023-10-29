@@ -9,7 +9,8 @@ if ($nivel != 2) {
 } else {
 
 // CONSULTA TABELA DENTISTA
-$stmt = $conn->prepare("SELECT id_dentista, nm_dentista, nm_sobrenome, nm_cro, nr_cpf, id_nivel FROM tb_dentista");
+$validacao = '3';
+$stmt = $conn->prepare("SELECT id_dentista, nm_dentista, nm_sobrenome, nm_cro, nr_cpf, id_nivel FROM tb_dentista WHERE id_nivel = '$validacao'");
 $stmt->execute();
 ?>
 
@@ -253,7 +254,6 @@ $stmt->execute();
                         <th scope="col">Sobrenome</th>
                         <th scope="col">CRO</th>
                         <th scope="col">CPF</th>
-                        <th scope="col">Cargo</th>
                         <th scope="col">Ações</th>
                       </tr>
                     </thead>
@@ -264,20 +264,12 @@ $stmt->execute();
                       while ($listar_usuario = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         extract($listar_usuario);
 
-                        if ($id_nivel === '1') {
-                          $id_nivel = "Usuário";
-                        } elseif ($id_nivel === '2') {
-                          $id_nivel = "Administrador";
-                        } elseif ($id_nivel === '3') {
-                          $id_nivel = "Dentista";
-                        }
                         echo "<tr>";
                         echo "<td>" . $id_dentista . "</td>";
                         echo "<td>" . $nm_dentista . "</td>";
                         echo "<td>" . $nm_sobrenome . "</td>";
                         echo "<td>" . $nm_cro . "</td>";
                         echo "<td>" . $nr_cpf . "</td>";
-                        echo "<td>" . $id_nivel . "</td>";
                       ?>
                         <td>
 

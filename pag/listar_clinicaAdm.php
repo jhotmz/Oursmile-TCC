@@ -105,7 +105,7 @@ $(function(){
                 <div class="row mt-4">
                   <div class="col-lg-12">
                     <div>
-                      <h4>Listar publicações</h4>
+                      <h4>Listar clínicas</h4>
                       <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionar">+ Adicionar publicação </button>
                       <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCategoria">+ Adicionar categoria </button>
                     </div>
@@ -183,13 +183,13 @@ $(function(){
                 ?>
                 <td>
                           
-                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar" data-id='<?php echo $id_post?>' data-nome='<?php echo $nm_postagem?>' data-desc='<?php echo $nm_desc?>' data-autor='<?php echo $nm_autor?>'>
-                                  <i class="fa-solid fa-pen-to-square"></i>
-                                  </button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar" data-id='<?php echo $id_post?>' data-nome='<?php echo $nm_postagem?>' data-desc='<?php echo $nm_desc?>' data-autor='<?php echo $nm_autor?>'>
+      <i class="fa-solid fa-pen-to-square"></i>
+      </button>
 
-                                  <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalDelete">
-                                  <i class="fa-solid fa-trash"></i>                                  
-                                  </button>
+      <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalDelete">
+      <i class="fa-solid fa-trash"></i>                                  
+      </button>
                                   
 
                               
