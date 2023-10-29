@@ -83,32 +83,9 @@
   </head>
   <body>
     <!-- NAV DO SITE -->
-    <nav class="nav">
-	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-	<img src="../img/logo.png" alt="" id="logotipo">
-
-	<!-- Put your collapsing content in here -->
-	<div class="nav__collapsable">
-		<a href="../index.php">Home</a>
-		<a href="blog.php">Blog</a>
-		<a href="#">Clínicas</a>
-		
-    <?php
-if (!isset($_SESSION['id_user'])) {
-?>
- <a href="pag/cadastrar.php">Entrar</a>
 <?php
-}else{
+include("nav.php");
 ?>
-<a href="perfil.php">Meu perfil</a>
-<a href="#contact" onclick="window.location='php/sair.php'">Sair</a>
-<?php
-}
-?>
-		<div class="nav__cta">
-		</div>
-	</div>
-</nav>
 
     <?php
     if($nivel === '2'){
@@ -223,76 +200,80 @@ if (!isset($_SESSION['id_user'])) {
 
 <!-- PAGINAÇÃO DAS PUBLICAÇÕES -->
 <?php
-// Consulta para contar o número total de resultados
-$stmt_total = $conn->prepare("SELECT COUNT(*) as total FROM tb_blog");
-$stmt_total->execute();
-$total_results = $stmt_total->fetchColumn();
-$total_pages = ceil($total_results / $limit);
+// Função para gerar o link de paginação
+function generatePageLink($page) {
+    $baseURL = 'blog.php';
+    $params = array();
 
-if ($pg <= 0){
-  return false;
-}
+    if (isset($_GET['artigo'])) {
+        $params['artigo'] = $_GET['artigo'];
+    } elseif (!empty($_GET['busca'])) {
+        $params['busca'] = $_GET['busca'];
+    }
 
-if ($pg > $total_pages) {
-  return false;
+    $params['pg'] = $page;
+    $queryString = http_build_query($params);
+
+    return $baseURL . '?' . $queryString;
 }
 
 echo "<div class='center'>";
 echo "<ul id='paginacao'>";
 
-// verifica a navegação da página anterior 
-if ($pg == 1){
-      $undo = 1;
-}else{
-  $undo = $pg - 1;
-}
+// Consulta para contar o número total de resultados de acordo com o filtro
+$stmt_total = $conn->prepare("SELECT COUNT(*) as total FROM tb_blog");
 
 if (isset($_GET['artigo'])) {
-  echo "<li class='paginacao'><a href='blog.php?pg={$undo}&artigo={$id_categoria}'>&laquo</a></li>";
-} elseif (!empty($_GET['busca'])){
-echo "<li class='paginacao'><a href='blog.php?pg={$undo}&busca={$_GET['busca']}'>&laquo</a></li>";
-}else{
-  echo "<li class='paginacao'><a href='blog.php?pg={$undo}'>&laquo</a></li>";
+    // Adicione aqui a lógica para contar os resultados com base no filtro de artigo
+    $stmt_total = $conn->prepare("SELECT COUNT(*) as total FROM tb_blog WHERE id_categoria = :id_categoria");
+    $stmt_total->bindParam(':id_categoria', $_GET['artigo'], PDO::PARAM_INT);
+} elseif (!empty($_GET['busca'])) {
+    // Adicione aqui a lógica para contar os resultados com base no filtro de busca
+    $stmt_total = $conn->prepare("SELECT COUNT(*) as total FROM tb_blog WHERE nm_postagem LIKE :busca");
+    $stmt_total->bindParam(':busca',$nome, PDO::PARAM_STR);
 }
 
-// verifica a navegação da próxima página
-if ($pg == $total_pages) {
-   $forward = $total_pages;
-}else{
-  $forward = $pg + 1;
+$stmt_total->execute();
+$total_results = $stmt_total->fetchColumn();
+$total_pages = ceil($total_results / $limit);
+
+$pg = isset($_GET['pg']) ? intval($_GET['pg']) : 1;
+
+if ($pg < 1) {
+    $pg = 1;
+} elseif ($pg > $total_pages) {
+    $pg = $total_pages;
 }
 
-//  Página atual estará colorida
-for ($i = $pg - 5; $i <= $pg; $i++){
-  
+if ($total_results > 0) {
+    // Verifica a navegação da página anterior
+    $previousPage = $pg - 1;
 
-if ($i >= 1) {
-  if ($pg == $i) {
-    $active = "style='background-color: #14c4f4;'";
-    }else{
-      $active = "";
+    if ($previousPage >= 1) {
+        echo "<li class='paginacao'><a href='" . generatePageLink($previousPage) . "'>&laquo</a></li>";
     }
-  }
-  if ($i >= 1) {
-    echo "<li class='paginacao' {$active} id='active' ><a href='blog.php?pg={$i}'>{$i}</a></li>";
-  }
-}
 
-//  Indices limitando por 5 paginas próximos ao ativo
-for ($i = $pg + 1; $i <= $pg + 5; $i++){
+    // Gere os links para as páginas
+    for ($i = max(1, $pg - 5); $i <= min($total_pages, $pg + 5); $i++) {
+        // Página atual estará colorida
+      if ($i >= 1) {
+        if ($pg == $i) {
+          $active = "style='background-color: #14c4f4;'";
+          }else{
+            $active = "";
+          }
+        }
+        echo "<li class='paginacao' {$active}><a href='" . generatePageLink($i) . "'>$i</a></li>";
+    }
 
-if($i <= $total_pages){
-if (isset($_GET['artigo'])) {
-    echo "<li class='paginacao'><a href='blog.php?pg={$i}&artigo={$id_categoria}'>{$i}</a></li>";
-} elseif (!empty($_GET['busca'])){
-  echo "<li class='paginacao'><a href='blog.php?pg={$i}&busca={$_GET['busca']}'>{$i}</a></li>";
-}else{
-  echo "<li class='paginacao'><a href='blog.php?pg={$i}'>{$i}</a></li>";
-}
-}}
+    // Verifica a navegação da próxima página
+    $nextPage = $pg + 1;
 
-  echo "<li class='paginacao'><a href='blog.php?pg={$forward}'>&raquo</a></li>";
-  echo "</ul></div>";
+    if ($nextPage <= $total_pages) {
+        echo "<li class='paginacao'><a href='" . generatePageLink($nextPage) . "'>&raquo</a></li>";
+    }
+} 
+echo "</ul></div>";
 ?>
 
 <!-- SCRIPT PARA ENVIAR FAVORITO-->
