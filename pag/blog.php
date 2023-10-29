@@ -191,7 +191,8 @@ if (!isset($_SESSION['id_user'])) {
 <div class="description">
      <h1><?php echo $nm_postagem ?></h1>
      <br>
-     <i class="fa fa-calendar"> <?php echo date('d/m/y', strtotime($dt_data)); ?></i>
+     <i class="fa fa-calendar"> <?php date_default_timezone_set('America/Sao_Paulo');
+ echo date('d/m/y', strtotime($dt_data)); ?></i>
      </h2>
      <p><?php echo $nm_desc?></p>
 

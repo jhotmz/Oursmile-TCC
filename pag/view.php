@@ -125,7 +125,8 @@ if (!isset($_SESSION['id_user'])) {
     <header class="blog-header">
 
       <div class="dateActor">
-        Por <?php echo $nm_autor ?>, publicado em <?php
+        Por <?php echo $nm_autor ?>, publicado em <?php date_default_timezone_set('America/Sao_Paulo');
+
          echo date('d/m/Y', strtotime($dt_data)); ?>
       </div>
       <div class="back">
