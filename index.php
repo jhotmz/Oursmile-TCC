@@ -309,11 +309,11 @@ if (!isset($_SESSION['id_user'])) {
       <div class="team_member">
         <div class="team_img">
           <img src="img/3d.png" alt="Team_image">
-          eitaaa
+         
         </div>
         <h3>Sobre nós</h3>
         <p>Saiba sobre a equipe que fez o site</p>
-        <button>
+        <button onclick="location.href='sobreNós/index.html'">
           Saiba mais
         </button>
       </div>
