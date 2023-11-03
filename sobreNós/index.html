@@ -68,25 +68,15 @@ https://templatemo.com/tm-537-art-factory
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#" class="logo">Art Factory</a>
+                        <img src="../img/logoBrancoEquipe.png" id="logo" width="100" style="margin:1rem;">
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#welcome" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#about">About</a></li>
-                            <li class="scroll-to-section"><a href="#services">Services</a></li>
-                            <li class="scroll-to-section"><a href="#frequently-question">Frequently Questions</a></li>
-                            <li class="submenu">
-                                <a href="javascript:;">Drop Down</a>
-                                <ul>
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">Features</a></li>
-                                    <li><a href="">FAQ's</a></li>
-                                    <li><a href="">Blog</a></li>
-                                </ul>
-                            </li>
-                            <li class="scroll-to-section"><a href="#contact-us">Contact Us</a></li>
-                        </ul>
+                            <li class="scroll-to-section"><a href="#welcome">Home</a></li>
+                            <li class="scroll-to-section"><a href="#about">Visão</a></li>
+                            <li class="scroll-to-section"><a href="#services">Integrantes</a></li>
+                          
+                         
                         <a class='menu-trigger'>
                             <span>Menu</span>
                         </a>
@@ -292,6 +282,23 @@ https://templatemo.com/tm-537-art-factory
     
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
+    
+<script>
 
+    const target = document.getElementById("logo");
+    function animeScroll(){
+const windowTop = window.pageYOffset;
+console.log(windowTop);
+    if((windowTop) > 392){
+target.src = "../img/logoEquipe.png";
+    }else{
+        target.src = "../img/logoBrancoEquipe.png";
+    }
+    }
+    window.addEventListener('scroll', function(){
+        animeScroll();
+    });
+
+</script>
   </body>
 </html>
