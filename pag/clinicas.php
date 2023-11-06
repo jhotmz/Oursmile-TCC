@@ -2,7 +2,7 @@
 session_start();
     include('../php/conecta.php');
     if (!isset($_SESSION['id_user'])) {
-    $nome = "Login";
+    header('location: ../index.php');
     }else{
     $usuario = $_SESSION['id_user'];
 
@@ -10,6 +10,19 @@ session_start();
     $stmt-> execute();
     $stmt = $stmt->fetch();
     $nome = $stmt['nm_nome'];
+
+    //////////// PAGINAÇÃO ///////////
+
+  // captura os valores da url
+  $capture_get = filter_input(INPUT_GET, 'pg', FILTER_SANITIZE_URL);
+
+  //variaveis de tratamento
+  $pg = ($capture_get == '' ? 1 : $capture_get);
+
+  // limite de exibição por página
+  $limit = 10;
+  $start = ($pg * $limit) - $limit;
+
     }
 
 ?>
@@ -117,13 +130,27 @@ if($_SESSION['nivel'] == 2){
       </nav>
     </nav>
 
+        <!-- EXIBIR BUSCA NA URL -->
+    <script>
+      var search = document.getElementById('busca');
+
+      function searchData() {
+        window.location = 'clinicas.php?search=' + search.value;
+      }
+    </script>
+
     <div class="input-group">
-    <input type="email" class="input"  placeholder="Pesquisar:" autocomplete="off" id="pesquisas" onkeyup="pesquisar()" name="search">
+      <form action="">
+    <input type="text" class="input"  name="busca" id="busca" placeholder="Pesquisar:" autocomplete="off" onkeyup="pesquisar()">
+    <button type="submit" onclick="searchData()"><i class="fa fa-search"></i></button>
+    </form>
+
     <select class="button--submit" id="FiltroSelect">
       <option value="" disabled selected>Filtrar:</option>
     <option value="clinica">Clínicas</option>
     <option value="dentista">Dentistas</option>
     </select>
+    
 </div>
 
 
@@ -138,7 +165,7 @@ if($_SESSION['nivel'] == 2){
 
 
 
-    $stmt = $conn->prepare("SELECT * FROM tb_clinica");
+    $stmt = $conn->prepare("SELECT * FROM tb_clinica LIMIT $start, $limit");
     $stmt-> execute();
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     extract($row);
@@ -367,6 +394,66 @@ var bots = "../php/PesquisarClinica.php";
 
 </script>
 
+<!-- PAGINAÇÃO DAS PUBLICAÇÕES -->
+<?php
+// Função para gerar o link de paginação
+function generatePageLink($page) {
+    $baseURL = 'clinicas.php';
+    $params = array();
+
+    $params['pg'] = $page;
+    $queryString = http_build_query($params);
+
+    return $baseURL . '?' . $queryString;
+}
+
+echo "<div class='center'>";
+echo "<ul id='paginacao'>";
+
+// Consulta para contar o número total de resultados de acordo com o filtro
+$stmt_total = $conn->prepare("SELECT COUNT(*) as total FROM tb_clinica");
+$stmt_total->execute();
+$total_results = $stmt_total->fetchColumn();
+$total_pages = ceil($total_results / $limit);
+
+$pg = isset($_GET['pg']) ? intval($_GET['pg']) : 1;
+
+if ($pg < 1) {
+    $pg = 1;
+} elseif ($pg > $total_pages) {
+    $pg = $total_pages;
+}
+
+if ($total_results > 0) {
+    // Verifica a navegação da página anterior
+    $previousPage = $pg - 1;
+
+    if ($previousPage >= 1) {
+        echo "<li class='paginacao'><a href='" . generatePageLink($previousPage) . "'>&laquo</a></li>";
+    }
+
+    // Gere os links para as páginas
+    for ($i = max(1, $pg - 5); $i <= min($total_pages, $pg + 5); $i++) {
+        // Página atual estará colorida
+      if ($i >= 1) {
+        if ($pg == $i) {
+          $active = "style='background-color: #14c4f4;'";
+          }else{
+            $active = "";
+          }
+        }
+        echo "<li class='paginacao' {$active}><a href='" . generatePageLink($i) . "'>$i</a></li>";
+    }
+
+    // Verifica a navegação da próxima página
+    $nextPage = $pg + 1;
+
+    if ($nextPage <= $total_pages) {
+        echo "<li class='paginacao'><a href='" . generatePageLink($nextPage) . "'>&raquo</a></li>";
+    }
+} 
+echo "</ul></div>";
+?>
 
 </body>
 </html>
