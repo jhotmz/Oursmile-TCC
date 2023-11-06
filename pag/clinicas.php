@@ -6,22 +6,40 @@ session_start();
     }else{
     $usuario = $_SESSION['id_user'];
 
-    $stmt = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$usuario'");
-    $stmt-> execute();
-    $stmt = $stmt->fetch();
-    $nome = $stmt['nm_nome'];
-
+    $user_id = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$usuario'");
+    $user_id-> execute();
+    $user_id = $user_id->fetch();
+    $nome = $user_id['nm_nome'];
+   
+    
     //////////// PAGINAÇÃO ///////////
 
   // captura os valores da url
   $capture_get = filter_input(INPUT_GET, 'pg', FILTER_SANITIZE_URL);
 
-  //variaveis de tratamento
-  $pg = ($capture_get == '' ? 1 : $capture_get);
+    //variaveis de tratamento
+   $pg = ($capture_get == '' ? 1 : $capture_get);
 
-  // limite de exibição por página
-  $limit = 10;
-  $start = ($pg * $limit) - $limit;
+    // limite de exibição por página
+    $limit = 10;
+    $start = ($pg * $limit) - $limit;
+    
+    //CASO EXISTA PESQUISA
+    if (!empty($_GET['busca'])) {
+    $nome = "%" . $_GET['busca'] . "%";
+    $pesquisa = "SELECT * FROM tb_clinica WHERE nm_clinica LIKE :nome ORDER BY nm_clinica DESC LIMIT $start, $limit";
+    $stmt_exibir = $conn->prepare($pesquisa);
+    $stmt_exibir->bindParam(':nome', $nome, PDO::PARAM_STR);
+    $stmt_exibir->execute();
+    $post = "Resultados para: ".$_GET['busca'];
+    $lines = $stmt_exibir->rowCount();
+    }else{
+    // CONSULTAR POSTAGENS NO BLOG
+    $stmt_exibir = $conn->prepare("SELECT * FROM tb_clinica ORDER BY data_criacao DESC LIMIT $start, $limit");
+    $stmt_exibir->execute();
+    $lines = $stmt_exibir->rowCount();
+    $post = "Publicações recentes";
+    }
 
     }
 
@@ -38,6 +56,10 @@ session_start();
     <link rel="icon" type="image/x-icon" href="../img/logo.png">
     <link rel="stylesheet" href="../css/sobre-nosso-site.css">
     <link rel="stylesheet" href="../css/clinica.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Clínicas</title>
     <style>
 #map{
@@ -159,19 +181,11 @@ if($_SESSION['nivel'] == 2){
   
 
   <div class="team">
-
+<!-- EXIBIR CLINICAS -->
 <?php
-
-
-
-
-    $stmt = $conn->prepare("SELECT * FROM tb_clinica LIMIT $start, $limit");
-    $stmt-> execute();
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    if($lines > 0){
+    while($row = $stmt_exibir->fetch(PDO::FETCH_ASSOC)){
     extract($row);
-   
-  
-
 ?>
 
 
@@ -193,7 +207,35 @@ if($_SESSION['nivel'] == 2){
 </button>
 
  <br><br>
- 
+ <?php
+     $clinica_id = $row['id'];
+     // Verifique se a publicação já está nos favoritos do usuário
+     $favoritada = false;
+     $query = "SELECT * FROM tb_favorito WHERE user_id = :usuario_id AND pub_id = :clinica_id";
+     $stmt2 = $conn->prepare($query);
+     $stmt2->bindParam(':usuario_id', $_SESSION['id_user']);
+     $stmt2->bindParam(':clinica_id', $clinca_id);
+     $stmt2->execute();
+     if ($stmt2->rowCount() > 0) {
+       $favoritada = true;
+     }
+     ?>
+
+  <?php
+                  if(isset($_SESSION['id_user'])){
+                  // Exiba o botão de favoritar
+                  if ($favoritada){
+              
+                    // <!-- Exiba o botão de desfavoritar -->
+                     
+                      echo "<button class='button-fav' method = 'Unlike' data-post ='$clinica_id' type='submit'><img src='../img/lover.png' alt='desfavoritar_icon' style='width: 25px;'></button>";
+                  } else {
+          
+                    echo  "<button class='button-fav' method = 'Like' data-post ='$clinica_id'><img src='../img/heart.png' alt='img_favorito' style='width:25px;'></button>";
+
+                  }}
+                  ?>
+
  <label class="container" style="display:flex; justify-content:end;">
   <input type="checkbox">
   <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
@@ -223,19 +265,15 @@ delete
 <?php
 }?>
  
-
-
     </div>
     
-
-
-  <?php }
-  
+  <?php 
+  }}else{
+    echo "Sem resultados!";
+  }
   
   ?>
 
-
-  
     </div>
  </div>
   
@@ -401,6 +439,10 @@ function generatePageLink($page) {
     $baseURL = 'clinicas.php';
     $params = array();
 
+    if (!empty($_GET['busca'])) {
+      $params['busca'] = $_GET['busca'];
+    }
+
     $params['pg'] = $page;
     $queryString = http_build_query($params);
 
@@ -412,6 +454,12 @@ echo "<ul id='paginacao'>";
 
 // Consulta para contar o número total de resultados de acordo com o filtro
 $stmt_total = $conn->prepare("SELECT COUNT(*) as total FROM tb_clinica");
+if (!empty($_GET['busca'])) {
+  // Adicione aqui a lógica para contar os resultados com base no filtro de busca
+  $stmt_total = $conn->prepare("SELECT COUNT(*) as total FROM tb_clinica WHERE nm_clinica LIKE :busca");
+  $stmt_total->bindParam(':busca',$nome, PDO::PARAM_STR);
+}
+
 $stmt_total->execute();
 $total_results = $stmt_total->fetchColumn();
 $total_pages = ceil($total_results / $limit);

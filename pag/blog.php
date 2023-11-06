@@ -172,7 +172,34 @@ include("nav.php");
  echo date('d/m/y', strtotime($dt_data)); ?></i>
      </h2>
      <p><?php echo $nm_desc?></p>
+     
+     <?php
+     $publicacao_id = $row_pesquisa['id_post'];
+     // Verifique se a publicação já está nos favoritos do usuário
+     $favoritada = false;
+     $query = "SELECT * FROM tb_favorito WHERE user_id = :usuario_id AND pub_id = :publicacao_id";
+     $stmt2 = $conn->prepare($query);
+     $stmt2->bindParam(':usuario_id', $_SESSION['id_user']);
+     $stmt2->bindParam(':publicacao_id', $publicacao_id);
+     $stmt2->execute();
+     if ($stmt2->rowCount() > 0) {
+       $favoritada = true;
+     }
+     ?>
+                  <?php
+                  if(isset($_SESSION['id_user'])){
+                  // Exiba o botão de favoritar
+                  if ($favoritada){
+              
+                    // <!-- Exiba o botão de desfavoritar -->
+                     
+                      echo "<button class='button-fav' method = 'Unlike' data-post ='$publicacao_id' type='submit'><img src='../img/lover.png' alt='desfavoritar_icon' style='width: 25px;'></button>";
+                  } else {
+          
+      echo  "<button class='button-fav' method = 'Like' data-post ='$publicacao_id'><img src='../img/heart.png' alt='img_favorito' style='width:25px;'></button>";
 
+      }}
+     ?>
      <p class="read-more">
        <a onclick="window.location.href='view.php?id=<?php echo $row_pesquisa['id_post']; ?>'">Saiba mais</a>&nbsp;&nbsp;
        <?php
