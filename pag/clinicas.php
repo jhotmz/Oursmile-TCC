@@ -380,11 +380,7 @@ $(document).ready(function(){
 });
 });
 
-
-
-
 });
-
 
 function pesquisar(){
       var inputPesquisa = document.querySelector("#pesquisas").value;
