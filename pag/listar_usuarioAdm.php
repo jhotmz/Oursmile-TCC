@@ -242,6 +242,8 @@ include("nav.php");
                           $id_nivel = "Administrador";
                         } elseif ($id_nivel === '3') {
                           $id_nivel = "Dentista";
+                        } elseif ($id_nivel === '4'){
+                          $id_nivel = "Aguardando validação";
                         }
                         echo "<tr>";
                         echo "<td>" . $id . "</td>";

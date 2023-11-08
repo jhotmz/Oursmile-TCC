@@ -10,7 +10,7 @@ if ($nivel != 2) {
 
 // CONSULTA TABELA DENTISTA
 $validacao = '3';
-$stmt = $conn->prepare("SELECT id_dentista, nm_dentista, nm_sobrenome, nm_cro, nr_cpf, id_nivel FROM tb_dentista WHERE id_nivel = '$validacao'");
+$stmt = $conn->prepare("SELECT id, nm_nome, nm_sobrenome, nm_email, nr_cro, nr_cpf, id_nivel FROM tb_usuario WHERE id_nivel = '$validacao'");
 $stmt->execute();
 ?>
 
@@ -265,10 +265,10 @@ $stmt->execute();
                         extract($listar_usuario);
 
                         echo "<tr>";
-                        echo "<td>" . $id_dentista . "</td>";
-                        echo "<td>" . $nm_dentista . "</td>";
+                        echo "<td>" . $id . "</td>";
+                        echo "<td>" . $nm_nome . "</td>";
                         echo "<td>" . $nm_sobrenome . "</td>";
-                        echo "<td>" . $nm_cro . "</td>";
+                        echo "<td>" . $nr_cro . "</td>";
                         echo "<td>" . $nr_cpf . "</td>";
                       ?>
                         <td>

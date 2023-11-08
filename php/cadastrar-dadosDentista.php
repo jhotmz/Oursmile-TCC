@@ -1,14 +1,15 @@
 <?php
 try {
     require('conecta.php');
-    $stmt = $conn->prepare('INSERT INTO tb_dentista (nm_dentista, nm_sobrenome, nm_cro, ds_senha, nr_cpf, id_nivel) VALUES(:nome, :sobrenome, :cro, :password, :cpf, :nivel)');
+    $stmt = $conn->prepare('INSERT INTO tb_usuario (nm_nome, nm_sobrenome, nm_email, nr_cro, ds_senha, nr_cpf, id_nivel) VALUES(:nome, :sobrenome, :email, :cro, :password, :cpf, :nivel)');
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->execute(array(
         ':nome' => $_POST['nome'],
         ':sobrenome' => $_POST['sobrenome'],
         ':cro' => $_POST['cro_dentista'],
-        ':password' => $_POST['senha'],
         ':cpf' => $_POST['cpf_dentista'],
+        ':email' => $_POST['email'],
+        ':password' => $_POST['senha'],
         ':nivel' => $_POST['nivel']
     ));
 

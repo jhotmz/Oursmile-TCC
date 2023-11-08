@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['id_user'])) {
     require("conecta.php");
-    $publicacao_id = $_POST['publicacao_id'];
+    
     $method = $_GET['method'];
     $user_id = $_GET['user_id'];
     $director_id = $_GET['director_id'];

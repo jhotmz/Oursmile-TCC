@@ -9,6 +9,10 @@ if (!isset($_SESSION['id_user'])) {
   $stmt->execute();
   $stmt = $stmt->fetch();
   extract($stmt);
+
+  $clinica = $conn->prepare("SELECT * FROM tb_clinica");
+  $clinica->execute();
+  $clinica_exibir = $clinica->fetch();
 }
 
 ?>
@@ -217,9 +221,12 @@ include('../modal/alterarDados.php');
 ?>
 <h1 class="legendaA">Seu perfil</h1><br>
   <header class="perfil-header">
-
+    <form id="enviarFoto" enctype="multipart/form-data">
     <img class="img-perfil" src="<?php echo $ds_foto;?>">
-    
+    <input type="file" name="fotoPerfil" id="fotoPerfil">
+    <p id="resposta"></p>
+    <button type="submit">Atualizar</button>
+    </form>
        <?php echo $nm_nome; ?>
       <?php echo $nm_email; ?> 
   </header>
@@ -232,42 +239,41 @@ include('../modal/alterarDados.php');
   <section class="fav">
   <h1 class="legenda">Locais salvos</h1>
     <div class="clinica-salva">
+    <?php
+    // Consulta para buscar as publicações favoritadas pelo usuário
+    $query = "SELECT * FROM tb_clinica JOIN tb_favorito ON tb_clinica.id = tb_favorito.clinica_id WHERE tb_favorito.user_id = :usuario_id";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':usuario_id', $_SESSION['id_user']);
+    $stmt->execute();
+    $lines = $stmt->rowCount();
+    if($lines>0){
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    ?>
 
     <div class="card">
-  <img src="../img/retangulo.png" alt="Avatar" style="width:100%">
+    <a href="pagClinica.php?id=<?php echo $clinica_exibir['id']; ?>"><img src="<?php echo $row['ds_img'];?>" alt="Imagem relacionada a clínica" style="width:100%"></a>
   <div class="container">
-    <h4><b>Sorridents</b></h4> 
+    <h4><b><?php echo $row['nm_clinica'];?></b></h4> 
     <p></p> 
   </div>
 </div>&nbsp;&nbsp;&nbsp;
-
-<div class="card">
-  <img src="../img/retangulo.png" alt="Avatar" style="width:100%">
-  <div class="container">
-    <h4><b>Odontomyle</b></h4> 
-    <p></p> 
-  </div>
-</div>&nbsp;&nbsp;&nbsp;
-
-<div class="card">
-  <img src="../img/retangulo.png" alt="Avatar" style="width:100%">
-  <div class="container">
-    <h4><b>OdontoCompany</b></h4> 
-    <p></p> 
-  </div>
-</div>
-
+<?php
+    }
+  }else{
+    echo "Sem clínicas favoritadas!";
+  }
+?>
     </div>
 <h1 class="legenda">Matérias salvas</h1>
     <div class="post-salvo">
     <?php
-
     // Consulta para buscar as publicações favoritadas pelo usuário
     $query = "SELECT * FROM tb_blog JOIN tb_favorito ON tb_blog.id_post = tb_favorito.pub_id WHERE tb_favorito.user_id = :usuario_id";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':usuario_id', $_SESSION['id_user']);
     $stmt->execute();
-    
+    $lines = $stmt->rowCount();
+    if($lines>0){
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     ?>
         <div class="blog-container">
@@ -283,6 +289,8 @@ include('../modal/alterarDados.php');
 
 <!-- FECHAR SESSION -->
         <?php
+    }}else{
+      echo "Sem publicações favoritadas!";
     }
         ?>
 
@@ -294,6 +302,32 @@ include('../modal/alterarDados.php');
     </div>
   </section>
   </div> 
+<!-- JQUERY -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+  <script>
+  $(document).ready(function () {
+    $('#enviarFoto').submit(function (event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+      var form_data = new FormData(this);
+
+      $.ajax({
+        url: '../php/fotoPerfil.php?id=<?php echo $id?>', // Arquivo PHP para processar os dados
+        type: 'POST',
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          console.log(response); // Exibe a resposta do servidor
+          $('#resposta').html(response); // exibe resposta no html
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr.responseText);
+        }
+      });
+    });
+  });
+</script>
 </body>
 </main>
 </body>

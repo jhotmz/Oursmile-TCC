@@ -16,7 +16,7 @@ if (!isset($_SESSION['id_user'])) {
 <?php
 }else{
 ?>
-<a href="pag/perfil.php">Meu perfil</a>
+<a href="perfil.php">Meu perfil</a>
 <?php
     if($nivel === '2'){
     ?>

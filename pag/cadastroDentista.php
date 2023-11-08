@@ -15,9 +15,8 @@ if (isset($_SESSION['id_user'])) {
 	<link rel="stylesheet" href="../css/navbar.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="../js/jquery-3.6.4.js"></script>
+
 	<script>
-
-
  $(document).ready(function(){
     $("#cadastrar").click(function(){
     	let botao = document.querySelector("#cadastrar");
@@ -25,7 +24,7 @@ if (isset($_SESSION['id_user'])) {
   $.ajax({
     url: "../php/cadastrar-dadosDentista.php",
     type: "POST",
-    data: "nome="+$("#nome").val()+"&sobrenome="+$("#sobrenome").val()+"&cpf_dentista="+$("#cpf_dentista").val()+"&senha="+$("#senha").val()+"&nivel="+$("#nivel").val()+"&cro_dentista="+$("#cro_dentista").val(),
+    data: "nome="+$("#nome").val()+"&sobrenome="+$("#sobrenome").val()+"&email="+$("#email").val()+"&cpf_dentista="+$("#cpf_dentista").val()+"&senha="+$("#senha").val()+"&nivel="+$("#nivel").val()+"&cro_dentista="+$("#cro_dentista").val(),
     dataType: "html"
 
 }).done(function(resposta) {
@@ -105,6 +104,12 @@ if (isset($_SESSION['id_user'])) {
 				 <input type="text" required id="sobrenome">
 				 <div class="underline"></div>
 				 <label for="">Sobrenome:</label>
+			  </div>
+			  
+			  <div class="input-data">
+				 <input type="text" required id="email">
+				 <div class="underline"></div>
+				 <label for="">Email:</label>
 			  </div>
 		   </div>
 

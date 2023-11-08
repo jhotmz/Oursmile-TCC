@@ -10,7 +10,7 @@ if ($nivel != 2) {
 
 // CONSULTA TABELA DENTISTA
 $validacao = '4';
-$stmt = $conn->prepare("SELECT id_dentista, nm_dentista, nm_sobrenome, nm_cro, nr_cpf, id_nivel FROM tb_dentista WHERE id_nivel = '$validacao'");
+$stmt = $conn->prepare("SELECT id, nm_nome, nm_sobrenome, nm_email, nr_cro, nr_cpf, id_nivel FROM tb_usuario WHERE id_nivel = '$validacao'");
 $stmt->execute();
 ?>
 
@@ -134,16 +134,16 @@ $stmt->execute();
                             $id_nivel = "Aguardando validação";
                           }
                         echo "<tr>";
-                        echo "<td>" . $id_dentista . "</td>";
-                        echo "<td>" . $nm_dentista . "</td>";
+                        echo "<td>" . $id . "</td>";
+                        echo "<td>" . $nm_nome . "</td>";
                         echo "<td>" . $nm_sobrenome . "</td>";
-                        echo "<td>" . $nm_cro . "</td>";
+                        echo "<td>" . $nr_cro . "</td>";
                         echo "<td>" . $nr_cpf . "</td>";
                         echo "<td>" . $id_nivel . "</td>";
                       ?>
                         <td>
 
-                          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAprovar" data-id='<?php echo $id_dentista?>' data-cro='<?php echo $nm_cro?>' data-cpf  ='<?php echo $nr_cpf?>' data-nivel='<?php echo $id_nivel ?>' data-nome='<?php echo $nm_dentista?> ' data-sobrenome='<?php echo $nm_sobrenome?>'>
+                          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAprovar" data-id='<?php echo $id?>' data-cro='<?php echo $nr_cro?>' data-cpf  ='<?php echo $nr_cpf?>' data-nivel='<?php echo $id_nivel ?>' data-nome='<?php echo $nm_nome?> ' data-sobrenome='<?php echo $nm_sobrenome?>'>
                           Validar
                           </button>
 

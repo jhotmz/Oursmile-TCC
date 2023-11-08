@@ -233,63 +233,65 @@ form .form-row .textarea{
          Adicione sua clínica
       </div>
       <p id="respo"></p>
-      <form action="#">
+      <form id="formulario">
+      <input type="file" name="fotoClinica" id="fotoClinica">
          <div class="form-row">
+
             <div class="input-data">
-               <input type="text" required  id="clinica">
+               <input type="text"  id="clinica" required name="clinica">
                <div class="underline"></div>
                <label for="">Nome da clínica:</label>
             </div>
             <div class="input-data">
-               <input type="numbero" required  id="cro">
+               <input type="numbero" required  id="cro" name="cro">
                <div class="underline"></div>
                <label for="">Cro:</label>
             </div>
          </div>
          <div class="form-row">
             <div class="input-data">
-               <input type="text" required id="nomeDentista">
+               <input type="text" required id="nomeDentista" name="nomeDentista">
                <div class="underline"></div>
                <label for="">Nome do(a) dentista:</label>
             </div>
             <div class="input-data">
-            <input type="text" id="telefone" required onkeypress="mask(this, mphone);" onblur="mask(this, mphone);"/>
+            <input type="text" id="telefone" name="telefone" required onkeypress="mask(this, mphone);" onblur="mask(this, mphone);"/>
                <div class="underline"></div>
                <label for="">Telefone:</label>
             </div>
          </div>
          <div class="form-row">
             <div class="input-data">
-               <input type="text" required id="endereco" >
+               <input type="text" required id="endereco" name="endereco">
                <div class="underline"></div>
                <label for="">Endereço:</label>
             </div>
             <div class="input-data">
-               <input type="text" required id="zap" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
+               <input type="text" required id="zap" name="zap" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
                <div class="underline"></div>
                <label for="">Whatsapp:</label>
             </div>
          </div>
          <div class="form-row">
             <div class="input-data">
-               <input type="time" required id="horaEntrada">
+               <input type="time" required id="horaEntrada" name="horaEntrada">
                <div class="underline"></div>
                <label for="">Abertura:</label>
             </div>
             <div class="input-data">
-               <input type="time" required id="horaSaida">
+               <input type="time" required id="horaSaida" name="horaSaida">
                <div class="underline"></div>
                <label for="">Fechamento:</label>
             </div>
          </div>
          <div class="form-row">
             <div class="input-data">
-               <input type="text" required id="email">
+               <input type="text" required id="email" name="email">
                <div class="underline"></div>
                <label for="">Email:</label>
             </div>
             <div class="input-data">
-               <input type="text" required id="tratamentos">
+               <input type="text" required id="tratamentos" name="tratamentos">
                <div class="underline"></div>
                <label for="">Tratamentos:</label>
     
@@ -299,51 +301,40 @@ form .form-row .textarea{
 
          <div class="form-row">
          <div class="input-data textarea">
-         <button type="button" id="cadastrar">Cadastrar</button>
+         <button type="submit" id="cadastrar">Cadastrar</button>
 
             
       </form>
+      <p id="resposta"></p>
       </div>
 
 	</section>
 
 <script>
+// ajax para enviar dados para o php 
 
-$(document).ready(function(){
-    $("#cadastrar").click(function(){
-      var clinica = $("#clinica").val();
-      var cro = $("#cro").val();
-      var nomeDentista = $("#nomeDentista").val();
-      var telefone = $("#telefone").val();
-      var endereco = $("#endereco").val();
-      var zap = $("#zap").val();
-      var hrAbre = $("#horaEntrada").val();
-      var hrFecha = $("#horaSaida").val();
-      var email = $("#email").val();
-      var trat = $("#tratamentos").val();
+  $(document).ready(function () {
+    $('#formulario').submit(function (event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+      var form_data = new FormData(this);
 
-  $.ajax({
-    url: "../php/addClinicas.php",
-    type: "POST",
-    data: "clinica="+clinica+"&cro="+cro+"&nomeDentista="+nomeDentista+"&telefone="+telefone+"&endereco="+endereco+"&zap="+zap+"&horarioA="+hrAbre+"&horarioF="+hrFecha+"&email="+email+"&tratamentos="+trat,
-    dataType: "html"
+      $.ajax({
+        url: '../php/addClinicas.php', // Arquivo PHP para processar os dados
+        type: 'POST',
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          console.log(response); // Exibe a resposta do servidor
+          $('#resposta').html(response); // exibe resposta no html
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr.responseText);
+        }
+      });
+    });
+  });
 
-}).done(function(resposta) {
-   $("#respo").html(resposta);
-
- 
-
-}).fail(function(jqXHR, textStatus ) {
-    console.log("Request failed: " + textStatus);
-    window.location.href = "addClinica.php";
-
-}).always(function() {
-
-});
-});
-
-
-});
 function mask(o, f) {
   setTimeout(function() {
     var v = mphone(o.value);
