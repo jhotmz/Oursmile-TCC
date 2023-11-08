@@ -22,6 +22,7 @@ if (isset($_SESSION['id_user'])) {
  $(document).ready(function(){
     $("#entrar").click(function(){
     	let botao = document.querySelector("#entrar");
+		var aviso = document.querySelector("#aviso");
     	botao.innerHTML = ' <i class="fa fa-refresh fa-spin"></i>';
   $.ajax({
     url: "../php/logar.php",
@@ -31,26 +32,80 @@ if (isset($_SESSION['id_user'])) {
 
 }).done(function(resposta) {
 	setTimeout(() => {
-botao.innerHTML = resposta;
+aviso.innerHTML = resposta;
+botao.innerHTML = "Entrar";
 }, "2000");
 
-}).fail(function(jqXHR, textStatus ) {
+}).fail(function(jqXHR, textStatus) {
     console.log("Request failed: " + textStatus);
+	
 
 
 }).always(function() {
     console.log("completou");
 
+
+});
 });
 });
 
-});
 
+    function remove(){
+		var buttonX = document.querySelector(".error__close");
+		var aviso = document.querySelector(".error");
+		aviso.style.display =  "none";
+	}
+    window.addEventListener('click', function(){
+        remove();
+    });
 
 
 
 	
 	  </script>
+	  <style>
+		.error {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 320px;
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  background: #EF665B;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px -3px #111;
+}
+
+.error__icon {
+  width: 20px;
+  height: 20px;
+  transform: translateY(-2px);
+  margin-right: 8px;
+  display:block;
+}
+
+.error__icon path {
+  fill: #fff;
+}
+
+.error__title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+}
+
+.error__close {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.error__close path {
+  fill: #fff;
+}
+	  </style>
 </head>
 <body>
 	<p id="p"></p>
@@ -76,18 +131,21 @@ botao.innerHTML = resposta;
 	<section>
 		
 	<div class="container">
+	
 		<div class="text">
 
 			<a href="../index.php"><img src="../img/logoHorizontal.png" alt=""></a>
 		</div>
 
 		<form>
+	<p id="aviso"></p>
 		   <div class="form-row">
+			
 			  <div class="input-data">
 				 <input type="text" required id="email">
 				 <div class="underline"></div>
 				 <label for="">Email:</label>
-				 <a href="cadastrar.php" id="log">Não sou cadastrado ainda</a>
+				 <a href="cadastrar.php" id="log" style="font-size:0.8rem; text-decoration:underline;">Não sou cadastrado ainda</a>
 			  </div>
 
 			  <div class="input-data">
@@ -108,6 +166,7 @@ botao.innerHTML = resposta;
 					<button type="button" id="entrar">Entrar</button><br>
 				 </div>
 			  </div>
+			 <a href="esqueceuAsenha.php" style="font-size:0.8rem; text-decoration:underline;"> Esqueci a senha</a>
 
 		</form>
 		</div>
