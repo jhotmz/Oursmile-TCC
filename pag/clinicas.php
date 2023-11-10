@@ -78,6 +78,7 @@ session_start();
    height:2.2rem;
 }
 
+
     </style>
 </head>
 <script src="../js/modais.js"></script>
@@ -162,18 +163,23 @@ if($_SESSION['nivel'] == 2){
     </script>
 
     <div class="input-group">
-      <form action="">
-    <input type="text" class="input"  name="busca" id="busca" placeholder="Pesquisar:" autocomplete="off" onkeyup="pesquisar()">
-    <button type="submit" onclick="searchData()"><i class="fa fa-search"></i></button>
-    </form>
-
-    <select class="button--submit" id="FiltroSelect">
-      <option value="" disabled selected>Filtrar:</option>
-    <option value="clinica">Clínicas</option>
-    <option value="dentista">Dentistas</option>
-    </select>
-    
+   
+    <form action="">
+ 
+  <div class="container-input">
+  <input type="text" name="busca" id="busca" placeholder="Pesquisar:" autocomplete="off" onkeyup="pesquisar()" class="input">
+  <svg type="submit" class="invite-btn" onclick="searchData()" fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+    <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
+    </svg>
 </div>
+</div>
+   </form>
+
+
+
+</div>
+    
+
 
 
 <div class="wrapper">
@@ -202,12 +208,24 @@ if($_SESSION['nivel'] == 2){
 
 
    
-    <button onclick="window.location.href='pagClinica.php?id=<?php echo $row['id']?>'">
+    <button onclick="window.location.href='pagClinica.php?id=<?php echo $row['id']?>'" class="buttonClinica">
   <span>Saiba mais</span>
 </button>
 
  <br><br>
  <?php
+ $botao = '<label class="container" style="display:flex; justify-content:end;">
+ <input type="checkbox">
+ <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
+ <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
+</label>';
+
+$botaoAtivo = '<label class="container" style="display:flex; justify-content:end;">
+<input type="checkbox" checked>
+<svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
+<svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
+</label>';
+
      $clinica_id = $id;
      // Verifique se a publicação já está nos favoritos do usuário
      $favoritada = false;
@@ -224,19 +242,24 @@ if($_SESSION['nivel'] == 2){
       // Exiba o botão de favoritar
         if ($favoritada){
                     // <!-- Exiba o botão de desfavoritar -->
-                      echo "<button class='button-fav' method = 'Unlike' data-post ='$clinica_id' type='submit'>Desfavoritar</button>";
+                      echo "<button class='button-fav' method = 'Unlike' data-post ='$clinica_id' type='submit' style='display:flex; justify-content:end; margin-left:0.5rem;'>
+                      
+              $botaoAtivo
+
+                      </button>";
                   } else {
           
-                    echo  "<button class='button-fav' method = 'Like' data-post ='$clinica_id'>Favoritar";
+                    echo  "<button class='button-fav' method = 'Like' data-post ='$clinica_id' style='display:flex; justify-content:end; margin-left:0.5rem;'>
+                    
+                    $botao
+
+
+                    </button>";
 
                   }}
                   ?>
 
- <!-- <label class="container" style="display:flex; justify-content:end;">
-  <input type="checkbox">
-  <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
-  <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
-</label> -->
+
 <br>
 <?php
 
@@ -274,150 +297,7 @@ delete
  </div>
   
 </div>
-<script>
-function initMap() {
 
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 10,
-    center: jonas,
-  });
-  const directionsService = new google.maps.DirectionsService();
-  const directionsRenderer = new google.maps.DirectionsRenderer({
-    draggable: true,
-    map,
-    panel: document.getElementById("panel"),
-  });
-
-
-  directionsRenderer.addListener("directions_changed", () => {
-    const directions = directionsRenderer.getDirections();
-
-    if (directions) {
-      computeTotalDistance(directions);
-    }
-  });
-
-
-
-  var jonas = document.getElementById("endereco").value; 
-  displayRoute(
-    jonas,
-    jonas,
-    directionsService,
-    directionsRenderer
-  );
-
-
-}
-
-
-function displayRoute(origin, destination, service, display) {
-  service
-    .route({
-      origin: origin,
-      destination: destination,
-
-      travelMode: google.maps.TravelMode.DRIVING,
-      avoidTolls: true,
-    })
-    .then((result) => {
-      display.setDirections(result);
-    })
-    .catch((e) => {
-
-    });
-}
-
-function computeTotalDistance(result) {
-  let total = 0;
-  const myroute = result.routes[0];
-
-  if (!myroute) {
-    return;
-  }
-
-  for (let i = 0; i < myroute.legs.length; i++) {
-    total += myroute.legs[i].distance.value;
-  }
-
-  total = total / 1000;
-  document.getElementById("total").innerHTML = total + " km";
-}
-
-window.initMap = initMap;
-
-$(document).ready(function(){
-    $("#enviar").click(function(){
-      var clinica = $("#clinica").val();
-      var cro = $("#cro").val();
-      var nomeDentista = $("#nomeDentista").val();
-      var telefone = $("#telefone").val();
-      var endereco = $("#endereco").val();
-      var zap = $("#zap").val();
-      var hrAbre = $("#horaEntrada").val();
-      var hrFecha = $("#horaSaida").val();
-      var email = $("#email").val();
-
-      let botao = document.querySelector("#enviar");
-
-  $.ajax({
-    url: "../php/addClinicas.php",
-    type: "POST",
-    data: "clinica="+clinica+"&cro="+cro+"&nomeDentista="+nomeDentista+"&telefone="+telefone+"&endereco="+endereco+"&zap="+zap+"&horarioA="+hrAbre+"&horarioF="+hrFecha+"&email="+email,
-    dataType: "html"
-
-}).done(function(resposta) {
-
-  console.log(resposta);
- 
-
-}).fail(function(jqXHR, textStatus ) {
-    console.log("Request failed: " + textStatus);
- 
-
-}).always(function() {
-
-});
-});
-
-});
-
-function pesquisar(){
-      var inputPesquisa = document.querySelector("#pesquisas").value;
-      var fs = document.querySelector("#FiltroSelect");
-    fs.addEventListener('change', function(){
-
-if(fs.value == "clinica"){
-  console.log("clinicas");
-}else if(fs.value == "dentista"){
-  console.log("dentista");
-}
-
-});
-var bots = "../php/PesquisarClinica.php";
-  $.ajax({
-    url: bots,
-    type: "POST",
-    data: "pesquisar="+inputPesquisa,
-    dataType: "html"
-
-}).done(function(resposta) {
-   $("#exibicao").html(resposta);
-   
- 
-
-}).fail(function(jqXHR, textStatus ) {
-    console.log("Request failed: " + textStatus);
- 
-
-}).always(function() {
-
-});
-}
-
-
-
-</script>
 
 <!-- PAGINAÇÃO DAS PUBLICAÇÕES -->
 <?php
@@ -499,10 +379,10 @@ echo "</ul></div>";
             const method = $(this).attr('method'); // Get the parameter method from the button
             if (method === "Like") {
                 $(this).attr('method', 'Unlike'); // Change the div method attribute to Unlike
-                $(this).html('<img src="../img/favorite.png" alt="desfavoritar_icon" style="width: 25px;>" id="'+director_id+'">').toggleClass('button mybtn'); // Replace the image with the liked button
+                $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
             }else{
                 $(this).attr('method', 'Like');
-                $(this).html('<img src="../img/fav.png" alt="desfavoritar_icon" style="width: 25px;>" id="' +director_id+'">').toggleClass('mybtn button');
+                $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
             }
             $.ajax({
                 url: '../php/favPostClinica.php', // Call favs.php to update the database

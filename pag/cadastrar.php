@@ -13,7 +13,7 @@ if (isset($_SESSION['id_user'])) {
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cadastrar.css">
 	<link rel="stylesheet" href="../css/navbar.css">
-	
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="../js/jquery-3.6.4.js"></script>
 	<script>
@@ -22,6 +22,7 @@ if (isset($_SESSION['id_user'])) {
  $(document).ready(function(){
     $("#cadastrar").click(function(){
     	let botao = document.querySelector("#cadastrar");
+		var aviso = document.querySelector("#aviso");
     	botao.innerHTML = ' <i class="fa fa-refresh fa-spin"></i>';
   $.ajax({
     url: "../php/cadastrar-dados.php",
@@ -30,10 +31,11 @@ if (isset($_SESSION['id_user'])) {
     dataType: "html"
 
 }).done(function(resposta) {
-   window.location.href = "../index.php";
+
    
    setTimeout(() => {
-   botao.innerHTML = "Cadastrado com sucesso!";
+   aviso.innerHTML = resposta;
+   botao.innerHTML = "Cadastrar";
 }, "2000");
 
 
@@ -48,6 +50,14 @@ if (isset($_SESSION['id_user'])) {
 
 });
 
+function remove(){
+		var buttonX = document.querySelector(".error__close");
+		var aviso = document.querySelector(".error");
+		aviso.style.display =  "none";
+	}
+    window.addEventListener('click', function(){
+        remove();
+    });
 
 	function myFunction() {
 		document.getElementById("myDropdown").classList.toggle("show");
@@ -69,6 +79,49 @@ if (isset($_SESSION['id_user'])) {
 
 
 	  </script>
+	  <style>
+		.error {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 320px;
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  background: #EF665B;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px -3px #111;
+}
+
+.error__icon {
+  width: 20px;
+  height: 20px;
+  transform: translateY(-2px);
+  margin-right: 8px;
+  display:block;
+}
+
+.error__icon path {
+  fill: #fff;
+}
+
+.error__title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+}
+
+.error__close {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.error__close path {
+  fill: #fff;
+}
+	  </style>
 </head>
 <body>
 	<p id="resp"></p>
@@ -99,7 +152,9 @@ if (isset($_SESSION['id_user'])) {
 		</div>
 
 		<form>
+			<p id="aviso"></p>
 		   <div class="form-row">
+			
 			  <div class="input-data">
 				 <input type="text" required id="nome">
 				 <div class="underline"></div>
@@ -117,7 +172,7 @@ if (isset($_SESSION['id_user'])) {
 				 <input type="text" required id="email">
 				 <div class="underline"></div>
 				 <label for="">Email:</label>
-				 <a href="login.php" id="log">Ja tenho login</a>
+				 <a href="login.php" id="log" style="font-size:0.8rem; text-decoration:underline;">Ja tenho login</a>
 			  </div>
 			  
 			  <div class="input-data">

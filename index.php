@@ -143,8 +143,8 @@ padding:0.5rem;
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
 
-              <li class="scroll-to-section"><a href="#services">Blog</a></li>
-              <li class="scroll-to-section"><a href="#about">Clínicas</a></li>
+              <li class="scroll-to-section"><a href="">Blog</a></li>
+              <li class="scroll-to-section"><a href="pag/clinicas.php">Clínicas</a></li>
               <?php
 if (!isset($_SESSION['id_user'])) {
 ?>
@@ -153,16 +153,16 @@ if (!isset($_SESSION['id_user'])) {
 <?php
 }else{
 ?>
-    <li class="scroll-to-section"><a href="">Perfil</a></li>
+    <li class="scroll-to-section"><a href="pag/perfil.php">Perfil</a></li>
 <?php
 }
 ?>  
 
 
 <?php
-if($_SESSION['nivel'] == 2){
+if($nivel == 2){
 ?>
-<li class="scroll-to-section"><a href="#about">Gerenciar</a></li>
+<li class="scroll-to-section"><a href="pag/listar_usuarioAdm.php">Gerenciar</a></li>
 <?php
 }else{
   ?>
@@ -172,7 +172,7 @@ if($_SESSION['nivel'] == 2){
                 <?php
 if (!isset($_SESSION['id_user'])) {
 ?>
-    <li class="scroll-to-section"><a href="pag/login.php">Entrar</a></li>
+    <li class="scroll-to-section"><a href="pag/cadastrar-se.php">Entrar</a></li>
 
 <?php
 }else{
@@ -214,8 +214,8 @@ if (!isset($_SESSION['id_user'])) {
             <div class="col-lg-6 align-self-center">
               <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
                 <div class="row">
-                  <div class="col-lg-12">
-                    <h2>Produzir um sorriso é multiplicar a felicidade</h2>
+                  <div class="col-lg-10">
+                    <h2>Produzir um sorriso <br> é multiplicar a  felicidade</h2>
                   
                   </div>
                   <div class="col-lg-12">
@@ -290,7 +290,7 @@ if (!isset($_SESSION['id_user'])) {
             <?php
 if (!isset($_SESSION['id_user'])) {
 ?>
-    <a href="pag/cadastrar.php">Saiba mais</a>
+    <a href="pag/cadastrar-se.php">Saiba mais</a>
 
 <?php
 }else{
@@ -314,7 +314,7 @@ if (!isset($_SESSION['id_user'])) {
 <li>Saiba sobre a equipe que fez o site</li>              
             </ul>
             <div class="border-button">
-              <a href="">Saiba mais</a>
+              <a href="sobreNós/index.html">Saiba mais</a>
             </div>
           </div>
         </div>
@@ -325,11 +325,7 @@ if (!isset($_SESSION['id_user'])) {
   <footer id="newsletter">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="section-heading">
-            <h4>Join our mailing list to receive the news &amp; latest trends</h4>
-          </div>
-        </div>
+       
         <div class="col-lg-6 offset-lg-3">
           <form id="search" action="#" method="GET">
             <div class="row">
@@ -392,19 +388,14 @@ if (!isset($_SESSION['id_user'])) {
         </div>
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>About Our Company</h4>
+            <h4>SocialVision</h4>
             <div class="logo">
-           dw
+           <img src="img/logoBrancoEquipe.png">
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
           </div>
         </div>
-        <div class="col-lg-12">
-          <div class="copyright-text">
-            <p>Copyright © 2022 Chain App Dev Company. All Rights Reserved. 
-          <br>Design: <a href="https://templatemo.com/" target="_blank" title="css templates">TemplateMo</a></p>
-          </div>
-        </div>
+      
       </div>
     </div>
 
