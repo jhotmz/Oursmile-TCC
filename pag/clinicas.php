@@ -370,31 +370,31 @@ if ($total_results > 0) {
 echo "</ul></div>";
 ?>
 
-<!-- SCRIPT PARA ENVIAR FAVORITO-->
-<script>
-    $(document).ready(function ($) {
-        $(".button-fav").click(function (e) {
-            e.preventDefault();
-            const director_id = $(this).attr('data-post'); // Get the parameter director_id from the button
-            const method = $(this).attr('method'); // Get the parameter method from the button
-            if (method === "Like") {
-                $(this).attr('method', 'Unlike'); // Change the div method attribute to Unlike
-                $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
-            }else{
-                $(this).attr('method', 'Like');
-                $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
-            }
-            $.ajax({
-                url: '../php/favPostClinica.php', // Call favs.php to update the database
-                type: 'GET',
-                data: {director_id: director_id, method: method},
-                cache: false,
-                success: function (data){
-                }
-            });
-        });
-    });
-</script>
+  <!-- SCRIPT PARA ENVIAR FAVORITO-->
+  <script>
+      $(document).ready(function ($) {
+          $(".button-fav").click(function (e) {
+              e.preventDefault();
+              const director_id = $(this).attr('data-post'); // Get the parameter director_id from the button
+              const method = $(this).attr('method'); // Get the parameter method from the button
+              if (method === "Like") {
+                  $(this).attr('method', 'Unlike'); // Change the div method attribute to Unlike
+                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
+              }else{
+                  $(this).attr('method', 'Like');
+                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
+              }
+              $.ajax({
+                  url: '../php/favPostClinica.php', // Call favs.php to update the database
+                  type: 'GET',
+                  data: {director_id: director_id, method: method},
+                  cache: false,
+                  success: function (data){
+                  }
+              });
+          });
+      });
+  </script>
 
 </body>
 </html>

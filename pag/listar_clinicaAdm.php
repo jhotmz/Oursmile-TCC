@@ -8,7 +8,7 @@
     header("location: ../index.php");
   }else{
     $stmt = $conn->prepare("SELECT * FROM tb_clinica");
-    $stmt->execute();
+    $stmt->execute(); 
   ?>
 
     <!DOCTYPE HTML>
@@ -114,6 +114,9 @@ $(function(){
                 <hr>
                 <div class="row">
                   <div class="col-lg-12">
+                  <input type="text" id="search" placeholder="Pesquisar">
+    <div id="records"></div>
+    <div class="pagination" id="pagination"></div>
               
                       <!-- Modal adicionar usuário -->
                       <div class="modal fade" id="modalAdicionar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -159,43 +162,7 @@ $(function(){
                         </div>
                       </div>
         
-                      <table class="table">
-                        <thead class="table-dark">
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome da clínica</th>
-                            <th scope="col">Endereço</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Ações</th>
-                          </tr>
-                        </thead>
-                        <!-- LISTAR USUÁRIOS CADASTRADOS -->
-
-                        <tbody>
-                      <?php
-                  while ($listar_pub = $stmt->fetch(PDO::FETCH_ASSOC)){
-                  extract($listar_pub);
-                        echo "<tr>";
-                        echo "<td>" . $id. "</td>";
-                        echo "<td>" . $nm_clinica . "</td>";
-                        echo "<td>" . $nm_endereco . "</td>";
-                        echo "<td>" . $nm_email . "</td>";
-                ?>
-                <td>
-                          
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar" data-id='<?php echo $id_post?>' data-nome='<?php echo $nm_postagem?>' data-desc='<?php echo $nm_desc?>' data-autor='<?php echo $nm_autor?>'>
-      <i class="fa-solid fa-pen-to-square"></i>
-      </button>
-
-      <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalDelete">
-      <i class="fa-solid fa-trash"></i>                                  
-      </button>
-                                  
-
-                              
-
-                            </td>
-                          </tr>
+                      
                          
                       <!-- Modal Editar publicação -->
                       <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditar" aria-hidden="true">
@@ -271,9 +238,7 @@ $(function(){
                           </div>
                         </div>
                       </div>
-                          <?php
-                            }
-                            ?>
+                  
                         </tbody>
                       </table>
                 </div>
@@ -307,6 +272,36 @@ $(function(){
     autogrow: true
   });
 </script>
+
+<script>
+        function fetchRecords(page, search = '') {
+            $.ajax({
+                url: '../php/exibir/exibir-clinica.php',
+                method: 'POST',
+                data: { page: page, search: search },
+                success: function(response) {
+                    $('#records').html(response);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            fetchRecords(1);
+
+            $(document).on('click', '.pagination a', function(event) {
+                event.preventDefault();
+                var page = $(this).data('page');
+                var search = $('#search').val();
+                fetchRecords(page, search);
+            });
+
+            $('#search').keyup(function() {
+                var search = $(this).val();
+                fetchRecords(1, search);
+            });
+        });
+    </script>
+
       <!-- FECHAR SESSION -->
     <?php
   }

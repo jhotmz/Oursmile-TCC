@@ -13,7 +13,7 @@ try {
 		echo "<p style='color: red;'>Insira um nome!</p>";
 	}else{
 		$alterar = $conn->prepare("UPDATE tb_usuario SET nm_nome = :nome, nm_sobrenome = :sobrenome, nm_email = :email WHERE id = :id");
-			$alterar->bindParam(':nome', $nome);
+		$alterar->bindParam(':nome', $nome);
         $alterar->bindParam(':sobrenome', $sobrenome);
 		$alterar->bindParam(':email', $email);
 		$alterar->bindValue(':id', $id);

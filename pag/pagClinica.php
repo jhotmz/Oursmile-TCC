@@ -93,14 +93,12 @@ display: flex;
     $exibir = $exibir_clinica->fetch(PDO::FETCH_ASSOC);
     extract($exibir);
     ?>
- 
 
-<body>
     <!-- nav do site -->
-
     <script>
         const toggleMenuOpen = () => document.body.classList.toggle("open");
     </script>
+
     	<nav class="nav">
 	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
 	<a href="../index.php"><img src="../img/logo.png" alt="" id="logotipo"></a>
@@ -110,9 +108,7 @@ display: flex;
 		<a href="">Home</a>
 		<a href="#">Blog</a>
 		<a href="#">Clínicas</a>
-		
-
-
+	
 		<div class="nav__cta">
 
 		</div>
@@ -166,11 +162,6 @@ display: flex;
         <?php echo $hr_fecha;?>
       </p>
 
-
-        
-
-        
-
 				<div class="product-links">
 					<a href=""><i class="fa fa-heart"></i></a>
 					<a href=""><i class="fa fa-shopping-cart"></i></a>
@@ -185,26 +176,45 @@ display: flex;
 					<a href=""><i class="fa fa-heart"></i></a>
 					<a href=""><i class="fa fa-shopping-cart"></i></a>
 				</div>
-       
-        
 			</div>
-      <div class="rating">
-  <input value="5" name="rate" id="star5" type="radio" checked="">
-  <label title="text" for="star5"></label>
 
-  <input value="4" name="rate" id="star4" type="radio">
-  <label title="text" for="star4"></label>
+<style>
+.rating-container {
+    text-align: center;
+}
 
-  <input value="3" name="rate" id="star3" type="radio" >
-  <label title="text" for="star3"></label>
+.stars {
+    font-size: 30px;
+    cursor: pointer;
+}
 
-  <input value="2" name="rate" id="star2" type="radio">
-  <label title="text" for="star2"></label>
+.stars .star {
+    color: #ccc;
+    display: inline-block;
+    margin-right: 5px;
+}
 
-  <input value="1" name="rate" id="star1" type="radio">
-  <label title="text" for="star1"></label>
+.stars .star:hover,
+.stars .star.active {
+    color: #ffcc00;
+}
 
-</div><br><br><br>
+      </style>
+      <div class="rating-container">
+    <h2>Avalie-nos</h2>
+    <div class="stars" data-rating="0">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+    </div>
+    <p id="rating-value">Avaliação: 0</p>
+</div>
+<script src="../js/avaliar.js"></script>
+
+
+<br><br><br>
 <?php echo $nm_tratamentos;?><br>
 <button class="edits" id="myBtn">
 <b class="material-symbols-outlined">
@@ -233,8 +243,8 @@ edit
 </b>
 </button>
 </div>
-
 </div>
+
 
 <script>
     $(document).ready(function(){

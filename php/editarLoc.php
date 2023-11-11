@@ -3,7 +3,6 @@ include('conecta.php');
 $id = $_POST['id'];
 $endereco = $_POST['endereco'];
 
-
 try {
     // validar campos
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,8 +16,7 @@ try {
             echo "alteração concluida";
             echo "
                 <meta http-equiv='content-type' content='text/html; charset=UTF-8' />";
-
-        } else {
+        } else{
             
         }
     } else {

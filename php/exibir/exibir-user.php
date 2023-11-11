@@ -1,5 +1,5 @@
 <?php
-include('conecta.php');
+include('../conecta.php');
 
 $limit = 5;
 $page = isset($_POST['page']) ? $_POST['page'] : 1;

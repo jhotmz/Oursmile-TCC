@@ -298,7 +298,7 @@ include("nav.php");
     <script>
         function fetchRecords(page, search = '') {
             $.ajax({
-                url: '../php/exibir-user.php',
+                url: '../php/exibir/exibir-user.php',
                 method: 'POST',
                 data: { page: page, search: search },
                 success: function(response) {
