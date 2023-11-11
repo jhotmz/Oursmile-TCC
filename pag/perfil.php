@@ -34,207 +34,59 @@ if (!isset($_SESSION['id_user'])) {
   <!-- FONTE POPINS -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
   <!-- ICON -->
-  <title>Oursmile</title>
+  <title>Oursmile/<?php echo $nm_nome?></title>
 </head>
 
-<style>
-*{
-    margin:0;
-}
-#menu {
-	background: #0099CC;
-	background: linear-gradient(to bottom,  #12D9E8,  #19BAFF);
-	color: #FFF;
-	height: 45px;
-	padding-left: 18px;
-	border-radius: 0px;
-}
-#menu ul, #menu li {
-	margin: 0 auto;
-	padding: 0;
-	list-style: none;
-}
-#menu ul {
-	width: 100%;
-}
-#menu li {
-	float: right;
-	display: inline;
-	padding-right:1rem;
-}
-#menu a {
-	display: block;
-	line-height: 45px;
-	padding: 0 14px;
-	text-decoration: none;
-	color: #FFFFFF;
-	font-size: 16px;
-}
-#menu a.dropdown-arrow:after {
-	content: "\23F7";
-	margin-left: 5px;
-}
-#menu li a:hover {
-	color: #0099CC;
-	background: #F2F2F2;
-}
-#menu input {
-	display: none;
-	margin: 0;
-	padding: 0;
-	height: 45px;
-	width: 100%;
-	opacity: 0;
-	cursor: pointer;
-}
-#menu label {
-	display: none;
-	line-height: 45px;
-	text-align: center;
-	position: absolute;
-	left: 35px
-}
-#menu label:before {
-	font-size: 1.6em;
-	content: "\2261"; 
-	margin-left: 20px;
-}
-#menu ul.sub-menus{
-	height: auto;
-	overflow: hidden;
-	width: 170px;
-	background: #444444;
-	position: absolute;
-	z-index: 99;
-	display: none;
-}
-#menu ul.sub-menus li {
-	display: block;
-	width: 100%;
-}
-#menu ul.sub-menus a {
-	color: #FFFFFF;
-	font-size: 16px;
-}
-#menu li:hover ul.sub-menus {
-	display: block;
-}
-#menu ul.sub-menus a:hover{
-	background: #F2F2F2;
-	color: #444444;
-}
-@media screen and (max-width: 800px){
-	#menu {position:relative}
-	#menu ul {background:#111;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;}
-	#menu ul.sub-menus {width:100%;position:static;}
-	#menu ul.sub-menus a {padding-left:30px;}
-	#menu li {display:block;float:none;width:auto;}
-	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
-	#menu input {z-index:4}
-	#menu input:checked + label {color:white}
-	#menu input:checked + label:before {content:"\00d7"}
-	#menu input:checked ~ ul {display:block}
-}
-#main-one{
-    width:100%;
-    height:100vh;
-    background-color:white;
-}
-#main-two{
-    width:100%;
-    height:100vh;
-    background-color:white;
-}
-.form-pre{
-    background-color:white;
-    width:30rem;
-    height:15rem;
-    float:right;
-  margin:10rem 10rem;
- display:block;
- box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
- border-radius:2rem;
-}
-.form{
-    display:inline-block;
-    align-items: center;
-    justify-content: center;
-    padding:0rem 10rem;
-    
-}
-.cadastro{
-    color: #ffffff;
-    background-color: #33aae6;
-    font-size: 15px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    padding: 10px 15px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.cadastro:hover {
-    color: #ffffff;
-    background-color: #6dc0e9;
-}
 
-@media (max-width: 600px)
-{
-  .form-pre
-   {
-    display:none;
-}
-#main-one{
-	background-image:url("../img/ww.png");
-}
-}
-
-</style>
 <body>
   <!-- NAV -->
-<nav id='menu'>
-    <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
-    <ul>
-      <li><a href='#'>Sobre nós</a></li>
-      <li><a href='#'>Clínicas e profissionais</a></li>
-      <li><a href='blog.php'>Blog</a></li>
-      <li><a href='../index.php'>Home</a></li>
-    </ul>
-  </nav>
 
-
+<?php include("navbars.php");?>
+<br><br><br>
 
 <div class="box-container">
-
+<br>
   <aside class="aside">
     <div class="button-perfil">
 
 
-      <button id="myBtn2" class="button">Editar informações</button>
-      <button id="myBtn" class="button">Editar senha</button>
+      <button id="myBtn2" class="buttons">Editar informações</button>
+      <button id="myBtn" class="buttons">Editar senha</button>
+      <label for="atualizar" class="buttons">Atualizar</label>
     </div>
   </aside>
-  <!-- MODAL ALTERAR SENHA -->
+  <h1 class="legendaA">Seu perfil</h1>
+
+<div class="info">
+  <p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">account_circle</span> <?php echo $nm_nome;?> <?php echo $nm_sobrenome;?></p>
+ <p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">alternate_email</span> <?php echo $nm_email;?></p>
+<p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">location_on</span><?php echo $nm_local;?></p>
+</div>
+   <!-- MODAL ALTERAR SENHA -->
 <?php
 include('../modal/alterarSenha.php');
 include('../modal/alterarDados.php');
 ?>
-<h1 class="legendaA">Seu perfil</h1><br>
+<br>
   <header class="perfil-header">
     <form id="enviarFoto" enctype="multipart/form-data">
     <img class="img-perfil" src="<?php echo $ds_foto;?>">
-    <input type="file" name="fotoPerfil" id="fotoPerfil">
+    <input type="file" name="fotoPerfil" id="fotoPerfil" style="display:none;">
+    <label class="files" for="fotoPerfil">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#fff" fill-rule="evenodd" clip-rule="evenodd"><path d="m4 9c0-1.10457.89543-2 2-2h2l.44721-.89443c.33879-.67757 1.03131-1.10557 1.78889-1.10557h3.5278c.7576 0 1.4501.428 1.7889 1.10557l.4472.89443h2c1.1046 0 2 .89543 2 2v8c0 1.1046-.8954 2-2 2h-12c-1.10457 0-2-.8954-2-2z"></path><path d="m15 13c0 1.6569-1.3431 3-3 3s-3-1.3431-3-3 1.3431-3 3-3 3 1.3431 3 3z"></path></g></svg>
+Adicionar foto
+</label>
     <p id="resposta"></p>
-    <button type="submit">Atualizar</button>
+    <button type="submit" id="atualizar" style="display:none;">Atualizar</button>
     </form>
-       <?php echo $nm_nome; ?>
-      <?php echo $nm_email; ?> 
+      
   </header>
-
+<div class="linhaH"></div>
+     
   <section class="container-perfil">
 
     
-  </section>
+  </section> 
 <br><br>
   <section class="fav">
   <h1 class="legenda">Locais salvos</h1>
@@ -252,8 +104,8 @@ include('../modal/alterarDados.php');
 
     <div class="card">
     <a href="pagClinica.php?id=<?php echo $clinica_exibir['id']; ?>"><img src="<?php echo $row['ds_img'];?>" alt="Imagem relacionada a clínica" style="width:100%"></a>
-  <div class="container">
-    <h4><b><?php echo $row['nm_clinica'];?></b></h4> 
+  <div class="container"><br><center>
+    <h4><b><?php echo $row['nm_clinica'];?></b></h4></center> 
     <p></p> 
   </div>
 </div>&nbsp;&nbsp;&nbsp;
@@ -263,7 +115,7 @@ include('../modal/alterarDados.php');
     echo "Sem clínicas favoritadas!";
   }
 ?>
-    </div>
+    </div><br>
 <h1 class="legenda">Matérias salvas</h1>
     <div class="post-salvo">
     <?php
