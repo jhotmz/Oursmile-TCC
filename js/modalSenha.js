@@ -45,13 +45,13 @@ span2.onclick = function() {
 }
 
 
-var modal3 = document.getElementById("modalSair");
+var modal3 = document.getElementById("modal3");
 
 // Get the button that opens the modal
-var btn3 = document.getElementById("btnSair");
+var btn3 = document.getElementById("btn3");
 
 // Get the <span> element that closes the modal
-var span3 = document.getElementsByClassName("close")[0];
+var span3 = document.getElementsByClassName("close3")[0];
 
 // When the user clicks on the button, open the modal
 btn3.onclick = function() {

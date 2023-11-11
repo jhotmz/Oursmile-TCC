@@ -26,7 +26,7 @@ if (!isset($_SESSION['id_user'])) {
     <link rel="stylesheet" href="../index/assets/css/owl.css">
     <style>
       /* The Modal (background) */
-.modalSair {
+.modal{
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -40,7 +40,7 @@ if (!isset($_SESSION['id_user'])) {
 }
 
 /* Modal Content/Box */
-.modalSair-content {
+.modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -163,7 +163,7 @@ if (!isset($_SESSION['id_user'])) {
   
   <script src="../index/assets/js/custom.js"></script>
 <script>
-  var modal = document.getElementById("modalSair");
+  var modal = document.getElementById("modal");
 
 // Get the button that opens the modal
 var btn = document.getElementById("btnSair");

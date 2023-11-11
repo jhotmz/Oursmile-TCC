@@ -25,16 +25,39 @@ if (!isset($_SESSION['id_user'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="icon" type="image/x-icon" href="img/logo_oursmile.png">
-  <link rel="stylesheet" href="../css/view-blog.css">
   <link rel="stylesheet" href="../css/perfil.css">
   <link rel="stylesheet" href="../css/card.css">
-  <link rel="stylesheet" href="../css/modal-senha.css">
+  <link rel="stylesheet" href="../css/modalPerfil.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- FONTE POPINS -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
-  <!-- ICON -->
+
   <title>Oursmile/<?php echo $nm_nome?></title>
+  <style>
+ .edits {
+  margin:2rem;
+  width: 45px;
+  height: 45px;
+  border: none;
+  color:#ffff;
+  border-radius: 50%;
+  background: linear-gradient(-50deg,rgb(39, 107, 255),rgb(112, 186, 255),rgb(39, 107, 255));
+  background-size: 250%;
+  background-position: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  right:0;
+  bottom:0;
+  transition-duration: .5s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.11);
+  float:right
+}
+
+  </style>
 </head>
 
 
@@ -43,8 +66,10 @@ if (!isset($_SESSION['id_user'])) {
 
 <?php include("navbars.php");?>
 <br><br><br>
-
-<div class="box-container">
+<button class="edits" onclick="location.href='addClinica.php'"><span class="material-symbols-outlined">
+add
+</span></button>
+<div class="box-container" style="overflow-x:hidden">
 <br>
   <aside class="aside">
     <div class="button-perfil">
@@ -66,6 +91,7 @@ if (!isset($_SESSION['id_user'])) {
 <?php
 include('../modal/alterarSenha.php');
 include('../modal/alterarDados.php');
+
 ?>
 <br>
   <header class="perfil-header">
@@ -81,7 +107,7 @@ Adicionar foto
     </form>
       
   </header>
-<div class="linhaH"></div>
+
      
   <section class="container-perfil">
 
@@ -102,11 +128,11 @@ Adicionar foto
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     ?>
 
-    <div class="card">
+    <div class="card"><center><h4><b><?php echo $row['nm_clinica'];?></b></h4></center>
     <a href="pagClinica.php?id=<?php echo $clinica_exibir['id']; ?>"><img src="<?php echo $row['ds_img'];?>" alt="Imagem relacionada a clínica" style="width:100%"></a>
-  <div class="container"><br><center>
-    <h4><b><?php echo $row['nm_clinica'];?></b></h4></center> 
-    <p></p> 
+  <div class="container"><br><p></p> 
+     <br><br>
+    
   </div>
 </div>&nbsp;&nbsp;&nbsp;
 <?php
@@ -117,7 +143,7 @@ Adicionar foto
 ?>
     </div><br>
 <h1 class="legenda">Matérias salvas</h1>
-    <div class="post-salvo">
+    <div class="post-salvo" >
     <?php
     // Consulta para buscar as publicações favoritadas pelo usuário
     $query = "SELECT * FROM tb_blog JOIN tb_favorito ON tb_blog.id_post = tb_favorito.pub_id WHERE tb_favorito.user_id = :usuario_id";
@@ -180,8 +206,15 @@ Adicionar foto
     });
   });
 </script>
+</main>
+
+
+
+
+
 
 </body>
-</main>
+
+
 </body>
 </html>

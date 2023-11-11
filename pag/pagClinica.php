@@ -28,7 +28,7 @@ require "../php/conecta.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -148,11 +148,7 @@ display: flex;
         <?php echo $nr_telefone;?>
       </p>
 
-				<div class="product-links">
-					<a href=""><i class="fa fa-heart"></i></a>
-					<a href=""><i class="fa fa-shopping-cart"></i></a>
-				</div>
-       
+			
         
 			</div>
       <div class="product-bottom-details">
@@ -161,25 +157,40 @@ display: flex;
         </p>
         <p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">schedule</span> Fechamento:
         <?php echo $hr_fecha;?>
-      </p>
-
-				<div class="product-links">
-					<a href=""><i class="fa fa-heart"></i></a>
-					<a href=""><i class="fa fa-shopping-cart"></i></a>
-				</div>
-       
-        
+      </p><br>
+      <button class="edits" id="myBtn">
+<b class="material-symbols-outlined">
+edit_location_alt
+</b>
+</button>
 			</div>
-      <div class="product-bottom-details">
-				<div class="product-price"></div>
-        <div class="product-price"></div>
-				<div class="product-links">
-					<a href=""><i class="fa fa-heart"></i></a>
-					<a href=""><i class="fa fa-shopping-cart"></i></a>
-				</div>
-			</div>
+  <br><br>
 
 <style>
+  .input {
+  
+  max-width: 220px;
+  height: 45px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
+}
+
+.input:hover {
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 20px -17px;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  border: 2px solid grey;
+}
 .rating-container {
     text-align: center;
 }
@@ -266,7 +277,7 @@ display: flex;
     <input type="radio" name="estrela" id="estrela_cinco" id="vazio" value="5"><br><br>
 
     <!-- Campo para enviar a mensagem -->
-    <textarea name="mensagem" rows="4" cols="30" placeholder="Digite o seu comentário..."></textarea><br><br>
+    <input name="mensagem" placeholder="Digite o seu comentário..." class="input"><br><br>
 
     <!-- Botão para enviar os dados do formulário -->
     <input type="submit" value="Avaliar"><br><br>
@@ -357,11 +368,7 @@ while($exibir_tratamento = $tratamento->fetch(PDO::FETCH_ASSOC)){
 }
 ?>
 <br>
-<button class="edits" id="myBtn">
-<b class="material-symbols-outlined">
-edit_location_alt
-</b>
-</button>
+
 		</div>
     
 	</div>
@@ -369,6 +376,7 @@ edit_location_alt
 
 
 <div id="map"><center><span class="loader"></span></center></div>
+
   </div>
   <div id="myModal" class="modal">
 

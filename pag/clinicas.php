@@ -60,7 +60,7 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+
     <link rel="icon" type="image/x-icon" href="../img/logo.png">
     <link rel="stylesheet" href="../css/sobre-nosso-site.css">
     <link rel="stylesheet" href="../css/clinica.css">
@@ -68,8 +68,13 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   
+    <link rel="stylesheet" type="text/css" href="../sobreNós/assets/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../sobreNós/assets/css/templatemo-art-factory.css">
+
     <title>Clínicas</title>
     <style>
+      
 #map{
   height: 25rem;
   max-width:40rem;
@@ -86,81 +91,288 @@ session_start();
    height:2.2rem;
 }
 
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
 
+ 
+}
+body{
+ 
+}
+nav{
+ background-color:#ffff;
+  height: 80px;
+  width: 100%;
+  font-family:arial;
+  border-bottom:solid;
+  border-color:gray;
+  border-width:0.1px;
+
+}
+.logo{
+  color: white;
+  float:left;
+margin-left:100px;
+
+
+}
+nav ul{
+  float: right;
+  margin-right: 100px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+nav ul li a{
+  color: black;
+  font-size: 15px;
+  padding: 7px 13px;
+  border-radius: 3px;
+
+}
+a.active,a:hover{
+  color:#4b8ef1;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 190px;
+}
+
+.input{
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  width: 100%;
+
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color:;
+  color: #0d0c22;
+  box-shadow: 0 0 5px  #276bff;
+  transition: .3s ease;
+}
+.paginacao {
+    display: inline-block;
+
+}
+
+.paginacao a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin-top: 0.5px;
+    background-color:#ffff;
+} 
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20rem; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  position:relative;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bS {
+width:6rem;
+padding:0.5rem;
+  border: 0;
+  border-radius: 100px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  cursor:pointer;
+}
+
+.bS:hover {
+  background-color: #6fc5ff;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.1);
+}
+
+.bS:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
     </style>
 </head>
 <script src="../js/modais.js"></script>
 <script src="../js/jquery-3.6.4.js"></script>
+<script>
+       var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 <body>
-<nav class="nav">
-	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-	<img src="../img/logo.png" alt="" id="logotipo">
 
-	<!-- Put your collapsing content in here -->
-	<div class="nav__collapsable">
-		<a href="#">Home</a>
-		<a href="#">Blog</a>
-		<a href="#">Clínicas</a>
-
-    <?php
-
-if($_SESSION['nivel'] == 2){
-?>
-<button onclick="window.location.href='addClinica.php'">Adicionar +</button>
-<?php
-}else{
-?>
-
-<?php
-}?>
-
-		<div class="nav__cta">
-
-		</div>
-	</div>
-
-</nav>
-    <!-- nav do site -->
-<br>
-<br>
-    <script>
-        const toggleMenuOpen = () => document.body.classList.toggle("open");
-    </script>
-    <nav class="navbar" style="display:none;">
-      <div class="navbar-overlay" onclick="toggleMenuOpen()"></div>
-
-      <button type="button" class="navbar-burger" onclick="toggleMenuOpen()">
-        <span class="material-icons">menu</span>
-      </button>
-      <img src="../img/logotipo.png" alt="" id="logo">
-      <nav class="navbar-menu">
-
-        <button type="button">Home</button>
-        <button type="button">Blog</button>
-        <div class="dropdown">
-            
-            <span>Configurações▼</span>
-            <div class="dropdown-content">
-            <?php 
-                   if (!isset($_SESSION['email'])) {
-                      ?>
-                      <a href="pag/cadastrar.php">Logar</a>
-                      <?php 
-                  }else{?>
-                  <a href="#login"><?php echo $nome;?></a><br><br>
-                  <?php
-                      }
-                      ?>
-               <a href="#contact" id="myBtn">Sair</a>
-            </div>
-          </div> 
-        <button type="button" class="active">Clínicas</button>
-       
-     
-      </nav>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <img src="../img/logo.png" alt="" width="80" onclick="location.href='../index.php'" style="cursor:pointer;">
+      <ul>
+        <li><a  href="../index.php">Home</a></li>
+        <li><a href="blog.php">blog</a></li>
+        <li><a href="" class="active">Clínicas</a></li>
+        <li><a href="perfil.php">Perfil</a></li>
+        <li><a href="#" a id="myBtn">Sair</a></li>
+      </ul>
     </nav>
 
+    <nav id="bott" style="background-color:#0353A4;">
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label><br>
+      <div class="input-group">
+
+   <form action="">
+
+ <div class="container-input">
+ <input type="text" name="busca" id="busca" placeholder="Pesquisar" autocomplete="off" onkeyup="pesquisar()" class="input">
+
+</div>
+
+
+  </form>
+
+  <form action="" method="GET">
+    &nbsp;
+<select name="filtro_tratamento" id="filtro_tratamento" style="width:15rem">
+  <option disabled selected>Filtrar por tratamento</option>
+  <option value="ortodontia">ortodontia</option>
+  <option value="implante">implante</option>
+
+</select>
+
+<button type="submit" class="buttono">Filtrar</button>
+   </form>
+</div>
+
+</div>
+    
+    </nav>
+
+<br>
         <!-- EXIBIR BUSCA NA URL -->
     <script>
       var search = document.getElementById('busca');
@@ -170,103 +382,23 @@ if($_SESSION['nivel'] == 2){
       }
     </script>
 
-    <div class="input-group">
-   
-    <form action="">
  
-  <div class="container-input">
-  <input type="text" name="busca" id="busca" placeholder="Pesquisar" autocomplete="off" onkeyup="pesquisar()" class="input">
-  <svg type="submit" class="invite-btn" onclick="searchData()" fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
-    <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
-    </svg>
-</div>
-</div>
-   </form>
-
    <!-- FILTROS -->
 
    <!-- FILTRO DOS TRATAMENTOS -->
-   <form action="" method="GET">
-<select name="filtro_tratamento" id="filtro_tratamento">
-  <option disabled selected>Filtrar por tratamento</option>
-  <option value="ortodontia">ortodontia</option>
-  <option value="implante">implante</option>
-  <option value="cerveja">cerveja</option>
-</select>
 
-<button type="submit">Filtrar</button>
-   </form>
-
-
+   <div id="myModal" class="modal">
+<!-- Modal content -->
+<div class="modal-content">
+  <span class="close">&times;</span>
+  <h6 style="font-size:1.5rem;">Deseja sair </h6><br>
+  <button onclick="location.href='../php/sair.php'" class="bS">Sair</button>
 </div>
-    
-<style>
-  /* Google Fonts Import Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+</div>
 
-.nav-links{
-  display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 20px 15px;
-  border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
-.nav-links li{
-  list-style: none;
-  margin: 0 12px;
-}
-.nav-links li a{
-  position: relative;
-  color: #333;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 6px 0;
-  text-decoration: none;
-}
-.nav-links li a:before{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  background: #34efdf;
-  border-radius: 12px;
-  transition: all 0.4s ease;
-}
-.nav-links li a:hover:before{
-  width: 100%;
-}
-.nav-links li.center a:before{
-  left: 50%;
-  transform: translateX(-50%);
-}
-.nav-links li.upward a:before{
-  width: 100%;
-  bottom: -5px;
-  opacity: 0;
-}
-.nav-links li.upward a:hover:before{
-  bottom: 0px;
-  opacity: 1;
-}
-.nav-links li.forward a:before{
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease;
-}
-.nav-links li.forward a:hover:before{
-  transform: scaleX(1);
-  transform-origin: left;
-}
-</style>
 
-<ul class="nav-links">
-    <li><a href="#">Clínicas</a></li>
-    <li class="center"><a href="profissionais.php">Profissionais</a></li>
-  </ul>
+<script src="../js/modalSenha.js"></script>
+
 
 
 <div class="wrapper">
@@ -386,6 +518,7 @@ delete
 
 
 <!-- PAGINAÇÃO DAS PUBLICAÇÕES -->
+<center>
 <?php
 // Função para gerar o link de paginação
 function generatePageLink($page) {
@@ -443,7 +576,7 @@ if ($total_results > 0) {
         // Página atual estará colorida
       if ($i >= 1) {
         if ($pg == $i) {
-          $active = "style='background-color: #14c4f4;'";
+          $active = "style='background-color: white; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin:auto;'";
           }else{
             $active = "";
           }
@@ -460,7 +593,7 @@ if ($total_results > 0) {
 } 
 echo "</ul></div>";
 ?>
-
+</center><br>
   <!-- SCRIPT PARA ENVIAR FAVORITO-->
   <script>
       $(document).ready(function ($) {
@@ -485,7 +618,30 @@ echo "</ul></div>";
               });
           });
       });
+ 
   </script>
+  
+  <footer style=" background-color:#0353A4;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12">
+                    <p class="copyright" style="color:#ffff">Copyright &copy; 2023 botzin
+                
+                . Design: <a rel="nofollow" href="https://templatemo.com" style="color:black">SocialVision</a></p>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12">
+                    <ul class="social">
+                        <li><img src="../img/logoBrancoEquipe.png" alt="" width="100" style="position:relative;top:1rem"></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

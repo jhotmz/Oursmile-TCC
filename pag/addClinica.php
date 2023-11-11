@@ -171,40 +171,53 @@ form .form-row .textarea{
     padding:1rem;
     color:#fff;
 }
-.success{
-    background-color:#19d302;
-    padding:1rem;
-    color:#fff;
-}
-
-/* Import Google Font - Poppins */
-
-
-.content ul{
+.error{
+  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 320px;
+  padding: 12px;
   display: flex;
-  flex-wrap: wrap;
-  padding: 7px;
-
-  border-radius: 5px;
-  border: 1px solid #a6a6a6;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  background: #47C300 ;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px -3px #111;
 }
-.content ul  li{
-  color: #333;
-  margin: 4px 3px;
-  list-style: none;
 
-  background: #F2F2F2;
-  padding:0.2rem;
+	
 
+
+.error__icon {
+  width: 20px;
+  height: 20px;
+  transform: translateY(-2px);
+  margin-right: 8px;
+  display:block;
 }
-.content ul li i{
+
+.error__icon path {
+  fill: #fff;
+}
+
+.error__title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+}
+
+.error__close {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  margin-left: auto;
 }
-.content ul input{
-  border: none;
-  outline: none;
 
+.error__close path {
+  fill: #fff;
 }
+	  </style>
+
       </style>
 </head>
 <body>
@@ -217,7 +230,7 @@ form .form-row .textarea{
 	<div class="nav__collapsable">
 		<a href="">Home</a>
 		<a href="#">Blog</a>
-		<a href="#">Clínicas</a>
+		<a href="clinicas.php">Clínicas</a>
 
 		<div class="nav__cta">
 
@@ -235,6 +248,7 @@ form .form-row .textarea{
       <p id="respo"></p>
       <form id="formulario">
       <input type="file" name="fotoClinica" id="fotoClinica">
+      <p id="resposta"></p>
          <div class="form-row">
 
             <div class="input-data">
@@ -305,7 +319,7 @@ form .form-row .textarea{
 
             
       </form>
-      <p id="resposta"></p>
+      
       </div>
 
 	</section>
