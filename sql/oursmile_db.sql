@@ -48,6 +48,16 @@ id_dentista int,
 data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
+create table tb_tratamentos(
+id_tratamento int auto_increment not null primary key,
+nm_tratamento varchar(255),
+id_clinica int,
+CONSTRAINT fk_tratamento_clinica FOREIGN KEY (id_clinica) REFERENCES tb_clinica (id) ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+=======
+>>>>>>> 062bf8f3c6ddaa441a903d8b3298485d3acad101
 create table tb_categoria(
 id int auto_increment primary key,
 nm_categoria varchar(255)
@@ -68,6 +78,10 @@ id int primary key auto_increment,
 vl_nota int not null,
 ds_mensagem varchar(255),
 dt_criacao datetime,
+<<<<<<< HEAD
+nm_autor varchar(255),
+=======
+>>>>>>> 062bf8f3c6ddaa441a903d8b3298485d3acad101
 id_clinica int,
 CONSTRAINT fk_avaliacao_usuario FOREIGN KEY (id_clinica) REFERENCES tb_clinica (id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
@@ -86,5 +100,9 @@ foreign key fk_id_categoria (id_categoria)
 references tb_categoria (id);
 
 INSERT INTO tb_usuario (nm_nome, nm_sobrenome, nm_email, ds_senha, id_nivel)
+<<<<<<< HEAD
+VALUES ('jonas', 'tomatao', 'chefe@gmail.com', '123', '2');	
+=======
 VALUES ('jonas', 'tomatao', 'chefe@gmail.com', '123', '2');
+>>>>>>> 062bf8f3c6ddaa441a903d8b3298485d3acad101
 

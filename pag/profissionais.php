@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
     include('../php/conecta.php');
     if (!isset($_SESSION['id_user'])) {
@@ -6,16 +6,10 @@ session_start();
     }else{
     $usuario = $_SESSION['id_user'];
 
-    $user_id = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$usuario'");
-    $user_id-> execute();
-    $user_id = $user_id->fetch();
-    $nome = $user_id['nm_nome'];
-   
-    
     //////////// PAGINAÇÃO ///////////
 
-  // captura os valores da url
-  $capture_get = filter_input(INPUT_GET, 'pg', FILTER_SANITIZE_URL);
+     // captura os valores da url
+    $capture_get = filter_input(INPUT_GET, 'pg', FILTER_SANITIZE_URL);
 
     //variaveis de tratamento
    $pg = ($capture_get == '' ? 1 : $capture_get);
@@ -23,27 +17,22 @@ session_start();
     // limite de exibição por página
     $limit = 10;
     $start = ($pg * $limit) - $limit;
+    $nivel = '3';
     
     //CASO EXISTA PESQUISA
     if (!empty($_GET['busca'])) {
     $nome = "%" . $_GET['busca'] . "%";
-    $pesquisa = "SELECT * FROM tb_clinica WHERE nm_clinica LIKE :nome ORDER BY nm_clinica DESC LIMIT $start, $limit";
-    $stmt_exibir = $conn->prepare($pesquisa);
+    $usuario = "SELECT * FROM tb_usuario WHERE id_nivel = :nivel AND nm_nome LIKE :nome ORDER BY nm_nome DESC LIMIT $start, $limit";
+    $stmt_exibir = $conn->prepare($usuario);
+    $stmt_exibir->bindParam(':nivel', $nivel, PDO::PARAM_STR);
     $stmt_exibir->bindParam(':nome', $nome, PDO::PARAM_STR);
     $stmt_exibir->execute();
     $post = "Resultados para: ".$_GET['busca'];
     $lines = $stmt_exibir->rowCount();
-    }elseif(isset($_GET['filtro_tratamento'])){
-    $filtro = $_GET['filtro_tratamento'];
-    
-    $query =  "SELECT * FROM tb_clinica JOIN tb_tratamentos ON tb_clinica.id = tb_tratamentos.id_clinica WHERE nm_tratamento = :nome_tratamento";
-    $stmt_exibir = $conn->prepare($query);
-    $stmt_exibir->bindParam(':nome_tratamento', $filtro);
-    $stmt_exibir->execute();
-    $lines = $stmt_exibir->rowCount();
     }else{
     // CONSULTAR POSTAGENS NO BLOG
-    $stmt_exibir = $conn->prepare("SELECT * FROM tb_clinica ORDER BY data_criacao DESC LIMIT $start, $limit");
+    $stmt_exibir = $conn->prepare("SELECT * FROM tb_usuario WHERE id_nivel = :nivel ORDER BY nm_nome DESC LIMIT $start, $limit");
+    $stmt_exibir->bindParam(':nivel', $nivel, PDO::PARAM_STR);
     $stmt_exibir->execute();
     $lines = $stmt_exibir->rowCount();
     $post = "Publicações recentes";
@@ -173,7 +162,6 @@ if($_SESSION['nivel'] == 2){
     <div class="input-group">
    
     <form action="">
- 
   <div class="container-input">
   <input type="text" name="busca" id="busca" placeholder="Pesquisar" autocomplete="off" onkeyup="pesquisar()" class="input">
   <svg type="submit" class="invite-btn" onclick="searchData()" fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
@@ -181,20 +169,6 @@ if($_SESSION['nivel'] == 2){
     </svg>
 </div>
 </div>
-   </form>
-
-   <!-- FILTROS -->
-
-   <!-- FILTRO DOS TRATAMENTOS -->
-   <form action="" method="GET">
-<select name="filtro_tratamento" id="filtro_tratamento">
-  <option disabled selected>Filtrar por tratamento</option>
-  <option value="ortodontia">ortodontia</option>
-  <option value="implante">implante</option>
-  <option value="cerveja">cerveja</option>
-</select>
-
-<button type="submit">Filtrar</button>
    </form>
 
 
@@ -264,7 +238,7 @@ if($_SESSION['nivel'] == 2){
 </style>
 
 <ul class="nav-links">
-    <li><a href="#">Clínicas</a></li>
+    <li><a href="clinicas.php">Clínicas</a></li>
     <li class="center"><a href="profissionais.php">Profissionais</a></li>
   </ul>
 
@@ -283,12 +257,12 @@ if($_SESSION['nivel'] == 2){
 
     <div class="team_member">
    <!-- <b class="dot"></b> -->
-   <img src="<?php echo $ds_img?>" alt="Imagem relacionada a clínica" width="100%">
+   <img src="<?php echo $ds_foto?>" alt="Imagem relacionada a clínica" width="100%">
 <br>
-     <p class="titulos"><?php echo $nm_clinica;?></p><br>
+     <p class="titulos"><?php echo $nm_nome;?></p><br>
       
       
-      <p class="subTitulos"><?php echo $nm_dentista;?></p>
+      <p class="subTitulos"><?php echo $nm_sobrenome;?></p>
 <br>
    
 
@@ -299,56 +273,9 @@ if($_SESSION['nivel'] == 2){
 </button>
 
  <br><br>
- <?php
- $botao = '<label class="container" style="display:flex; justify-content:end;">
- <input type="checkbox">
- <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
- <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
-</label>';
-
-$botaoAtivo = '<label class="container" style="display:flex; justify-content:end;">
-<input type="checkbox" checked>
-<svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
-<svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
-</label>';
-
-     $clinica_id = $id;
-     // Verifique se a publicação já está nos favoritos do usuário
-     $favoritada = false;
-     $query = "SELECT * FROM tb_favorito WHERE user_id = :usuario_id AND clinica_id = :clinica_id";
-     $stmt2 = $conn->prepare($query);
-     $stmt2->bindParam(':usuario_id', $_SESSION['id_user']);
-     $stmt2->bindParam(':clinica_id', $clinica_id);
-     $stmt2->execute();
-     if ($stmt2->rowCount() > 0) {
-       $favoritada = true;
-     }
-
-    if(isset($_SESSION['id_user'])){
-      // Exiba o botão de favoritar
-        if ($favoritada){
-                    // <!-- Exiba o botão de desfavoritar -->
-                      echo "<button class='button-fav' method = 'Unlike' data-post ='$clinica_id' type='submit' style='display:flex; justify-content:end; margin-left:0.5rem;'>
-                      
-              $botaoAtivo
-
-                      </button>";
-                  } else {
-          
-                    echo  "<button class='button-fav' method = 'Like' data-post ='$clinica_id' style='display:flex; justify-content:end; margin-left:0.5rem;'>
-                    
-                    $botao
-
-
-                    </button>";
-
-                  }}
-                  ?>
-
-
+ 
 <br>
 <?php
-
 if($_SESSION['nivel'] == 2){
 ?>
 <button class="edits"  onclick="window.location.href='editClinica.php?id=<?php echo $row['id'];?>'">
@@ -460,32 +387,6 @@ if ($total_results > 0) {
 } 
 echo "</ul></div>";
 ?>
-
-  <!-- SCRIPT PARA ENVIAR FAVORITO-->
-  <script>
-      $(document).ready(function ($) {
-          $(".button-fav").click(function (e) {
-              e.preventDefault();
-              const director_id = $(this).attr('data-post'); // Get the parameter director_id from the button
-              const method = $(this).attr('method'); // Get the parameter method from the button
-              if (method === "Like") {
-                  $(this).attr('method', 'Unlike'); // Change the div method attribute to Unlike
-                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
-              }else{
-                  $(this).attr('method', 'Like');
-                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
-              }
-              $.ajax({
-                  url: '../php/favPostClinica.php', // Call favs.php to update the database
-                  type: 'GET',
-                  data: {director_id: director_id, method: method},
-                  cache: false,
-                  success: function (data){
-                  }
-              });
-          });
-      });
-  </script>
 
 </body>
 </html>

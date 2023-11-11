@@ -90,6 +90,9 @@ include("nav.php");
                 <hr>
                 <div class="row">
                   <div class="col-lg-12">
+                  <input type="text" id="search" placeholder="Pesquisar">
+    <div id="records"></div>
+    <div class="pagination" id="pagination"></div>
               
                       <!-- Modal adicionar usuário -->
                       <div class="modal fade" id="modalAdicionar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,46 +138,7 @@ include("nav.php");
                         </div>
                       </div>
         
-                      <table class="table">
-                        <thead class="table-dark">
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Título</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Autor</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Ações</th>
-                          </tr>
-                        </thead>
-                        <!-- LISTAR USUÁRIOS CADASTRADOS -->
-
-                        <tbody>
-                      <?php
-                  while ($listar_pub = $stmt->fetch(PDO::FETCH_ASSOC)){
-                  extract($listar_pub);
-                        echo "<tr>";
-                        echo "<td>" . $id_post. "</td>";
-                        echo "<td>" . $nm_postagem . "</td>";
-                        echo "<td>" . $nm_desc . "</td>";
-                        echo "<td>" . $nm_autor . "</td>";
-                        echo "<td>" . $dt_data . "</td>";      
-                ?>
-                <td>
-                          
-                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar" data-id='<?php echo $id_post?>' data-nome='<?php echo $nm_postagem?>' data-desc='<?php echo $nm_desc?>' data-autor='<?php echo $nm_autor?>'>
-                                  <i class="fa-solid fa-pen-to-square"></i>
-                                  </button>
-
-                                  <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalDelete">
-                                  <i class="fa-solid fa-trash"></i>                                  
-                                  </button>
-                                  
-
-                              
-
-                            </td>
-                          </tr>
-                         
+                     
                       <!-- Modal Editar publicação -->
                       <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditar" aria-hidden="true">
                         <div class="modal-dialog">
@@ -249,9 +213,7 @@ include("nav.php");
                           </div>
                         </div>
                       </div>
-                          <?php
-                            }
-                            ?>
+ 
                         </tbody>
                       </table>
                 </div>
@@ -285,6 +247,36 @@ include("nav.php");
     autogrow: true
   });
 </script>
+
+<script>
+        function fetchRecords(page, search = '') {
+            $.ajax({
+                url: '../php/exibir/exibir-blog.php',
+                method: 'POST',
+                data: { page: page, search: search },
+                success: function(response) {
+                    $('#records').html(response);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            fetchRecords(1);
+
+            $(document).on('click', '.pagination a', function(event) {
+                event.preventDefault();
+                var page = $(this).data('page');
+                var search = $('#search').val();
+                fetchRecords(page, search);
+            });
+
+            $('#search').keyup(function() {
+                var search = $(this).val();
+                fetchRecords(1, search);
+            });
+        });
+    </script>
+
       <!-- FECHAR SESSION -->
     <?php
   }

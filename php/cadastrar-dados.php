@@ -14,6 +14,7 @@ if ($_POST['nome'] == "" || $_POST['sobrenome'] == "" || $_POST['email'] == "" |
 
     $verifica = $conn->prepare("SELECT * FROM tb_usuario WHERE nm_email = '".$_POST['email']."'");
     $verifica-> execute();
+    
 
     if($verifica->rowCount()>0){ 
         echo '	<div class="error">
@@ -25,9 +26,10 @@ if ($_POST['nome'] == "" || $_POST['sobrenome'] == "" || $_POST['email'] == "" |
     </div>';
     }else{
         try {
-                
-                $stmt = $conn->prepare('INSERT INTO tb_usuario(nm_nome, nm_sobrenome, nm_email, ds_senha, nm_local, id_nivel) VALUES(:nome, :sobrenome, :email, :password, :endereco, :nivel)');
+            $teste = '../imgPerfil/0/download.jpg';
+                $stmt = $conn->prepare('INSERT INTO tb_usuario(ds_foto, nm_nome, nm_sobrenome, nm_email, ds_senha, nm_local, id_nivel) VALUES(:foto, :nome, :sobrenome, :email, :password, :endereco, :nivel)');
                 $stmt->execute(array(
+                    ':foto' => $teste,
                     ':nome' => $_POST['nome'],
                     ':sobrenome' => $_POST['sobrenome'],
                     ':email' => $_POST['email'],

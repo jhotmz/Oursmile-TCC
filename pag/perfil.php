@@ -180,6 +180,7 @@ Adicionar foto
     });
   });
 </script>
+
 </body>
 </main>
 </body>
