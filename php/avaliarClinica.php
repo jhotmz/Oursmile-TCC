@@ -1,23 +1,44 @@
 <?php
-include('../php/conecta.php');
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $rating = $_POST["rating"];
-try{
-    // Prepara a declaração SQL
-    $stmt = $conn->prepare("INSERT INTO tb_clinica (vl_nota) VALUES (:rating)");
 
-    // Substitui os parâmetros e executa a consulta
-    $stmt->bindParam(':rating', $rating, PDO::PARAM_INT);
-    $stmt->execute();
+session_start(); // Iniciar a sessão
 
-    echo json_encode(["success" => true]);
-} catch (PDOException $e) {
-    echo json_encode(["success" => false, "error" => $e->getMessage()]);
-} finally {
-    // Fecha a conexão com o banco de dados
-    unset($conn);
-}
+// Incluir o arquivo com a conexão com banco de dados
+include_once 'conecta.php';
+$id_clinica = $_POST['id_clinica'];
+// Definir fuso horário de São Paulo
+date_default_timezone_set('America/Sao_Paulo');
+
+// Acessar o IF quando é selecionado ao menos uma estrela
+if (!empty($_POST['estrela'])) {
+
+    // Receber os dados do formulário
+    $estrela = filter_input(INPUT_POST, 'estrela', FILTER_DEFAULT);
+    $mensagem = filter_input(INPUT_POST, 'mensagem', FILTER_DEFAULT);
+    $autor = filter_input(INPUT_POST, 'autor', FILTER_DEFAULT);
+
+    // Criar a QUERY cadastrar no banco de dados
+    $query_avaliacao = "INSERT INTO tb_avaliacao (vl_nota, ds_mensagem, dt_criacao, nm_autor, id_clinica) VALUES (:nota, :mensagem, :created, :autor, :clinica)";
+    $date = date("Y-m-d H:i:s");
+    // Preparar a QUERY
+    $cad_avaliacao = $conn->prepare($query_avaliacao);
+
+    // Substituir os links pelo valor
+    $cad_avaliacao->bindParam(':nota', $estrela, PDO::PARAM_INT);
+    $cad_avaliacao->bindParam(':mensagem', $mensagem, PDO::PARAM_STR);
+    $cad_avaliacao->bindParam(':autor', $autor, PDO::PARAM_STR);
+    $cad_avaliacao->bindParam(':clinica', $id_clinica, PDO::PARAM_STR);
+    $cad_avaliacao->bindParam(':created', $date);
+
+    // Acessa o IF quando cadastrar corretamente
+    if ($cad_avaliacao->execute()) {
+        // Criar a mensagem de erro
+        echo "<p style='color: green;'>Avaliação cadastrada com sucesso!</p>";
+        echo "<meta http-equiv='refresh' content='0'>";
+    } else {
+        // Criar a mensagem de erro
+        echo "<p style='color: #f00;'>Erro: Avaliação não cadastrar!</p>";
+    }
 } else {
-echo json_encode(["success" => false, "error" => "Método não permitido"]);
+    // Criar a mensagem de erro
+    echo "<p style='color: #f00;'> Necessário selecionar pelo menos 1 estrela.</p>";
 }
-?>

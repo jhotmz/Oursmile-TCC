@@ -10,7 +10,7 @@ if (isset($_POST['cadastrar'])) {
     $local = $diretorio . $img;
     
     move_uploaded_file($_FILES['imagem_dentista']['tmp_name'], $diretorio . $img);
-    $stmt = $conn->prepare("INSERT INTO tb_dentista (ds_foto, nm_email, nm_dentista, nm_sobrenome, ds_senha, id_nivel, nm_cro, nr_cpf) VALUES(:foto, :email, :nome_dentista, :sobrenome, :password, :nivel, :cro, :cpf)");
+    $stmt = $conn->prepare("INSERT INTO tb_usuario (ds_foto, nm_email, nm_nome, nm_sobrenome, ds_senha, nr_cpf, nr_cro, id_nivel) VALUES(:foto, :email, :nome_dentista, :sobrenome, :password, :cro, :cpf, :nivel)");
     $stmt->execute(array(
         ':foto' => $local,
         ':email' => $_POST['email_dentista'],

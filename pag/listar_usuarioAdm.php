@@ -173,7 +173,8 @@ include("nav.php");
                             <!-- FORMULÁRIO PARA DENTISTA -->
                           <div id="div3" class="hidden">
                             
-                            <form method="POST" id="formDentista" enctype="multipart/form-data" action="../php/add-userAdm.php">
+                            <form method="POST" id="formDentista" enctype="multipart/form-data" action="../php/add-dentAdm.php">
+                              
                               <input type="hidden" name="nivel_dentista" id="nivel_dentista" value="3">
 
                               <div class="form-group">
