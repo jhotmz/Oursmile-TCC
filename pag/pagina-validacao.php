@@ -87,14 +87,10 @@ $stmt->execute();
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
         <div class="tudo">
-          <div class="pag">
-            <p class="title">Usuarios cadastrados</p>
-          </div>
+
 
           <div class="box-container">
-            <div class="pesquisar">
-              <input type="search" placeholder="Pesquisar...">
-            </div>
+
             <div class="container">
               <div class="row mt-4">
                 <div class="col-lg-12">

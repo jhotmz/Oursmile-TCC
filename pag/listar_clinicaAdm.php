@@ -34,19 +34,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
 $(function(){
-  $('#modalEditar').on('show.bs.modal', function (event){
+  $('#modalDelete').on('show.bs.modal', function (event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
     var nome = button.data('nome')
-    var desc = button.data('desc')
-    var autor = button.data('autor')
     var modal = $(this)
     // aplicar valor ao id
-    modal.find('.modal-title').text('Editando dados ' + nome)
+    modal.find('.modal-title').text('Tem certeza que deseja excluir a clínica ' + nome + '?')
     modal.find('#id').val(id)
     modal.find('#nome').val(nome)
-    modal.find('#desc').val(desc)
-    modal.find('#autor').val(autor)   
+
   });
   });
   
@@ -93,21 +90,16 @@ $(function(){
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
           <div class="tudo">
-            <div class="pag">
-              <p class="title">Usuarios cadastrados</p>
-            </div>
-
+  
             <div class="box-container">
-              <div class="pesquisar">
-                <input type="search" placeholder="Pesquisar...">
-              </div>
+
               <div class="container">
                 <div class="row mt-4">
                   <div class="col-lg-12">
                     <div>
                       <h4>Listar clínicas</h4>
-                      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionar">+ Adicionar publicação </button>
-                      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCategoria">+ Adicionar categoria </button>
+                      <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="window.location.href='clinicas.php'">+ Adicionar clínica </button>
+
                     </div>
                   </div>
                 </div>
@@ -117,123 +109,25 @@ $(function(){
                   <input type="text" id="search" placeholder="Pesquisar">
     <div id="records"></div>
     <div class="pagination" id="pagination"></div>
-              
-                      <!-- Modal adicionar usuário -->
-                      <div class="modal fade" id="modalAdicionar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Adicionar novo usuário</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            
-                            </div>
-                            <!-- <div class="modal-footer">
-                              <button type="submit" class="btn btn-success">Adicionar</button>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            </div> -->
-                            
-                          </div>
-                        </div>
-                      </div>
 
-                      <!-- Modal adicionar categoria -->
-                    <div class="modal fade" id="modalCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Adicionar nova categoria</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            
-                            <form method="POST" action="../php/addCategoria.php">
-                              <div class="mb-3">
-                                <label for="nome_categoria" class="form-label">Categoria</label>
-                                <input type="text" class="form-control" id="nome_categoria" name="nome_categoria">
-                              </div>
-                              <button type="submit" name="cadastrar" class="btn btn-success">Enviar</button>
-                            </form>
-
-                            </div>
-                  
-                          </div>
-                        </div>
-                      </div>
-        
-                      
-                         
-                      <!-- Modal Editar publicação -->
-                      <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditar" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="modalEditar">Editar publicação</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form>
-
-                                <div class="form-group">
-                                  <label for="nome">Título</label>
-                                  <input type="text" class="form-control" id="nome" placeholder="">
-                                </div>
-                                
-                                <div class="form-group">
-                                  <label for="autor">Autor</label>
-                                  <input type="text" class="form-control" id="autor" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="trumbowyg-editor">Conteúdo da postagem</label>
-                                  <textarea class="trumbowyg-editor" name="conteudo" id="trumbowyg-editor" rows="5"
-                                    placeholder="Escreva aqui o conteúdo da publicação"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="autor">Descrição</label>
-                                  <input type="text" class="form-control" id="desc" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="autor">Descrição</label>
-                                  <input type="text" class="form-control" id="desc" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="autor">Descrição</label>
-                                  <input type="text" class="form-control" id="desc" placeholder="">
-                                </div>
-
-                              </form>
-                            </div>
-
-                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-success">Salvar</button>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                          
-
-                          </div>
-                        </div>
-                      </div>
 
                       <!-- Modal Deletar -->
                       <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Excluir clínica</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              
+                              <form action="../php/apagarClinica.php" method="POST">
+                              <input type="hidden" name="id" id="id">
+                             
                             </div>
                             <div class="modal-footer">
                               <button type="submit" class="btn btn-danger">Excluir</button>
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                              
+                              </form>
                             </div>
                           </div>
                         </div>

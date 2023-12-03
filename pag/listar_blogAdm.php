@@ -50,6 +50,22 @@ $(function(){
   
 </script>
 
+<script>
+$(function(){
+  $('#modalDelete').on('show.bs.modal', function (event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+    var nome = button.data('nome')
+    var modal = $(this)
+    // aplicar valor ao id
+    modal.find('.modal-title').text('Tem certeza que deseja apagar a publicação ' + nome + '?')
+    modal.find('#id').val(id)
+    modal.find('#nome').val(nome)
+  });
+  });
+  
+</script>
+
 
 
     <body>
@@ -65,24 +81,19 @@ include("nav.php");
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
           <div class="tudo">
-            <div class="pag">
-              <p class="title">Usuarios cadastrados</p>
-            </div>
+
             <?php
             $stmt = $conn->prepare("SELECT * FROM tb_blog ORDER BY data_criacao DESC");
             $stmt->execute();
             ?>
 
             <div class="box-container">
-              <div class="pesquisar">
-                <input type="search" placeholder="Pesquisar...">
-              </div>
               <div class="container">
                 <div class="row mt-4">
                   <div class="col-lg-12">
                     <div>
                       <h4>Listar publicações</h4>
-                      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionar">+ Adicionar publicação </button>
+                      <button type="button" class="btn btn-success" data-bs-toggle="modal" onclick="window.location.href='blog.php'">+ Adicionar publicação </button>
                       <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCategoria">+ Adicionar categoria </button>
                     </div>
                   </div>
@@ -131,65 +142,14 @@ include("nav.php");
                               </div>
                               <button type="submit" name="cadastrar" class="btn btn-success">Enviar</button>
                             </form>
-
+                          <?php
+                          if(isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                          }
+                          ?>
                             </div>
                   
-                          </div>
-                        </div>
-                      </div>
-        
-                     
-                      <!-- Modal Editar publicação -->
-                      <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditar" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="modalEditar">Editar publicação</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form>
-
-                                <div class="form-group">
-                                  <label for="nome">Título</label>
-                                  <input type="text" class="form-control" id="nome" placeholder="">
-                                </div>
-                                
-                                <div class="form-group">
-                                  <label for="autor">Autor</label>
-                                  <input type="text" class="form-control" id="autor" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="trumbowyg-editor">Conteúdo da postagem</label>
-                                  <textarea class="trumbowyg-editor" name="conteudo" id="trumbowyg-editor" rows="5"
-                                    placeholder="Escreva aqui o conteúdo da publicação"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="autor">Descrição</label>
-                                  <input type="text" class="form-control" id="desc" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="autor">Descrição</label>
-                                  <input type="text" class="form-control" id="desc" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="autor">Descrição</label>
-                                  <input type="text" class="form-control" id="desc" placeholder="">
-                                </div>
-
-                              </form>
-                            </div>
-
-                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-success">Salvar</button>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                          
-
                           </div>
                         </div>
                       </div>
@@ -203,12 +163,13 @@ include("nav.php");
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              
+                            <form action="../php/apagarPub.php" method="POST">
+                            <input type="hidden" name="id" id="id">
                             </div>
                             <div class="modal-footer">
                               <button type="submit" class="btn btn-danger">Excluir</button>
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                              
+                            </form>  
                             </div>
                           </div>
                         </div>

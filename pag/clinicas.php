@@ -5,7 +5,7 @@ session_start();
     header('location: ../index.php');
     }else{
     $usuario = $_SESSION['id_user'];
-
+    $nivel = $_SESSION['nivel'];
     $user_id = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$usuario'");
     $user_id-> execute();
     $user_id = $user_id->fetch();
@@ -296,7 +296,19 @@ if($_SESSION['nivel'] == 2){
    
     <button onclick="window.location.href='pagClinica.php?id=<?php echo $row['id']?>'" class="buttonClinica">
   <span>Saiba mais</span>
+
 </button>
+
+  <?php
+  if($nivel == '3'){
+  ?>
+  <a href="teste.php">ASSOCIAR_SE</a>
+  
+  <?php
+  }
+  ?>
+  
+  
 
  <br><br>
  <?php
@@ -336,10 +348,7 @@ $botaoAtivo = '<label class="container" style="display:flex; justify-content:end
                   } else {
           
                     echo  "<button class='button-fav' method = 'Like' data-post ='$clinica_id' style='display:flex; justify-content:end; margin-left:0.5rem;'>
-                    
                     $botao
-
-
                     </button>";
 
                   }}

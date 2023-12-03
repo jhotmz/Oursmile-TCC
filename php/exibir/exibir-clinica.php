@@ -55,11 +55,11 @@ if ($stmt->rowCount() > 0){
                 ?>
                 <td>
                           
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar" data-id='<?php echo $id_post?>' data-nome='<?php echo $nm_postagem?>' data-desc='<?php echo $nm_desc?>' data-autor='<?php echo $nm_autor?>'>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="window.location.href='../pag/editClinica.php?id=<?php echo $listar_pub['id'];?>'">
       <i class="fa-solid fa-pen-to-square"></i>
       </button>
 
-      <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalDelete">
+      <button type="button" class="btn btn-danger " data-bs-toggle="modal" data-id='<?php echo $id?>' data-nome='<?php echo $nm_clinica?>' data-bs-target="#modalDelete">
       <i class="fa-solid fa-trash"></i>                                  
       </button>
                                   

@@ -1,18 +1,12 @@
 <?php
 include('../conecta.php');
 
-$limit = 5;
-$page = isset($_POST['page']) ? $_POST['page'] : 1;
 $search = isset($_POST['search']) ? $_POST['search'] : '';
-
-$start = ($page - 1) * $limit;
-
 $query = "SELECT * FROM tb_usuario ";
+
 if (!empty($search)) {
     $query .= " WHERE nm_nome LIKE :search";
 }
-
-$query .= " LIMIT $start, $limit ";
 
 $stmt = $conn->prepare($query);
 
@@ -21,14 +15,6 @@ if (!empty($search)) {
 }
 
 $stmt->execute();
-
-$output = '';
-
-$total_records = $conn->query("SELECT COUNT(*) FROM tb_usuario")->fetchColumn();
-$total_pages = ceil($total_records / $limit);
-
-$output = '';
-
 if ($stmt->rowCount() > 0) {
 ?>
     <table class="table">

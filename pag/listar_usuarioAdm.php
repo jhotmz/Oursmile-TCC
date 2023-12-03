@@ -78,16 +78,6 @@ include("nav.php");
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
         <div class="tudo">
-          <div class="pag">
-            <p class="title">Usuarios cadastrados</p>
-          </div>
-          <?php
-          $stmt = $conn->prepare("SELECT * FROM tb_usuario");
-          $stmt->execute();
-          ?>
-
-
-
 
           <div class="box-container">
             <div class="container">
@@ -101,10 +91,10 @@ include("nav.php");
               </div>
               <hr>
 
-             
-    <input type="text" id="search" placeholder="Pesquisar">
-    <div id="records"></div>
-    <div class="pagination" id="pagination"></div>
+           
+  <input type="text" id="search" placeholder="Pesquisar">
+  <div id="records"></div>
+  <div class="pagination" id="pagination"></div>
 
               <div class="row">
                 <div class="col-lg-12">
@@ -170,6 +160,7 @@ include("nav.php");
                               <button type="submit" name="cadastrar" class="btn btn-success">Cadastrar</button>
                             </form>
                           </div>
+
                             <!-- FORMULÁRIO PARA DENTISTA -->
                           <div id="div3" class="hidden">
                             
@@ -225,8 +216,6 @@ include("nav.php");
                     </div>
                   </div>
 
-
-
                       <!-- Modal Editar Cargo -->
                       <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -256,7 +245,6 @@ include("nav.php");
                           </div>
                         </div>
                       </div>
-
                       <!-- Modal Deletar -->
                       <div class="modal fade" id="modalApagar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
