@@ -63,7 +63,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="../img/logo oursmile.png">
     <link rel="stylesheet" href="../css/blog_copy.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/blog.css">
     <link rel="stylesheet" href="../css/modal.css">
     <script src="https://kit.fontawesome.com/eac31603cd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../dist/ui/trumbowyg.min.css">
@@ -80,15 +80,119 @@
     <!-- font icon -->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <title>Oursmile</title>
+    <style>
+      /* Font */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+
+
+
+.main{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.btn {
+
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 33.3333%;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card_content {
+  padding: 1rem;
+
+}
+
+.card_title {
+
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.card_text {
+
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;    
+  font-weight: 400;
+}
+.made_by{
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 35px;
+  text-align: center;
+}
+    </style>
   </head>
   <body>
     <!-- NAV DO SITE -->
 <?php
-include("nav.php");
+include("navbars.php");
 ?>
-
+<br><br><br><br><br>  
     <?php
-    if($nivel === '2'){
+    if($nivel == '2'){
     ?>
     <!-- BOTÕES ADM -->
     <div class="button-nav">
@@ -116,9 +220,7 @@ include("nav.php");
     include_once('../modal/adicionarPub.php');
     ?>
 
-    <div class="blog-header">
-      <h1>Blog <span id="our">Our</span><span id="smile">smile</span></h1>
-    </div>
+  
 
     
 <!-- NAVTAB -->
@@ -152,14 +254,36 @@ include("nav.php");
   ?> 
     </div>
 
+    <div class="main">
+  <h1>Responsive Card Grid Layout</h1>
+  <ul class="cards">
+
 <!-- SECTION BLOG -->
-    <section id="blog" class="blog-section">
+   
       <?php
         $lines = $stmt_exibir->rowCount();
         if($lines > 0){
         while($row_pesquisa = $stmt_exibir->fetch(PDO::FETCH_ASSOC)){
         extract($row_pesquisa);
       ?>
+
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+        <div class="card_content">
+          <h2 class="card_title"><?php echo $nm_postagem ?></h2>
+          <p class="card_text"><?php echo $nm_desc?></p>
+          <?php date_default_timezone_set('America/Sao_Paulo');
+ echo date('d/m/y', strtotime($dt_data)); ?>
+          <button class="buttonPerfil">Saiba mais</button>
+          <img src="../img/dentechave.png" alt="" style="width:2rem;margin-top:1rem;"> <?php echo $row_pesquisa['nm_autor'] ?>
+        </div>
+        
+      </div>
+    </li>
+   
+
+    
 
 <div class="blog-card">
     <div class="meta">
@@ -223,7 +347,8 @@ include("nav.php");
     }
         ?>
 
-    </section>
+</ul>
+</div>
 
 <!-- PAGINAÇÃO DAS PUBLICAÇÕES -->
 <?php
@@ -302,7 +427,84 @@ if ($total_results > 0) {
 } 
 echo "</ul></div>";
 ?>
+<footer id="newsletter">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-lg-6 offset-lg-3" style="opacity:0">
+          <form id="search" action="#" method="GET">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Contact Us</h4>
+            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <p><a href="#">010-020-0340</a></p>
+            <p><a href="#">info@company.co</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>About Us</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Free Apps</a></li>
+              <li><a href="#">App Engine</a></li>
+              <li><a href="#">Programming</a></li>
+              <li><a href="#">Development</a></li>
+              <li><a href="#">App News</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">App Dev Team</a></li>
+              <li><a href="#">Digital Web</a></li>
+              <li><a href="#">Normal Apps</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>SocialVision</h4>
+            <div class="logo">
+           <img src="../img/logoBrancoEquipe.png">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
 
+</footer>
 <!-- SCRIPT PARA ENVIAR FAVORITO-->
 <script>
     $(document).ready(function ($) {

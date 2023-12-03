@@ -329,7 +329,7 @@ header
 }
 
 .header-area {
-  background-color: transparent;
+  background-color: white;
   border-bottom: 1px solid rgba(42,42,42,0.2);
   position: absolute;
   left: 0px;
@@ -344,7 +344,7 @@ header
 
 .header-area .main-nav {
   min-height: 80px;
-  background: transparent;
+
 }
 
 .header-area .main-nav .logo {

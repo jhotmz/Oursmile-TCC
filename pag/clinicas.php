@@ -60,136 +60,29 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/modal.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="../img/logo.png">
     <link rel="stylesheet" href="../css/sobre-nosso-site.css">
     <link rel="stylesheet" href="../css/clinica.css">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   
-    <link rel="stylesheet" type="text/css" href="../sobreNós/assets/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="../sobreNós/assets/css/templatemo-art-factory.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Roboto:ital,wght@0,400;1,900&family=Signika&family=Ubuntu&display=swap" rel="stylesheet">
 
     <title>Clínicas</title>
     <style>
       
-#map{
-  height: 25rem;
-  max-width:40rem;
-  border-color:#279989;
-  border-style:solid;
-  border-radius:1rem;
 
-}
-#horaEntrada,#horaSaida::placeholder {
-    font: 0.9rem arial;
-}
-#horaEntrada,#horaSaida{
-   width:7rem;
-   height:2.2rem;
-}
 
 *{
   padding: 0;
   margin: 0;
   text-decoration: none;
   list-style: none;
+}
 
- 
-}
-body{
- 
-}
-nav{
- background-color:#ffff;
-  height: 80px;
-  width: 100%;
-  font-family:arial;
-  border-bottom:solid;
-  border-color:gray;
-  border-width:0.1px;
-
-}
-.logo{
-  color: white;
-  float:left;
-margin-left:100px;
-
-
-}
-nav ul{
-  float: right;
-  margin-right: 100px;
-}
-nav ul li{
-  display: inline-block;
-  line-height: 80px;
-  margin: 0 5px;
-}
-nav ul li a{
-  color: black;
-  font-size: 15px;
-  padding: 7px 13px;
-  border-radius: 3px;
-
-}
-a.active,a:hover{
-  color:#4b8ef1;
-  transition: .5s;
-}
-.checkbtn{
-  font-size: 30px;
-  color: white;
-  float: right;
-  line-height: 80px;
-  margin-right: 40px;
-  cursor: pointer;
-  display: none;
-}
-#check{
-  display: none;
-}
-@media (max-width: 952px){
-  label.logo{
-    font-size: 30px;
-    padding-left: 50px;
-  }
-  nav ul li a{
-    font-size: 16px;
-  }
-}
-@media (max-width: 858px){
-  .checkbtn{
-    display: block;
-  }
-  ul{
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #2c3e50;
-    top: 80px;
-    left: -100%;
-    text-align: center;
-    transition: all .5s;
-  }
-  nav ul li{
-    display: block;
-    margin: 50px 0;
-    line-height: 30px;
-  }
-  nav ul li a{
-    font-size: 20px;
-  }
-  a:hover,a.active{
-    background: none;
-    color: #0082e6;
-  }
-  #check:checked ~ ul{
-    left: 0;
-  }
-}
 .group {
   display: flex;
   line-height: 28px;
@@ -323,55 +216,9 @@ window.onclick = function(event) {
 </script>
 <body>
 
-    <nav>
-      <input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-      </label>
-      <img src="../img/logo.png" alt="" width="80" onclick="location.href='../index.php'" style="cursor:pointer;">
-      <ul>
-        <li><a  href="../index.php">Home</a></li>
-        <li><a href="blog.php">blog</a></li>
-        <li><a href="" class="active">Clínicas</a></li>
-        <li><a href="perfil.php">Perfil</a></li>
-        <li><a href="#" a id="myBtn">Sair</a></li>
-      </ul>
-    </nav>
-
-    <nav id="bott" style="background-color:#0353A4;">
-      <input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-      </label><br>
-      <div class="input-group">
-
-   <form action="">
-
- <div class="container-input">
- <input type="text" name="busca" id="busca" placeholder="Pesquisar" autocomplete="off" onkeyup="pesquisar()" class="input">
-
-</div>
-
-
-  </form>
-
-  <form action="" method="GET">
-    &nbsp;
-<select name="filtro_tratamento" id="filtro_tratamento" style="width:15rem">
-  <option disabled selected>Filtrar por tratamento</option>
-  <option value="ortodontia">ortodontia</option>
-  <option value="implante">implante</option>
-
-</select>
-
-<button type="submit" class="buttono">Filtrar</button>
-   </form>
-</div>
-
-</div>
-    
-    </nav>
-
+<?php include("navbars.php");?>
+   
+<br><br>
 <br>
         <!-- EXIBIR BUSCA NA URL -->
     <script>
@@ -413,32 +260,36 @@ window.onclick = function(event) {
 ?>
 
 
+
+
     <div class="team_member">
    <!-- <b class="dot"></b> -->
-   <img src="<?php echo $ds_img?>" alt="Imagem relacionada a clínica" width="100%">
-<br>
-     <p class="titulos"><?php echo $nm_clinica;?></p><br>
+   <p class="subTitulos"><img src="../img/dentechave.png" alt="" style="width:2rem;">&nbsp;
+   <?php echo $nm_dentista;?></p><br>
+   <hr class="border-light m-0"><br>
+   <img src="<?php echo $ds_img?>" alt="Imagem relacionada a clínica">
+<br><br>
+     <p class="titulos"><?php echo $nm_clinica;?></p> 
+
       
-      
-      <p class="subTitulos"><?php echo $nm_dentista;?></p>
+      <p class="subTitulos"><?php echo $nm_endereco;?></p>
 <br>
    
 
-
+<hr class="border-light m-0"><br>
    
-    <button onclick="window.location.href='pagClinica.php?id=<?php echo $row['id']?>'" class="buttonClinica">
+    <button onclick="window.location.href='pagClinica.php?id=<?php echo $row['id']?>'" class="buttonPerfil">
   <span>Saiba mais</span>
 </button>
 
- <br><br>
  <?php
- $botao = '<label class="container" style="display:flex; justify-content:end;">
+ $botao = '<label class="containerS" style="display:flex; justify-content:end;">
  <input type="checkbox">
  <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
  <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
 </label>';
 
-$botaoAtivo = '<label class="container" style="display:flex; justify-content:end;">
+$botaoAtivo = '<label class="containerS" style="display:flex; justify-content:end;">
 <input type="checkbox" checked>
 <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
 <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
@@ -603,10 +454,10 @@ echo "</ul></div>";
               const method = $(this).attr('method'); // Get the parameter method from the button
               if (method === "Like") {
                   $(this).attr('method', 'Unlike'); // Change the div method attribute to Unlike
-                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
+                  $(this).html('<label class="containerS" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
               }else{
                   $(this).attr('method', 'Like');
-                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
+                  $(this).html('<label class="containerS" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
               }
               $.ajax({
                   url: '../php/favPostClinica.php', // Call favs.php to update the database
@@ -621,27 +472,84 @@ echo "</ul></div>";
  
   </script>
   
-  <footer style=" background-color:#0353A4;">
-        <div class="container">
+  <footer id="newsletter">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-lg-6 offset-lg-3" style="opacity:0">
+          <form id="search" action="#" method="GET">
             <div class="row">
-                <div class="col-lg-7 col-md-12 col-sm-12">
-                    <p class="copyright" style="color:#ffff">Copyright &copy; 2023 botzin
-                
-                . Design: <a rel="nofollow" href="https://templatemo.com" style="color:black">SocialVision</a></p>
-                </div>
-                <div class="col-lg-5 col-md-12 col-sm-12">
-                    <ul class="social">
-                        <li><img src="../img/logoBrancoEquipe.png" alt="" width="100" style="position:relative;top:1rem"></li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                    </ul>
-                </div>
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+                </fieldset>
+              </div>
             </div>
+          </form>
         </div>
-    </footer>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Contact Us</h4>
+            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <p><a href="#">010-020-0340</a></p>
+            <p><a href="#">info@company.co</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>About Us</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Free Apps</a></li>
+              <li><a href="#">App Engine</a></li>
+              <li><a href="#">Programming</a></li>
+              <li><a href="#">Development</a></li>
+              <li><a href="#">App News</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">App Dev Team</a></li>
+              <li><a href="#">Digital Web</a></li>
+              <li><a href="#">Normal Apps</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>SocialVision</h4>
+            <div class="logo">
+           <img src="../img/logoBrancoEquipe.png">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+</footer>
 
 </body>
 </html>

@@ -35,18 +35,18 @@ require "../php/conecta.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/clinica.css">
     <link rel="stylesheet" href="../css/modal-senha.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- ICONE ESTRELA -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title><?php echo $nm_clinica?></title>
+    <title>Clínica - <?php echo $nm_clinica?></title>
     <style>
       
 #map {
-  height: 40rem;
-  width: 40rem;
-background-color:#F1F1F1;
+  height: 30rem;
+  width: 36rem;
+margin:auto;
 }
 .loader, .loader:before, .loader:after {
   border-radius: 50%;
@@ -94,79 +94,46 @@ display: flex;
     </style>
 </head>
 <body>
-
-    <!-- nav do site -->
-    <script>
-        const toggleMenuOpen = () => document.body.classList.toggle("open");
-    </script>
-
-    	<nav class="nav">
-	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-	<a href="../index.php"><img src="../img/logo.png" alt="" id="logotipo"></a>
-
-	<!-- Put your collapsing content in here -->
-	<div class="nav__collapsable">
-		<a href="">Home</a>
-		<a href="#">Blog</a>
-		<a href="#">Clínicas</a>
-	
-		<div class="nav__cta">
-
-		</div>
-	</div>
-
-</nav>
-
-    <script
+   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&language=pt&region=br"
     defer
   ></script>
+    <!-- nav do site -->
+<?php include("navbars.php");?>
+ <br><br><br><br>
+
+ 
   <input type="hidden" value="<?php echo $user['id']?>" id="id">
   <input type="hidden" id="valor-two" onkeyup="initMap()" value="<?php echo $nm_endereco;?>">
   <input type="hidden" id="valor" onkeyup="initMap()"  value="<?php echo $user['nm_local']?>">
 
-  <div style="display:flex; margin:1rem 3rem;">
-<div class="product-card" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-
-		<div class="product-details">
-			<span class="product-catagory" ><?php echo $nm_endereco;?></span>
-			<h4><a href=""><?php echo $nm_clinica;?></a></h4>
-			<p> <?php echo $nm_email;?></p>
-      
-			<div class="product-bottom-details">
-      <p><span class="material-symbols-outlined" style="position:relative; top:0.2rem;">person</span> Dentista:
-				<?php echo $nm_dentista;?>
-        </p>
-        <p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">dentistry</span> CRO:
-        <?php echo $nr_cro;?>
-      </p>
-
-
-        
-
-        <p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">call</span> Telefone:
-        <?php echo $nr_telefone;?>
-      </p>
-
-			
-        
-			</div>
-      <div class="product-bottom-details">
-      <p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">schedule</span> Abertura:
-				<?php echo $hr_abri;?>
-        </p>
-        <p><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">schedule</span> Fechamento:
-        <?php echo $hr_fecha;?>
-      </p><br>
-      <button class="edits" id="myBtn">
-<b class="material-symbols-outlined">
-edit_location_alt
-</b>
-</button>
-			</div>
-  <br><br>
+ 
 
 <style>
+ body{
+  background-color: rgba(0, 140, 255, 0.145);
+ }
+ /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  .info {
+    scrollbar-width: auto;
+    scrollbar-color:#3DB0F6 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .info::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  .info::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  .info::-webkit-scrollbar-thumb {
+    background-color:#3DB0F6;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
   .input {
   
   max-width: 220px;
@@ -212,9 +179,7 @@ edit_location_alt
 }
 
       </style>
-      <div class="rating-container">
-    <h2>Avalie-nos</h2>
-  
+   
 <style>
   /* Criar as variaveis com as cores */
 :root {
@@ -248,7 +213,137 @@ edit_location_alt
     color: var(--cinza);
 } 
 </style>
-    <form method="POST" id="avaliar_clinica">
+  
+
+<!-- Trigger/Open The Modal -->
+<?php
+
+if($nivel === '2'){
+?>
+<button id="myBtn2">Adicionar tratamento</button>
+<?php
+}
+?>
+<!-- The Modal -->
+<div id="myModal2" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close2">&times;</span>
+    <h5>Adicionar tratamento</h5>
+    <form action="../php/adicionarTratamento.php" method="POST" >
+    <input type="hidden" name="id_clinic" value="<?php echo $id?>">
+    <input type="text" name="nome_tratamento" placeholder="Nome do tratamento">
+    <button type="submit" name="adicionar">Adicionar</button>
+    </form>
+  </div>
+</div>
+</div>
+
+
+
+<!-- EXIBIR TRATAMENTOS DA CLÍNICAS -->
+<!-- <h4>Tratamentos</h4>
+<?php 
+$tratamento = $conn->prepare("SELECT * FROM tb_tratamentos WHERE id_clinica = :id");
+$tratamento->bindParam(':id', $id);
+$tratamento->execute();
+$lines = $tratamento->rowCount();
+
+while($exibir_tratamento = $tratamento->fetch(PDO::FETCH_ASSOC)){
+  extract($exibir_tratamento);
+?>
+
+<p><?php echo $nm_tratamento?></p>
+
+<?php
+}
+?>
+ -->
+
+	
+
+
+
+
+
+  </div>
+  <div id="myModal" class="modal">
+
+<!-- Modal content -->
+<div class="modal-content">
+  <p id="respo"></p>
+  <span class="close">&times;</span>
+  <p>Adicione um novo endereço</p><br>
+  <input placeholder="Adicione um endereço aqui" type="text"class="input" id="endereco" value="<?php echo $user['nm_local'];?>"> 
+  <button class="edits" style="display:flex; float:right;" id="editos">
+<b class="material-symbols-outlined">
+edit
+</b>
+</button>
+</div>
+</div>
+
+<br>
+
+
+
+
+
+<div style="display:flex; justify-content:center;">
+<div class="card">
+<div class="info">
+<p class="title"><h2><?php echo $nm_clinica;?></h2></p>
+</div>
+<div class="header">  <img src="<?php echo $ds_img?>" alt="Imagem relacionada a clínica"></div>
+<div class="info">
+  <p class="title">Informações</p>
+
+  <div class="infoN">
+  <span class="product-catagory"><span class="material-symbols-outlined" style="position:relative; top:0.3rem;">call</span> Telefone:
+        <?php echo $nr_telefone;?><br><br>
+        
+        <span class="material-symbols-outlined" style="position:relative; top:0.3rem;">mail</span> Gmail: 
+        <?php echo $nm_email;?></span>
+</div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<div class="infoNN">
+<span class="product-catagory">
+<span class="material-symbols-outlined" style="position:relative; top:0.3rem;">schedule</span> Abertura:
+				<?php echo $hr_abri;?><br><br>
+        
+        <span class="material-symbols-outlined" style="position:relative; top:0.3rem;">schedule</span> Fechamento:
+        <?php echo $hr_fecha;?></span>
+</div> 
+<br><br><hr class="border-light m-0">
+<div class="info">
+<p class="title">Dentista</p>
+
+<br>
+<img src="../img/dentechave.png" alt="" style="width:2rem;">&nbsp;
+   <?php echo $nm_dentista;?>
+</div>  
+
+</div>
+<div id="map"><span class="loader"></span></div>
+<div class="info">
+<span class="product-catagory">
+   <?php echo $nm_endereco;?>
+</span>
+</div>  
+<div class="info">
+<button class="edits" id="myBtn">
+<b class="material-symbols-outlined">
+edit_location_alt
+</b>
+</button>
+
+</div>
+<hr class="border-light m-0">
+
+<div class="info" style="overflow-x:auto; height:20rem;">
+
+
+<form method="POST" id="avaliar_clinica">
 
 <div class="estrelas">
     <input type="hidden" name="autor" value="<?php echo $nm_nome?>">
@@ -318,40 +413,12 @@ edit_location_alt
             }
         }
 
-        echo "<p>$nm_autor: $ds_mensagem</p><hr>";
+        echo "<p>$nm_autor: $ds_mensagem</p><br>";
     }}else{
       echo "<p>Sem avaliações no momento</p>";
     }
     ?>
 
-<!-- Trigger/Open The Modal -->
-<?php
-
-if($nivel === '2'){
-?>
-<button id="myBtn2">Adicionar tratamento</button>
-<?php
-}
-?>
-<!-- The Modal -->
-<div id="myModal2" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close2">&times;</span>
-    <h5>Adicionar tratamento</h5>
-    <form action="../php/adicionarTratamento.php" method="POST" >
-    <input type="hidden" name="id_clinic" value="<?php echo $id?>">
-    <input type="text" name="nome_tratamento" placeholder="Nome do tratamento">
-    <button type="submit" name="adicionar">Adicionar</button>
-    </form>
-  </div>
-</div>
-</div>
-
-
-<br><br><br>
-<!-- EXIBIR TRATAMENTOS DA CLÍNICAS -->
-<h4>Tratamentos</h4>
 <?php 
 $tratamento = $conn->prepare("SELECT * FROM tb_tratamentos WHERE id_clinica = :id");
 $tratamento->bindParam(':id', $id);
@@ -367,35 +434,105 @@ while($exibir_tratamento = $tratamento->fetch(PDO::FETCH_ASSOC)){
 <?php
 }
 ?>
-<br>
-
-		</div>
-    
-	</div>
 
 
 
-<div id="map"><center><span class="loader"></span></center></div>
-
-  </div>
-  <div id="myModal" class="modal">
-
-<!-- Modal content -->
-<div class="modal-content">
-  <p id="respo"></p>
-  <span class="close">&times;</span>
-  <p>Adicione um novo endereço</p><br>
-  <input placeholder="Adicione um endereço aqui" type="text"class="input" id="endereco" value="<?php echo $user['nm_local'];?>"> 
-  <button class="edits" style="display:flex; float:right;" id="editos">
-<b class="material-symbols-outlined">
-edit
-</b>
-</button>
+</div>  
+<div class="footer">
+  
+  <p class="tag"><?php echo $nm_endereco;?></p>
+  <button type="button" class="action">Get started </button>
+</div>
 </div>
 </div>
 
+
+<footer id="newsletter">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-lg-6 offset-lg-3" style="opacity:0">
+          <form id="search" action="#" method="GET">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Contact Us</h4>
+            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <p><a href="#">010-020-0340</a></p>
+            <p><a href="#">info@company.co</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>About Us</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Free Apps</a></li>
+              <li><a href="#">App Engine</a></li>
+              <li><a href="#">Programming</a></li>
+              <li><a href="#">Development</a></li>
+              <li><a href="#">App News</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">App Dev Team</a></li>
+              <li><a href="#">Digital Web</a></li>
+              <li><a href="#">Normal Apps</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>SocialVision</h4>
+            <div class="logo">
+           <img src="../img/logoBrancoEquipe.png">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+</footer>
 <script src="../js/modalSenha.js"></script>
 <!-- ajax para enviar dados para o php -->
+
+
+
+
+
+
 <script>
 
   $(document).ready(function () {

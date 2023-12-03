@@ -144,8 +144,18 @@ padding:0.5rem;
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
 
-              <li class="scroll-to-section"><a href="">Blog</a></li>
-              <li class="scroll-to-section"><a href="pag/clinicas.php">Clínicas</a></li>
+              <li class="scroll-to-section"><a href="pag/blog.php">Blog</a></li>
+              <?php
+              if (!isset($_SESSION['id_user'])) {
+?>
+              <li class="scroll-to-section"><a href="pag/cadastrar.php">Clínicas</a></li>
+              <?php
+}else{
+?>
+    <li class="scroll-to-section"><a href="pag/clinicas.php">Clínicas</a></li>
+<?php
+}
+?>  
               <?php
 if (!isset($_SESSION['id_user'])) {
 ?>
@@ -154,7 +164,7 @@ if (!isset($_SESSION['id_user'])) {
 <?php
 }else{
 ?>
-    <li class="scroll-to-section"><a href="pag/perfil.php">Perfil</a></li>
+    <li class="scroll-to-section"><a href="ProfileTemplate/index.php">Perfil</a></li>
 <?php
 }
 ?>  

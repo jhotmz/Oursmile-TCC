@@ -11,8 +11,7 @@ try {
 	// validar campos
 	if (empty($_POST['senha'])) {
 		echo "<p style='color: red;'>Insira uma nova senha!</p>";
-	}elseif ($numCaracteres < 6) {
-		echo "<p style='color: red;'> Número de caracteres insuficiente! (6)</p>";
+	
 	}elseif (empty($_POST['senhaconfirm']))  {
 		echo "<p style='color: red;'> Confirme a senha!</p>";
 	}elseif ($senha != $confirm) {

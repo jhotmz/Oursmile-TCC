@@ -1,19 +1,19 @@
 <?php
-session_start();
+// session_start();
 include('../php/conecta.php');
-if (!isset($_SESSION['id_user'])) {
-  header("location: ../index.php");
-} else{
-  $user = $_SESSION['id_user'];
-  $stmt = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$user'");
-  $stmt->execute();
-  $stmt = $stmt->fetch();
-  extract($stmt);
+// if (!isset($_SESSION['id_user'])) {
+//   header("location: ../index.php");
+// } else{
+//   $user = $_SESSION['id_user'];
+//   $stmt = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$user'");
+//   $stmt->execute();
+//   $stmt = $stmt->fetch();
+//   extract($stmt);
 
-  $clinica = $conn->prepare("SELECT * FROM tb_clinica");
-  $clinica->execute();
-  $clinica_exibir = $clinica->fetch();
-}
+//   $clinica = $conn->prepare("SELECT * FROM tb_clinica");
+//   $clinica->execute();
+//   $clinica_exibir = $clinica->fetch();
+// }
 
 ?>
 <head>
@@ -91,7 +91,7 @@ padding:0.5rem;
     </style>
 </head>
 
-<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s" style="background-color:#Ffff;">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -104,7 +104,7 @@ padding:0.5rem;
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
 
-              <li class="scroll-to-section"><a href="">Blog</a></li>
+              <li class="scroll-to-section"><a href="../pag/blog.php">Blog</a></li>
               <li class="scroll-to-section"><a href="../pag/clinicas.php">Clínicas</a></li>
               <?php
 if (!isset($_SESSION['id_user'])) {
@@ -114,7 +114,7 @@ if (!isset($_SESSION['id_user'])) {
 <?php
 }else{
 ?>
-    <li class="scroll-to-section"><a href="../pag/perfil.php">Perfil</a></li>
+    <li class="scroll-to-section"><a href="../ProfileTemplate/index.php">Perfil</a></li>
 <?php
 }
 ?>  
@@ -139,7 +139,7 @@ if (!isset($_SESSION['id_user'])) {
 }else{
 ?>
 
-    <li class="scroll-to-section"><a id="btnSair" style="cursor:pointer;">Sair</a></li>
+    <li class="scroll-to-section"><a id="btnSair" style="cursor:pointer;" onclick="location.href='../php/sair.php'">Sair</a></li>
 <?php
 }
 ?>

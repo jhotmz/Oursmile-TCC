@@ -399,7 +399,23 @@ form.example::after {
     align-items: end;
     margin: 10px;
 }
-
+.buttonPerfil{
+    display: inline-block;
+    border-radius: 4px;
+    background-color:#3db0f6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding: 16px;
+    width: 130px;
+    transition: all 0.3s;
+    cursor: pointer;
+  
+   }
+   .buttonPerfil:hover{
+      background-color:#4c8cf0;
+   }
 
 /* NAVEGAÇÃO */
 .center {
@@ -445,3 +461,5 @@ form.example::after {
         padding: 20px;
     }
 }
+
+
