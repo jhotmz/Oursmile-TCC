@@ -189,7 +189,7 @@ include("navbars.php");
       <!-- BOTÃO PARA ABRIR MODAL-->
       <div class="button-adm">
 
-        <button class="buttonPerfil" onclick="window.location.href='edit.php?id=<?php echo $id_post?>'">
+        <button id="myBtn" class="buttonPerfil" onclick="window.location.href='edit.php?id=<?php echo $id_post?>'">
 adicionar clínica
 </button>
       </div>
