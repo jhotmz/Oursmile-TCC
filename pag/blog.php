@@ -61,10 +61,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/x-icon" href="../img/logo oursmile.png">
-    <link rel="stylesheet" href="../css/blog_copy.css">
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
+
     <link rel="stylesheet" href="../css/blog.css">
-    <link rel="stylesheet" href="../css/modal.css">
     <script src="https://kit.fontawesome.com/eac31603cd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../dist/ui/trumbowyg.min.css">
     <!-- Font Google -->
@@ -73,13 +72,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200&display=swap" rel="stylesheet">
     <!-- font pesquisar -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- font icon -->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <title>Oursmile</title>
+    <title>Blog Oursmile</title>
     <style>
       /* Font */
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
@@ -104,23 +105,7 @@ img {
   vertical-align: middle;
 }
 
-.btn {
 
-  padding: 0.8rem;
-  font-size: 14px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  font-weight: 400;
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
-}
-
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-}
 
 .cards {
   display: flex;
@@ -185,25 +170,74 @@ img {
 }
     </style>
   </head>
-  <body>
+  <body style="background-color:#F3F5F6;">
     <!-- NAV DO SITE -->
 <?php
 include("navbars.php");
 ?>
-<br><br><br><br><br>  
-    <?php
-    if($nivel == '2'){
+
+<br><br><br><br>
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#3DB0F6;">
+  <div class="container-fluid">
+
+
+  <?php
+    if($nivel > '1'){
     ?>
     <!-- BOTÕES ADM -->
     <div class="button-nav">
       <!-- BOTÃO PARA ABRIR MODAL-->
       <div class="button-adm">
-        <button id="myBtn" class="button button-adc" title="Adicione uma nova publicação">+ Adicionar publicação</button>
+
+        <button class="buttonPerfil" onclick="window.location.href='edit.php?id=<?php echo $id_post?>'">
+adicionar clínica
+</button>
       </div>
     </div>
     <?php
     }
-    ?>
+    ?>&nbsp;
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        
+      <div class="dropdown">
+  <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+    Filtrar
+  </button>
+  <ul class="dropdown-menu">   
+      <?php
+      while($categoria = $exibir_categoria->fetch(PDO::FETCH_ASSOC)){
+  ?>  
+
+    <li><a class="dropdown-item" href="#" onclick="location.href='blog.php?artigo=<?php echo $categoria['id'];?>'"><?php echo $categoria['nm_categoria'];?></a></li>
+
+  <?php
+      }    
+  ?>
+      </ul>
+    </div>
+    </ul>
+    
+
+    <form class="example" action="">
+      <input type="text" name="busca" id="busca" placeholder="Pesquisar publicações" class="input"> 
+      <button type="submit" onclick="searchData()" id="btnP"><span class="material-symbols-outlined">
+search
+</span></button>
+
+    </form>
+ 
+    </div>
+  </div>
+</nav>
+
 
     <!-- EXIBIR BUSCA NA URL -->
     <script>
@@ -222,40 +256,15 @@ include("navbars.php");
 
   
 
-    
-<!-- NAVTAB -->
-<div class="nav-tab">
-<div class="link-tab">
-    <a href="blog.php" name="">Recentes</a>        
-</div>
-  <?php
-      while($categoria = $exibir_categoria->fetch(PDO::FETCH_ASSOC)){
-  ?>  
-    <div class="link-tab">
-    <a href="#" name="" onclick="window.location.href='blog.php?artigo=<?php echo $categoria['id']; ?>'"><?php echo $categoria['nm_categoria'];?></a>        
-    </div>
-  <?php
-      }    
-  ?>
-</div>
 
-  <!-- PESQUISAR -->
-  <div class="search">
-    <form class="example" action="">
-      <input type="text" name="busca" id="busca" placeholder="Pesquise publicações">
-      <button type="submit" onclick="searchData()"><i class="fa fa-search"></i></button>
-    </form>
-  </div>  
 
-<!-- LEGENDA DA EXIBIÇÃO -->
-    <div class="msg-post">
-  <?php 
-  echo $post;
-  ?> 
-    </div>
+
+
+
+
 
     <div class="main">
-  <h1>Responsive Card Grid Layout</h1>
+
   <ul class="cards">
 
 <!-- SECTION BLOG -->
@@ -269,35 +278,19 @@ include("navbars.php");
 
     <li class="cards_item">
       <div class="card">
-        <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+        <div class="card_image" ><img src="<?php echo $ds_img ?>"style="height:15rem; width:25rem;"></div>
         <div class="card_content">
           <h2 class="card_title"><?php echo $nm_postagem ?></h2>
-          <p class="card_text"><?php echo $nm_desc?></p>
-          <?php date_default_timezone_set('America/Sao_Paulo');
- echo date('d/m/y', strtotime($dt_data)); ?>
-          <button class="buttonPerfil">Saiba mais</button>
-          <img src="../img/dentechave.png" alt="" style="width:2rem;margin-top:1rem;"> <?php echo $row_pesquisa['nm_autor'] ?>
-        </div>
-        
-      </div>
-    </li>
-   
 
-    
 
-<div class="blog-card">
-    <div class="meta">
-     <div class="photo" style="background-image: url(<?php echo $ds_img ?>)"></div>
-    </div>
-<div class="description">
-     <h1><?php echo $nm_postagem ?></h1>
-     <br>
-     <i class="fa fa-calendar"> <?php date_default_timezone_set('America/Sao_Paulo');
- echo date('d/m/y', strtotime($dt_data)); ?></i>
-     </h2>
-     <p><?php echo $nm_desc?></p>
-     
-     <?php
+         
+<br>
+          <center><button class="buttonPerfil" onclick="window.location.href='view.php?id=<?php echo $row_pesquisa['id_post']; ?>'">Saiba mais</button></center>
+          <br>
+         <p class="nDentista"><img src="../img/dentechave.png" alt="" style="width:2rem;margin-top:1rem;"> <nobr style="position:relative; top:0.5rem;"><?php echo $row_pesquisa['nm_autor']?></nobr>
+         <nobr class="date" style="position:relative; top:0.6rem;"><?php date_default_timezone_set('America/Sao_Paulo');echo date(' d / m / y ', strtotime($dt_data)); ?></nobr>
+        </p>
+         <?php
      $publicacao_id = $row_pesquisa['id_post'];
      // Verifique se a publicação já está nos favoritos do usuário
      $favoritada = false;
@@ -313,32 +306,61 @@ include("navbars.php");
                   <?php
                   if(isset($_SESSION['id_user'])){
                   // Exiba o botão de favoritar
+                  $botao = '<label class="containerS" style="display:flex; justify-content:start;">
+                  <input type="checkbox">
+                  <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
+                  <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
+                 </label>';
+                 
+                 $botaoAtivo = '<label class="containerS" style="display:flex; justify-content:start;">
+                 <input type="checkbox" checked>
+                 <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
+                 <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
+                 </label>';
                   if ($favoritada){
               
                     // <!-- Exiba o botão de desfavoritar -->
                      
-                      echo "<button class='button-fav' method = 'Unlike' data-post ='$publicacao_id' type='submit'><img src='../img/lover.png' alt='desfavoritar_icon' style='width: 25px;'></button>";
+                      echo "<button style='display:flex; justify-content:end;float:right;'class='button-fav' method = 'Unlike' data-post ='$publicacao_id' type='submit'> $botaoAtivo</button>";
                   } else {
           
-      echo  "<button class='button-fav' method = 'Like' data-post ='$publicacao_id'><img src='../img/heart.png' alt='img_favorito' style='width:25px;'></button>";
+      echo  "<button style='display:flex; justify-content:end;float:right;' class='button-fav' method = 'Like' data-post ='$publicacao_id'>$botao</button>";
 
       }}
      ?>
-     <p class="read-more">
-       <a onclick="window.location.href='view.php?id=<?php echo $row_pesquisa['id_post']; ?>'">Saiba mais</a>&nbsp;&nbsp;
+    
+      
        <?php
-      if($nivel === '2'){
-       ?>
-       <a class="teste" href="edit.php?id=<?php echo $id_post?>"><i class="fa-solid fa-pen-to-square"></i></a>&nbsp;&nbsp;
-       <a href="../php/excluirPub.php?id=<?php echo $id_post?>"><i class="fa-solid fa-trash"></i></a>
-       <?php
-       }
-       ?>
-     </p>
-     <h2><i class="fi fi-rr-user"><?php echo $row_pesquisa['nm_autor'] ?></i></h2>
-   </div>
-  
- </div>
+
+if($_SESSION['nivel'] == 2){
+?>
+<button class="edits"  onclick="window.location.href='edit.php?id=<?php echo $id_post?>'">
+<b class="material-symbols-outlined">
+edit
+    </b>
+</button>
+
+<button class="edits" onclick="window.location.href='../php/excluirPub.php?id=<?php echo $id_post?>'">
+<b class="material-symbols-outlined">
+delete
+
+    </b>
+</button>
+<?php
+}else{
+?>
+
+<?php
+}?>
+        </div>
+        
+      </div>
+    </li>
+   
+
+    
+
+
   <!-- FECHAR WHILE EXIBIÇÃO -->
       <?php
     }    
@@ -349,7 +371,7 @@ include("navbars.php");
 
 </ul>
 </div>
-
+<br>
 <!-- PAGINAÇÃO DAS PUBLICAÇÕES -->
 <?php
 // Função para gerar o link de paginação
@@ -410,7 +432,7 @@ if ($total_results > 0) {
         // Página atual estará colorida
       if ($i >= 1) {
         if ($pg == $i) {
-          $active = "style='background-color: #14c4f4;'";
+          $active = "style='box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;'";
           }else{
             $active = "";
           }
@@ -427,84 +449,9 @@ if ($total_results > 0) {
 } 
 echo "</ul></div>";
 ?>
-<footer id="newsletter">
-    <div class="container">
-      <div class="row">
-       
-        <div class="col-lg-6 offset-lg-3" style="opacity:0">
-          <form id="search" action="#" method="GET">
-            <div class="row">
-              <div class="col-lg-6 col-sm-6">
-                <fieldset>
-                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-6 col-sm-6">
-                <fieldset>
-                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
-                </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>Contact Us</h4>
-            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
-            <p><a href="#">010-020-0340</a></p>
-            <p><a href="#">info@company.co</a></p>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>About Us</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Free Apps</a></li>
-              <li><a href="#">App Engine</a></li>
-              <li><a href="#">Programming</a></li>
-              <li><a href="#">Development</a></li>
-              <li><a href="#">App News</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">App Dev Team</a></li>
-              <li><a href="#">Digital Web</a></li>
-              <li><a href="#">Normal Apps</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>SocialVision</h4>
-            <div class="logo">
-           <img src="../img/logoBrancoEquipe.png">
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-          </div>
-        </div>
-      
-      </div>
-    </div>
 
-</footer>
+<?php include("footer.html");?>
+
 <!-- SCRIPT PARA ENVIAR FAVORITO-->
 <script>
     $(document).ready(function ($) {
@@ -514,10 +461,12 @@ echo "</ul></div>";
             const method = $(this).attr('method'); // Get the parameter method from the button
             if (method === "Like") {
                 $(this).attr('method', 'Unlike'); // Change the div method attribute to Unlike
-                $(this).html('<img src="../img/favorite.png" alt="desfavoritar_icon" style="width: 25px;>" id="'+director_id+'">').toggleClass('button mybtn'); // Replace the image with the liked button
-            }else{
+                
+                $(this).html('<label class="containerS" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
+            
+              }else{
                 $(this).attr('method', 'Like');
-                $(this).html('<img src="../img/fav.png" alt="desfavoritar_icon" style="width: 25px;>" id="' + director_id + '">').toggleClass('mybtn button');
+                $(this).html('<label class="containerS" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
             }
             $.ajax({
                 url: '../php/favPost.php', // Call favs.php to update the database
@@ -529,6 +478,34 @@ echo "</ul></div>";
             });
         });
     });
+
+    var modalPub = document.getElementById("myModalPub");
+
+// var botão
+var btnPub = document.getElementById("myBtnPub");
+
+var salvar = document.getElementById("salvarPub");
+
+// <span> para fechar modal
+var spanPub = document.getElementsByClassName("closePub")[0];
+
+// button cancelar
+var btnClosePub = document.getElementsByClassName("close-btnPub")[0];
+
+// ação clique no botão para abrir modal
+btnPub.onclick = function() {
+  modalPub.style.display = "block";
+}
+
+// x para fechar modal
+spanPub.onclick = function() {
+  modal.style.display = "none";
+}
+
+// botão cancelar
+btnClosePub.onclick = function() {
+  modalPub.style.display = "none";
+}
 </script>
 
 </body>

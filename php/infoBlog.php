@@ -10,8 +10,7 @@ if (empty($dados['savePub'])) {
     // validar campos
     if (in_array('', $dados)) {
         echo "<p style='color: red;'> Por favor, preencha todos os campos!</p>";
-    }elseif($numCaracteres < 90){
-        echo "<p style='color: red;'> O minimo de caracteres na descrição é 90!</p>";
+    
     }else{
         date_default_timezone_set('America/Sao_Paulo');
         $dataAtual = date('Y/m/d'); // Formato brasileiro para data e hora

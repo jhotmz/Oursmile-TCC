@@ -346,32 +346,26 @@ if (!isset($_SESSION['id_user'])) {
       <div class="row">
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>Contact Us</h4>
-            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <h4>Nosso contato</h4>
+            <p>São Paulo - Brazil</p>
             <p><a href="#">010-020-0340</a></p>
-            <p><a href="#">info@company.co</a></p>
+            <p><a href="#">oursmile.com</a></p>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>About Us</h4>
+            <h4>Sobre nós</h4>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
+              <li><a href="http://localhost:8080/Oursmile-TCC/sobreN%C3%B3s/index.html">Missão</a></li>
+              <li><a href="http://localhost:8080/Oursmile-TCC/sobreN%C3%B3s/index.html">Valores</a></li>
+              <li><a href="http://localhost:8080/Oursmile-TCC/sobreN%C3%B3s/index.html">Objetivo</a></li>
             </ul>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
+          
           </div>
         </div>
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>Useful Links</h4>
+            <h4>Outros links</h4>
             <ul>
               <li><a href="#">Free Apps</a></li>
               <li><a href="#">App Engine</a></li>
@@ -392,7 +386,7 @@ if (!isset($_SESSION['id_user'])) {
             <div class="logo">
            <img src="img/logoBrancoEquipe.png">
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            <p>Visando atender sempre a uma causa pertinente de maneira eficiente, inovadora e transparente.</p>
           </div>
         </div>
       
