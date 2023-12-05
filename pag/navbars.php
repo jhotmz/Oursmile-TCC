@@ -1,6 +1,7 @@
 <?php
 // session_start();
 include('../php/conecta.php');
+<<<<<<< HEAD
 if (!isset($_SESSION['id_user'])) {
   header("location: ../index.php");
 } else{
@@ -10,11 +11,21 @@ if (!isset($_SESSION['id_user'])) {
   $stmt->execute();
   $stmt = $stmt->fetch();
   extract($stmt);
+=======
+// if (!isset($_SESSION['id_user'])) {
+//   header("location: ../index.php");
+// } else{
+//   $user = $_SESSION['id_user'];
+//   $stmt = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$user'");
+//   $stmt->execute();
+//   $stmt = $stmt->fetch();
+//   extract($stmt);
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
 
-  $clinica = $conn->prepare("SELECT * FROM tb_clinica");
-  $clinica->execute();
-  $clinica_exibir = $clinica->fetch();
-}
+//   $clinica = $conn->prepare("SELECT * FROM tb_clinica");
+//   $clinica->execute();
+//   $clinica_exibir = $clinica->fetch();
+// }
 
 ?>
 <head>

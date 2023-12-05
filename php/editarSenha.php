@@ -11,6 +11,10 @@ try {
 	// validar campos
 	if (empty($_POST['senha'])) {
 		echo "<p style='color: red;'>Insira uma nova senha!</p>";
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
 	}elseif (empty($_POST['senhaconfirm']))  {
 		echo "<p style='color: red;'> Confirme a senha!</p>";
 	}elseif ($senha != $confirm) {

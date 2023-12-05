@@ -5,10 +5,17 @@ if (!isset($_SESSION['id_user'])) {
   header("location: ../index.php");
 } else{
   $user = $_SESSION['id_user'];
+<<<<<<< HEAD
   $usuario = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$user'");
   $usuario->execute();
   $usuario = $usuario->fetch();
   extract($usuario);
+=======
+  $stmt = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$user'");
+  $stmt->execute();
+  $stmt = $stmt->fetch();
+  extract($stmt);
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
 
   $clinica = $conn->prepare("SELECT * FROM tb_clinica");
   $clinica->execute();
@@ -76,6 +83,7 @@ if (!isset($_SESSION['id_user'])) {
                         <div class="tab-pane fade active show" id="account-general">
                         <form id="enviarFoto" enctype="multipart/form-data">
                             <div class="card-body media align-items-center">
+<<<<<<< HEAD
                                 <img src="<?php echo $ds_foto;?>" alt="Imagem do usuário" class="d-block ui-w-80">
                                 <div class="media-body ml-4">
                                     <label class="btn btn-outline-primary">
@@ -84,6 +92,19 @@ if (!isset($_SESSION['id_user'])) {
                                     </label> &nbsp;
                                     <button type="submit" class="buttonPerfil" id="atualizar">Atualizar</button>
                          </form>
+=======
+                                <form id="enviarFoto" enctype="multipart/form-data">
+                                <img src="<?php echo $ds_foto;?>" alt
+                                    class="d-block ui-w-80">
+                                <div class="media-body ml-4">
+                                    <label class="btn btn-outline-primary">
+                                        Upload new photo
+                                        <input type="file" class="account-settings-fileinput" name="fotoPerfil" id="fotoPerfil">
+                                    </label> &nbsp;
+                                    <button type="submit" class="buttonPerfil" id="atualizar">Atualizar</button>
+                                   
+                                </form>
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
                                 <button type="button" class="buttonPerfil" onclick="location.href='../pag/addClinica.php'" style="width:10rem;">Adicionar clínica</button>
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
@@ -91,7 +112,10 @@ if (!isset($_SESSION['id_user'])) {
                             <hr class="border-light m-0">
                             <div class="card-body">
                                 <div class="form-group">
+<<<<<<< HEAD
                                 <p id="resposta"></p>
+=======
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
                                 <p id="resultado"></p>
                                     <form id="editarDados" method="POST" enctype="multipart/form-data">
                                     <label class="form-label">Nome:</label>
@@ -120,13 +144,19 @@ if (!isset($_SESSION['id_user'])) {
                                 <div class="form-group">
                                     <label class="form-label">Confirme a senha:</label>
                                     <input type="password" class="form-control" name="senhaconfirm" id="senhaconfirm" maxlength="8"><br>
+<<<<<<< HEAD
                                     <p id="result"></p>
+=======
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
                                     <button type="submit" class="buttonPerfil" id="alterar">Alterar senha</button>
                                 </form>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
                         <div class="tab-pane fade" id="account-info">
                             <div class="card-body pb-2">
                                 <div class="form-group">
@@ -417,7 +447,11 @@ if (!isset($_SESSION['id_user'])) {
       event.preventDefault(); // Impede o envio padrão do formulário
       var form_data = new FormData(this);
       $.ajax({
+<<<<<<< HEAD
         url: '../php/edit-user.php?id=<?php echo $usuario['id'];?>', // Arquivo PHP para processar os dados
+=======
+        url: '../php/edit-user.php?id=<?php echo $stmt['id'];?>', // Arquivo PHP para processar os dados
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
         type: 'POST',
         data: form_data,
         contentType: false,
@@ -439,7 +473,11 @@ if (!isset($_SESSION['id_user'])) {
       var form_data = new FormData(this);
 
       $.ajax({
+<<<<<<< HEAD
         url: '../php/fotoPerfil.php?id=<?php echo $usuario['id']?>', // Arquivo PHP para processar os dados
+=======
+        url: '../php/fotoPerfil.php?id=<?php echo $id?>', // Arquivo PHP para processar os dados
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
         type: 'POST',
         data: form_data,
         contentType: false,
@@ -460,7 +498,11 @@ if (!isset($_SESSION['id_user'])) {
       event.preventDefault(); // Impede o envio padrão do formulário
       var form_data = new FormData(this);
       $.ajax({
+<<<<<<< HEAD
         url: '../php/editarSenha.php?id=<?php echo $usuario['id'];?>', // Arquivo PHP para processar os dados
+=======
+        url: '../php/editarSenha.php?id=<?php echo $stmt['id'];?>', // Arquivo PHP para processar os dados
+>>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
         type: 'POST',
         data: form_data,
         contentType: false,
