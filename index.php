@@ -20,6 +20,7 @@ session_start();
   <head>
 
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -143,8 +144,18 @@ padding:0.5rem;
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
 
-              <li class="scroll-to-section"><a href="">Blog</a></li>
-              <li class="scroll-to-section"><a href="pag/clinicas.php">Clínicas</a></li>
+              <li class="scroll-to-section"><a href="pag/blog.php">Blog</a></li>
+              <?php
+              if (!isset($_SESSION['id_user'])) {
+?>
+              <li class="scroll-to-section"><a href="pag/cadastrar.php">Clínicas</a></li>
+              <?php
+}else{
+?>
+    <li class="scroll-to-section"><a href="pag/clinicas.php">Clínicas</a></li>
+<?php
+}
+?>  
               <?php
 if (!isset($_SESSION['id_user'])) {
 ?>
@@ -153,7 +164,7 @@ if (!isset($_SESSION['id_user'])) {
 <?php
 }else{
 ?>
-    <li class="scroll-to-section"><a href="pag/perfil.php">Perfil</a></li>
+    <li class="scroll-to-section"><a href="ProfileTemplate/index.php">Perfil</a></li>
 <?php
 }
 ?>  
@@ -238,18 +249,7 @@ if (!isset($_SESSION['id_user'])) {
     </div>
   </div>
 <br>
-  <div id="services" class="services section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h4>Amazing <em>Services &amp; Features</em> for you</h4>
-            <img src="index/assets/images/heading-line-dec.png" alt="">
-            <p>If you need the greatest collection of HTML templates for your business, please visit <a rel="nofollow" href="https://www.toocss.com/" target="_blank">TooCSS</a> Blog. If you need to have a contact form PHP script, go to <a href="https://templatemo.com/contact" target="_parent">our contact page</a> for more information.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
   <div id="pricing" class="pricing-tables">
     <div class="container">
@@ -269,7 +269,7 @@ if (!isset($_SESSION['id_user'])) {
 
             </ul>
             <div class="border-button">
-              <a href="#">Saiba mais</a>
+              <a href="pag/blog.php">Saiba mais</a>
             </div>
           </div>
         </div>
@@ -326,7 +326,7 @@ if (!isset($_SESSION['id_user'])) {
     <div class="container">
       <div class="row">
        
-        <div class="col-lg-6 offset-lg-3">
+        <div class="col-lg-6 offset-lg-3" style="opacity:0">
           <form id="search" action="#" method="GET">
             <div class="row">
               <div class="col-lg-6 col-sm-6">
@@ -346,32 +346,26 @@ if (!isset($_SESSION['id_user'])) {
       <div class="row">
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>Contact Us</h4>
-            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <h4>Nosso contato</h4>
+            <p>São Paulo - Brazil</p>
             <p><a href="#">010-020-0340</a></p>
-            <p><a href="#">info@company.co</a></p>
+            <p><a href="#">oursmile.com</a></p>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>About Us</h4>
+            <h4>Sobre nós</h4>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
+              <li><a href="http://localhost:8080/Oursmile-TCC/sobreN%C3%B3s/index.html">Missão</a></li>
+              <li><a href="http://localhost:8080/Oursmile-TCC/sobreN%C3%B3s/index.html">Valores</a></li>
+              <li><a href="http://localhost:8080/Oursmile-TCC/sobreN%C3%B3s/index.html">Objetivo</a></li>
             </ul>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
+          
           </div>
         </div>
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>Useful Links</h4>
+            <h4>Outros links</h4>
             <ul>
               <li><a href="#">Free Apps</a></li>
               <li><a href="#">App Engine</a></li>
@@ -392,7 +386,7 @@ if (!isset($_SESSION['id_user'])) {
             <div class="logo">
            <img src="img/logoBrancoEquipe.png">
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            <p>Visando atender sempre a uma causa pertinente de maneira eficiente, inovadora e transparente.</p>
           </div>
         </div>
       

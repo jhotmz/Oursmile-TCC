@@ -1,18 +1,21 @@
 <!-- MODAL PARA ADICIONAR PUBLICAÇÃO -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
+
+<div id="myModalPub" class="modalPub">
+  <div class="modal-contentPub">
+    <div class="modal-headerPub">
+      <span class="closePub">&times;</span>
       <h2>Nova publicação</h2>
     </div>
-    <div class="modal-body">
+    <div class="modal-bodyPub">
       <form id="postagemInfo" method="post" enctype="multipart/form-data">
-        <div class="input-file">
+        <div class="input-file"><br> 
           <img class="imagem" />
-          <label for="previewImg">Insira a imagem de destaque</label>
-          <input type="file" class="file" id="previewImg" name="previewImg" accept="image/png, image/jpeg">
-          <img src="" alt="" id="imagem-p" class="imagem-p" style="width: 100%;">
-        </div>
+          <label for="previewImg" class="buttonPerfil"style="width:20rem;">Insira a imagem de destaque</label>
+          <input type="file" class="file" id="previewImg" name="previewImg" accept="image/png, image/jpeg" style="display:none;">
+          <img src="" alt="" id="imagem-p" class="imagem-p" style="width:10rem;">
+        </div><br>
+        <hr class="border-light m-0"><br>
+        <center>
         <div class="input-group">
 
 
@@ -20,21 +23,21 @@
             <label for="autor" class="form-label">Autor/fonte:</label>
             <input type="text" class="form-control" id="autor" name="autor" value="<?php echo $exibir_user['nm_nome'];?>" placeholder="Insira o nome do autor">
           </div>
-
+&nbsp;&nbsp;
           <div class="input-text">
             <label for="titulo" class="form-label">Título:</label>
             <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Insira o título da postagem">
           </div>
-
+          &nbsp;&nbsp;
           <div class="input-text">
             <label for="desc" class="form-label">Descrição:</label>
             <input type="text" class="form-control" id="desc" name="desc"
               placeholder="Insira um breve texto sobre o assunto">
           </div>
-
-          <div class="input-text">
+          &nbsp;&nbsp;
+          <div class="input-text"  style="position:relative; top:0.5rem;">
             <label for="categoria">Tópico</label>
-            <select id="categoria" name="categoria">
+            <select id="categoria" name="categoria" class="form-select">
             <option selected disabled>Selecione o tópico</option>
               <?php
               $query = $conn->query("SELECT * FROM tb_categoria ORDER BY nm_categoria ASC");  
@@ -49,15 +52,18 @@
               ?>
           </select>
           </div>
-
-        </div>
+         
+        </div> </center>
+<br>
+        <hr class="border-light m-0">
+<br>
         <div class="input-text trumbow">
           <label for="trumbowyg-editor">Conteúdo da postagem</label>
           <textarea class="trumbowyg-editor" name="conteudo" id="trumbowyg-editor" rows="5"
             placeholder="Escreva aqui o conteúdo da publicação"></textarea>
-        </div>
-
-        <div class="modal-footer">
+        </div><br><hr class="border-light m-0">
+<br>
+        <div class="modal-footerPub">
           <button class="button btn-send" type="submit" name="savePub" id="savePub">Publicar</button>
         </div>
       </form>
@@ -88,8 +94,8 @@
       ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
       ['unorderedList', 'orderedList'],
       ['horizontalRule'],
-      ['removeformat'],
-      ['fullscreen']
+      ['removeformat']  
+
     ],
     autogrow: true
   });
@@ -119,4 +125,5 @@
       });
     });
   });
+
 </script>

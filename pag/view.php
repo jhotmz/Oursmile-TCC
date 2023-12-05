@@ -57,9 +57,9 @@ $publi = $blog_pub->fetch(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="img/logo oursmile.png">
+  <link rel="icon" type="image/x-icon" href="img/logo.png">
   <link rel="stylesheet" href="../css/view-blog.css">
-  <link rel="stylesheet" href="../css/navbar.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -69,42 +69,16 @@ $publi = $blog_pub->fetch(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-  <title><?php echo $publi['nm_postagem']?></title>
+  <title>Publicação - <?php echo $publi['nm_postagem']?></title>
 </head>
 
-<body>
+<body style="background-color:#DBEEFF">
   <!-- NAV DO SITE -->
-  <nav class="nav">
-	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-	<img src="../img/logo.png" alt="" id="logotipo">
+  <?php
+include("navbars.php");
+?><br><br><br><br>
+<br><br>
 
-	<!-- Put your collapsing content in here -->
-	<div class="nav__collapsable">
-		<a href="#">Home</a>
-		<a href="pag/blog.php">Blog</a>
-		<a href="#">Clínicas</a>
-		
-    <?php
-if (!isset($_SESSION['id_user'])) {
-?>
-
- <a href="pag/cadastrar.php">Entrar</a>
-<?php
-}else{
-?>
-<a href="pag/perfil.php">Meu perfil</a>
-<a href="pag/gerenciar.php">Gerenciar</a>
-<a href="#contact" onclick="window.location='php/sair.php'">Sair</a>
-<?php
-}
-?>
-
-
-
-		<div class="nav__cta">
-		</div>
-	</div>
-</nav>
 
   <!-- <div class="header">
     <div class="progress-container">
@@ -120,36 +94,21 @@ if (!isset($_SESSION['id_user'])) {
 
   extract($publi);
   ?>
+  <div style="display:flex;justify-content:center;">
+<div class="card">
 
-  <div class="conteudo-blog">
-    <header class="blog-header">
-
-      <div class="dateActor">
+<div class="info">
+  <p class="title"><?php echo $nm_postagem; ?></p>
+  <p style="font-size:1rem;"><?php echo $ds_conteudo; ?></p>
+</div>
+<div class="dateActor">
         Por <?php echo $nm_autor ?>, publicado em <?php date_default_timezone_set('America/Sao_Paulo');
 
          echo date('d/m/Y', strtotime($dt_data)); ?>
-      </div>
-      <div class="back">
-        <a href="blog.php" class="back-blog">Voltar para o blog</a>
-      </div>
-      <div class="img-file">
-        <div class="foto">
-        <img src="<?php echo $ds_img ?>" id="img" alt="imagem relacionada a postagem">
-        </div>
-      </div>
-      <div class="tittle-post">
-        <?php echo $nm_postagem; ?>
-      </div>
-    </header>
-    <section class="conteudo-post">
-      <p><?php echo $ds_conteudo; ?></p>
-      <div class="share">
-        <p>Compartilhe este conhecimento!</p><br>
-        <a class="share" id="copiarBotao"><i class="fi fi-sr-share"></i></a>
-      </div>
-    </section>
-  </div>
-  
+      </div><br>
+<div class="footer">
+
+
   <div class="visu-post">
     <i class="fi fi-rr-eye" >
       <?php
@@ -173,6 +132,19 @@ if (!isset($_SESSION['id_user'])) {
   <?php
 }
 ?>
+
+
+  </p>
+  <div class="share">
+       
+        <a class="share" id="copiarBotao" style="cursor:pointer;"><i class="fi fi-sr-share" style="position:relative;top:0.2rem;"></i> Compartilhe este conhecimento</a>
+      </div>
+</div>
+</div>
+</div>
+
+ 
+
 
   <script>
         // Função para copiar a URL da página atual
@@ -205,7 +177,86 @@ if (!isset($_SESSION['id_user'])) {
     </script>
 
 <script src="../js/scroll.js"></script>
-</body>
+<footer id="newsletter">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-lg-6 offset-lg-3" style="opacity:0">
+          <form id="search" action="#" method="GET">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Contact Us</h4>
+            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <p><a href="#">010-020-0340</a></p>
+            <p><a href="#">info@company.co</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>About Us</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Free Apps</a></li>
+              <li><a href="#">App Engine</a></li>
+              <li><a href="#">Programming</a></li>
+              <li><a href="#">Development</a></li>
+              <li><a href="#">App News</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">App Dev Team</a></li>
+              <li><a href="#">Digital Web</a></li>
+              <li><a href="#">Normal Apps</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>SocialVision</h4>
+            <div class="logo">
+           <img src="../img/logoBrancoEquipe.png">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+</footer>
 </main>
+</body>
+
 </body>
 </html>

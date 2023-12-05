@@ -24,7 +24,7 @@ session_start();
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/thinline.css">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cadastrar.css">
-	<link rel="stylesheet" href="../css/navbar.css">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" type="image/x-icon" href="../img/logo.png">
@@ -39,14 +39,14 @@ session_start();
   font-family: 'Poppins', sans-serif;
 }
 
-.container{
+.containerS{
   max-width: 800px;
   background: #fff;
   width: 800px;
   padding: 25px 40px 10px 40px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.container .text{
+.containerS .text{
   text-align: center;
   font-size: 41px;
   font-weight: 600;
@@ -55,10 +55,10 @@ session_start();
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.container #hellyel{
+.containerS #hellyel{
   padding: 30px 0 0 0;
 }
-.container #hellyel .form-row{
+.containerS #hellyel .form-row{
   display: flex;
   margin: 32px 0;
 }
@@ -153,13 +153,13 @@ session_start();
   z-index: 2;
 }
 @media (max-width: 700px) {
-  .container .text{
+  .containerS .text{
     font-size: 30px;
   }
-  .container form{
+  .containerS form{
     padding: 10px 0 0 0;
   }
-  .container form .form-row{
+  .containerS form .form-row{
     display: block;
   }
   form .form-row .input-data{
@@ -219,29 +219,12 @@ br{
       </style>
 </head>
 <body>
-	
-	<nav class="nav">
-	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-	<img src="../img/logo.png" alt="" id="logotipo">
-
-	<!-- Put your collapsing content in here -->
-	<div class="nav__collapsable">
-		<a href="">Home</a>
-		<a href="#">Blog</a>
-		<a href="#">Clínicas</a>
-
-
-
-		<div class="nav__cta">
-
-		</div>
-	</div>
-
-</nav>
-	<section>
+	<?php include("navbars.php");?>
+	<br><br><br><br><br>  
+	<main>
 		
 
-    <div class="container">
+    <div class="containerS">
       <div class="text">
          Editar informações
       </div>
@@ -320,8 +303,85 @@ br{
 </div>
       </div>
 
-	</section>
+	</main>
+  <footer id="newsletter">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-lg-6 offset-lg-3" style="opacity:0">
+          <form id="search" action="#" method="GET">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Contact Us</h4>
+            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <p><a href="#">010-020-0340</a></p>
+            <p><a href="#">info@company.co</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>About Us</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Free Apps</a></li>
+              <li><a href="#">App Engine</a></li>
+              <li><a href="#">Programming</a></li>
+              <li><a href="#">Development</a></li>
+              <li><a href="#">App News</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">App Dev Team</a></li>
+              <li><a href="#">Digital Web</a></li>
+              <li><a href="#">Normal Apps</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>SocialVision</h4>
+            <div class="logo">
+           <img src="../img/logoBrancoEquipe.png">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
 
+</footer>
 <script>
   $(document).ready(function(){
     $("#cadastrar").click(function(){

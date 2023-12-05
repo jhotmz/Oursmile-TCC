@@ -48,5 +48,3 @@ span2.onclick = function() {
 
 
 
-
-

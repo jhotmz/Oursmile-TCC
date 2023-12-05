@@ -60,107 +60,166 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="../img/logo.png">
     <link rel="stylesheet" href="../css/sobre-nosso-site.css">
     <link rel="stylesheet" href="../css/clinica.css">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Roboto:ital,wght@0,400;1,900&family=Signika&family=Ubuntu&display=swap" rel="stylesheet">
+
     <title>Clínicas</title>
     <style>
-#map{
-  height: 25rem;
-  max-width:40rem;
-  border-color:#279989;
-  border-style:solid;
-  border-radius:1rem;
-
-}
-#horaEntrada,#horaSaida::placeholder {
-    font: 0.9rem arial;
-}
-#horaEntrada,#horaSaida{
-   width:7rem;
-   height:2.2rem;
-}
+      
 
 
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 190px;
+}
+
+.input{
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  width: 100%;
+
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color:;
+  color: #0d0c22;
+  box-shadow: 0 0 5px  #276bff;
+  transition: .3s ease;
+}
+.paginacao {
+    display: inline-block;
+
+}
+
+.paginacao a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin-top: 0.5px;
+    background-color:#ffff;
+} 
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20rem; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  position:relative;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bS {
+width:6rem;
+padding:0.5rem;
+  border: 0;
+  border-radius: 100px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  cursor:pointer;
+}
+
+.bS:hover {
+  background-color: #6fc5ff;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.1);
+}
+
+.bS:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
     </style>
 </head>
 <script src="../js/modais.js"></script>
 <script src="../js/jquery-3.6.4.js"></script>
+<script>
+       var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 <body>
-<nav class="nav">
-	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-	<img src="../img/logo.png" alt="" id="logotipo">
 
-	<!-- Put your collapsing content in here -->
-	<div class="nav__collapsable">
-		<a href="#">Home</a>
-		<a href="#">Blog</a>
-		<a href="#">Clínicas</a>
-
-    <?php
-
-if($_SESSION['nivel'] == 2){
-?>
-<button onclick="window.location.href='addClinica.php'">Adicionar +</button>
-<?php
-}else{
-?>
-
-<?php
-}?>
-
-		<div class="nav__cta">
-
-		</div>
-	</div>
-
-</nav>
-    <!-- nav do site -->
+<?php include("navbars.php");?>
+   
+<br><br>
 <br>
-<br>
-    <script>
-        const toggleMenuOpen = () => document.body.classList.toggle("open");
-    </script>
-    <nav class="navbar" style="display:none;">
-      <div class="navbar-overlay" onclick="toggleMenuOpen()"></div>
-
-      <button type="button" class="navbar-burger" onclick="toggleMenuOpen()">
-        <span class="material-icons">menu</span>
-      </button>
-      <img src="../img/logotipo.png" alt="" id="logo">
-      <nav class="navbar-menu">
-
-        <button type="button">Home</button>
-        <button type="button">Blog</button>
-        <div class="dropdown">
-            
-            <span>Configurações▼</span>
-            <div class="dropdown-content">
-            <?php 
-                   if (!isset($_SESSION['email'])) {
-                      ?>
-                      <a href="pag/cadastrar.php">Logar</a>
-                      <?php 
-                  }else{?>
-                  <a href="#login"><?php echo $nome;?></a><br><br>
-                  <?php
-                      }
-                      ?>
-               <a href="#contact" id="myBtn">Sair</a>
-            </div>
-          </div> 
-        <button type="button" class="active">Clínicas</button>
-       
-     
-      </nav>
-    </nav>
-
         <!-- EXIBIR BUSCA NA URL -->
     <script>
       var search = document.getElementById('busca');
@@ -170,103 +229,23 @@ if($_SESSION['nivel'] == 2){
       }
     </script>
 
-    <div class="input-group">
-   
-    <form action="">
  
-  <div class="container-input">
-  <input type="text" name="busca" id="busca" placeholder="Pesquisar" autocomplete="off" onkeyup="pesquisar()" class="input">
-  <svg type="submit" class="invite-btn" onclick="searchData()" fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
-    <path d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z" fill-rule="evenodd"></path>
-    </svg>
-</div>
-</div>
-   </form>
-
    <!-- FILTROS -->
 
    <!-- FILTRO DOS TRATAMENTOS -->
-   <form action="" method="GET">
-<select name="filtro_tratamento" id="filtro_tratamento">
-  <option disabled selected>Filtrar por tratamento</option>
-  <option value="ortodontia">ortodontia</option>
-  <option value="implante">implante</option>
-  <option value="cerveja">cerveja</option>
-</select>
 
-<button type="submit">Filtrar</button>
-   </form>
-
-
+   <div id="myModal" class="modal">
+<!-- Modal content -->
+<div class="modal-content">
+  <span class="close">&times;</span>
+  <h6 style="font-size:1.5rem;">Deseja sair </h6><br>
+  <button onclick="location.href='../php/sair.php'" class="bS">Sair</button>
 </div>
-    
-<style>
-  /* Google Fonts Import Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+</div>
 
-.nav-links{
-  display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 20px 15px;
-  border-radius: 12px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
-.nav-links li{
-  list-style: none;
-  margin: 0 12px;
-}
-.nav-links li a{
-  position: relative;
-  color: #333;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 6px 0;
-  text-decoration: none;
-}
-.nav-links li a:before{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  background: #34efdf;
-  border-radius: 12px;
-  transition: all 0.4s ease;
-}
-.nav-links li a:hover:before{
-  width: 100%;
-}
-.nav-links li.center a:before{
-  left: 50%;
-  transform: translateX(-50%);
-}
-.nav-links li.upward a:before{
-  width: 100%;
-  bottom: -5px;
-  opacity: 0;
-}
-.nav-links li.upward a:hover:before{
-  bottom: 0px;
-  opacity: 1;
-}
-.nav-links li.forward a:before{
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease;
-}
-.nav-links li.forward a:hover:before{
-  transform: scaleX(1);
-  transform-origin: left;
-}
-</style>
 
-<ul class="nav-links">
-    <li><a href="#">Clínicas</a></li>
-    <li class="center"><a href="profissionais.php">Profissionais</a></li>
-  </ul>
+<script src="../js/modalSenha.js"></script>
+
 
 
 <div class="wrapper">
@@ -281,44 +260,36 @@ if($_SESSION['nivel'] == 2){
 ?>
 
 
+
+
     <div class="team_member">
    <!-- <b class="dot"></b> -->
-   <img src="<?php echo $ds_img?>" alt="Imagem relacionada a clínica" width="100%">
-<br>
-     <p class="titulos"><?php echo $nm_clinica;?></p><br>
+   <p class="subTitulos"><img src="../img/dentechave.png" alt="" style="width:2rem;">&nbsp;
+   <?php echo $nm_dentista;?></p><br>
+   <hr class="border-light m-0"><br>
+   <img src="<?php echo $ds_img?>" alt="Imagem relacionada a clínica">
+<br><br>
+     <p class="titulos"><?php echo $nm_clinica;?></p> 
+
       
-      
-      <p class="subTitulos"><?php echo $nm_dentista;?></p>
+      <p class="subTitulos"><?php echo $nm_endereco;?></p>
 <br>
    
 
-
+<hr class="border-light m-0"><br>
    
-    <button onclick="window.location.href='pagClinica.php?id=<?php echo $row['id']?>'" class="buttonClinica">
+    <button onclick="window.location.href='pagClinica.php?id=<?php echo $row['id']?>'" class="buttonPerfil">
   <span>Saiba mais</span>
-
 </button>
 
-  <?php
-  if($nivel == '3'){
-  ?>
-  <a href="teste.php">ASSOCIAR_SE</a>
-  
-  <?php
-  }
-  ?>
-  
-  
-
- <br><br>
  <?php
- $botao = '<label class="container" style="display:flex; justify-content:end;">
+ $botao = '<label class="containerS" style="display:flex; justify-content:end;">
  <input type="checkbox">
  <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
  <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
 </label>';
 
-$botaoAtivo = '<label class="container" style="display:flex; justify-content:end;">
+$botaoAtivo = '<label class="containerS" style="display:flex; justify-content:end;">
 <input type="checkbox" checked>
 <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg>
 <svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg>
@@ -348,7 +319,10 @@ $botaoAtivo = '<label class="container" style="display:flex; justify-content:end
                   } else {
           
                     echo  "<button class='button-fav' method = 'Like' data-post ='$clinica_id' style='display:flex; justify-content:end; margin-left:0.5rem;'>
+                    
                     $botao
+
+
                     </button>";
 
                   }}
@@ -395,6 +369,7 @@ delete
 
 
 <!-- PAGINAÇÃO DAS PUBLICAÇÕES -->
+<center>
 <?php
 // Função para gerar o link de paginação
 function generatePageLink($page) {
@@ -452,7 +427,7 @@ if ($total_results > 0) {
         // Página atual estará colorida
       if ($i >= 1) {
         if ($pg == $i) {
-          $active = "style='background-color: #14c4f4;'";
+          $active = "style='background-color: white; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; margin:auto;'";
           }else{
             $active = "";
           }
@@ -469,7 +444,7 @@ if ($total_results > 0) {
 } 
 echo "</ul></div>";
 ?>
-
+</center><br>
   <!-- SCRIPT PARA ENVIAR FAVORITO-->
   <script>
       $(document).ready(function ($) {
@@ -479,10 +454,10 @@ echo "</ul></div>";
               const method = $(this).attr('method'); // Get the parameter method from the button
               if (method === "Like") {
                   $(this).attr('method', 'Unlike'); // Change the div method attribute to Unlike
-                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
+                  $(this).html('<label class="containerS" style="display:flex; justify-content:end;"><input type="checkbox" checked " id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('button mybtn'); // Replace the image with the liked button
               }else{
                   $(this).attr('method', 'Like');
-                  $(this).html('<label class="container" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
+                  $(this).html('<label class="containerS" style="display:flex; justify-content:end;"><input type="checkbox" id="'+director_id+'"><svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"></path></svg><svg class="save-solid" xmlns="http://www.w3.org/2000/svg" height="1rem" viewBox="0 0 384 512"><path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path></svg></label>').toggleClass('mybtn button');
               }
               $.ajax({
                   url: '../php/favPostClinica.php', // Call favs.php to update the database
@@ -494,7 +469,87 @@ echo "</ul></div>";
               });
           });
       });
+ 
   </script>
+  
+  <footer id="newsletter">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-lg-6 offset-lg-3" style="opacity:0">
+          <form id="search" action="#" method="GET">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6 col-sm-6">
+                <fieldset>
+                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Contact Us</h4>
+            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+            <p><a href="#">010-020-0340</a></p>
+            <p><a href="#">info@company.co</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>About Us</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Free Apps</a></li>
+              <li><a href="#">App Engine</a></li>
+              <li><a href="#">Programming</a></li>
+              <li><a href="#">Development</a></li>
+              <li><a href="#">App News</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">App Dev Team</a></li>
+              <li><a href="#">Digital Web</a></li>
+              <li><a href="#">Normal Apps</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="footer-widget">
+            <h4>SocialVision</h4>
+            <div class="logo">
+           <img src="../img/logoBrancoEquipe.png">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+</footer>
 
 </body>
 </html>

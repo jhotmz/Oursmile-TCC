@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../img/logo oursmile.png">
     <link rel="stylesheet" href="../css/edit.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+
     <link rel="stylesheet" href="../dist/ui/trumbowyg.min.css">
     <!-- FONTE POPINS -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap" rel="stylesheet">
     <title>Oursmile</title>
 </head>
 
-<body>
+<body style="background-color:#F3F5F6;">
     <!-- NAV DO SITE -->
   <?php
-  include('nav.php');
+  include('navbars.php');
   ?>
-
+<br><br><br><br><br>
     <?php
     include('../php/conecta.php');
 
@@ -38,7 +38,7 @@
 
   <section class="edit-pub">
     
-    <div class="tittle"><h1 class="title-edit">Editar publicação</h1></div>
+    <div class="tittle"><h1 class="title-edit">Editar publicação</h1></div><br>
           <form id="editPost" action="../php/editar.php?id=<?php echo $publi['id_post'];?>" method="post" enctype="multipart/form-data">
           <div class="input-file">
           <img class="imagem" />
@@ -117,8 +117,11 @@
         ],
         autogrow: true
       });
+    
     </script>
+    </main>
+    
 </body>
-</main>
+
 </body>
 </html>

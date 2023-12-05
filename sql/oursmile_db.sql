@@ -12,6 +12,9 @@ nm_sobrenome varchar (255),
 nr_cpf int,
 nr_cro int,
 ds_senha varchar(8) not null, 
+nm_local varchar(255), 
+nm_local_salva varchar(255),
+nm_postagem_salva varchar(255),
 id_nivel int
 );
 
@@ -36,17 +39,28 @@ id_usuario int,
 id_post int not null 
 );
 
+create table tb_dentista(
+id int auto_increment not null primary key,
+nm_dentista varchar(255)
+);
+
 create table tb_clinica(
 id int not null auto_increment primary key,
 ds_img varchar(100),
 nm_clinica varchar (30),
-nr_telefone varchar(15),
-nm_endereco varchar(30),
-nm_rsocial varchar(30),
-hr_funcionamento time,
-id_dentista int,
+nr_cro int,
+nm_dentista varchar(50),
+nr_telefone varchar(100),
+nm_endereco varchar(100),
+nr_zap varchar(100),
+hr_abri time,
+hr_fecha time,
+nm_email varchar(100),
+nm_tratamentos varchar(150),
 data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
 
 create table tb_tratamentos(
 id_tratamento int auto_increment not null primary key,
@@ -80,6 +94,7 @@ id_clinica int,
 CONSTRAINT fk_avaliacao_usuario FOREIGN KEY (id_clinica) REFERENCES tb_clinica (id) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
+
 alter table tb_acesso add
 foreign key fk_id_user (id_usuario)
 references tb_usuario (id);
@@ -88,9 +103,9 @@ alter table tb_blog add
 foreign key fk_id_categoria (id_categoria)
 references tb_categoria (id);
 
-alter table tb_clinica add
-column nr_zap int;
-
 INSERT INTO tb_usuario (nm_nome, nm_sobrenome, nm_email, ds_senha, id_nivel)
 VALUES ('jonas', 'tomatao', 'chefe@gmail.com', '123', '2');	
 
+INSERT INTO tb_clinica(nm_clinica, nr_cro, nm_dentista, nr_telefone, nm_endereco, nr_zap, hr_abri, hr_fecha, nm_email) VALUES
+('Central Odonto','103.281', 'Dra. Caroline Guidolin de Angelis', '1334269395','avenida washington luiz 115 itanhaém', '13991747167', '08:00', '14:00', 'central.odonto@hotmail.com'),
+('Odontologia Escobar', '15493', 'Dr. Paulo C. Escobar', '(13) 3422-1848', 'Rua dos Fundadores, 649 Belas artes itanhaém', '(13)99805-2546', '07:30', '17:00', 'drdiegoescobar@gmail.com');

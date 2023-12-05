@@ -16,5 +16,5 @@ if (move_uploaded_file($arquivo, $destino)) {
     $alterar->bindValue(':id', $id);
     $alterar->execute();
     echo "<p style='color:green;'> Foto de perfil atualizada!</p>";
-    echo '<meta http-equiv="refresh" content="1">';
+    echo '<meta http-equiv="refresh" content="0">';
 }
