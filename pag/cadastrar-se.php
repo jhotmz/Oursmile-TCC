@@ -83,31 +83,35 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 .mark-as-read:hover {
   background-color: rgb(230, 231, 233);
 }
-.button{
-    font-family:arial;
-  display: inline-block;
+
+ .buttonPerfil{
+
   border-radius: 4px;
-  background-color:rgb(39, 107, 255);
+  background-color:#3db0f6;
   border: none;
   color: #FFFFFF;
   text-align: center;
   font-size: 14px;
-  padding: 1rem;
-  width: 15rem;
-  transition: all 0.5s;
+  padding: 16px;
+
+  transition: all 0.3s;
   cursor: pointer;
-  margin: 5px;
+
  }
+ .buttonPerfil:hover{
+    background-color:#4c8cf0;
+ }
+
     </style>
 </head>
 <body>
    
 
-<<<<<<< HEAD
+
 <?php include("navLogin.php");?>
-=======
-<?php include("navbars.php");?>
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
+
+
 <br><br><br><br><br><br><br><br>
 
 <div class="card">
@@ -117,95 +121,15 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     vel adipisci blanditiis voluptates eum. Nam, cum minima?
   </p>
 
-  <div class="actions">
-  <button onclick="window.location='cadastrar.php'" class="button">Cadastrar-se como usuário</button><br>
-<button onclick="window.location='cadastroDentista.php'" class="button">Cadastrar-se como dentista</button>
-   
+  <div class="actions"><center>
+  <button onclick="window.location='cadastrar.php'" class="buttonPerfil">Cadastrar-se como usuário</button><br><br>
+<button onclick="window.location='cadastroDentista.php'" class="buttonPerfil">Cadastrar-se como dentista</button>
+   </center>
   </div>
 </div>
-<<<<<<< HEAD
 
-  
 <?php include("footer.html");?>
-=======
-<footer id="newsletter">
-    <div class="container">
-      <div class="row">
-       
-        <div class="col-lg-6 offset-lg-3" style="opacity:0">
-          <form id="search" action="#" method="GET">
-            <div class="row">
-              <div class="col-lg-6 col-sm-6">
-                <fieldset>
-                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-6 col-sm-6">
-                <fieldset>
-                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
-                </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>Contact Us</h4>
-            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
-            <p><a href="#">010-020-0340</a></p>
-            <p><a href="#">info@company.co</a></p>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>About Us</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Free Apps</a></li>
-              <li><a href="#">App Engine</a></li>
-              <li><a href="#">Programming</a></li>
-              <li><a href="#">Development</a></li>
-              <li><a href="#">App News</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">App Dev Team</a></li>
-              <li><a href="#">Digital Web</a></li>
-              <li><a href="#">Normal Apps</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>SocialVision</h4>
-            <div class="logo">
-           <img src="../img/logoBrancoEquipe.png">
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-          </div>
-        </div>
-      
-      </div>
-    </div>
 
-</footer>
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
 </body>
 </html>

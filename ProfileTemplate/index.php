@@ -5,17 +5,11 @@ if (!isset($_SESSION['id_user'])) {
   header("location: ../index.php");
 } else{
   $user = $_SESSION['id_user'];
-<<<<<<< HEAD
   $usuario = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$user'");
   $usuario->execute();
   $usuario = $usuario->fetch();
   extract($usuario);
-=======
-  $stmt = $conn->prepare("SELECT * FROM tb_usuario WHERE id = '$user'");
-  $stmt->execute();
-  $stmt = $stmt->fetch();
-  extract($stmt);
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
 
   $clinica = $conn->prepare("SELECT * FROM tb_clinica");
   $clinica->execute();
@@ -83,7 +77,7 @@ if (!isset($_SESSION['id_user'])) {
                         <div class="tab-pane fade active show" id="account-general">
                         <form id="enviarFoto" enctype="multipart/form-data">
                             <div class="card-body media align-items-center">
-<<<<<<< HEAD
+
                                 <img src="<?php echo $ds_foto;?>" alt="Imagem do usuário" class="d-block ui-w-80">
                                 <div class="media-body ml-4">
                                     <label class="btn btn-outline-primary">
@@ -92,19 +86,8 @@ if (!isset($_SESSION['id_user'])) {
                                     </label> &nbsp;
                                     <button type="submit" class="buttonPerfil" id="atualizar">Atualizar</button>
                          </form>
-=======
-                                <form id="enviarFoto" enctype="multipart/form-data">
-                                <img src="<?php echo $ds_foto;?>" alt
-                                    class="d-block ui-w-80">
-                                <div class="media-body ml-4">
-                                    <label class="btn btn-outline-primary">
-                                        Upload new photo
-                                        <input type="file" class="account-settings-fileinput" name="fotoPerfil" id="fotoPerfil">
-                                    </label> &nbsp;
-                                    <button type="submit" class="buttonPerfil" id="atualizar">Atualizar</button>
-                                   
-                                </form>
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
+
                                 <button type="button" class="buttonPerfil" onclick="location.href='../pag/addClinica.php'" style="width:10rem;">Adicionar clínica</button>
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
@@ -112,10 +95,9 @@ if (!isset($_SESSION['id_user'])) {
                             <hr class="border-light m-0">
                             <div class="card-body">
                                 <div class="form-group">
-<<<<<<< HEAD
+
                                 <p id="resposta"></p>
-=======
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
                                 <p id="resultado"></p>
                                     <form id="editarDados" method="POST" enctype="multipart/form-data">
                                     <label class="form-label">Nome:</label>
@@ -138,25 +120,21 @@ if (!isset($_SESSION['id_user'])) {
                             <div class="card-body pb-2">
                                 <div class="form-group">
                                 <form id="editarSenha" method="POST">
-                                    <label class="form-label">Nova senha:</label>
+                                    <label class="form-label" >Nova senha:</label>
                                     <input type="password" class="form-control" name="senha" id="senha" maxlength="8">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Confirme a senha:</label>
-                                    <input type="password" class="form-control" name="senhaconfirm" id="senhaconfirm" maxlength="8"><br>
-<<<<<<< HEAD
+                                    <input type="password" class="form-control" name="senhaconfirm" id="senhaconfirm" maxlength="8" ><br>
+
                                     <p id="result"></p>
-=======
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
                                     <button type="submit" class="buttonPerfil" id="alterar">Alterar senha</button>
                                 </form>
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        
-=======
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
                         <div class="tab-pane fade" id="account-info">
                             <div class="card-body pb-2">
                                 <div class="form-group">
@@ -213,7 +191,7 @@ if (!isset($_SESSION['id_user'])) {
                                 <div class="form-group">
                                 <label class="form-label">Posts salvos</label>
                                 <hr class="border-light m-0">
-
+<br>
                                 <?php
     // Consulta para buscar as publicações favoritadas pelo usuário
     $query = "SELECT * FROM tb_blog JOIN tb_favorito ON tb_blog.id_post = tb_favorito.pub_id WHERE tb_favorito.user_id = :usuario_id";
@@ -360,84 +338,7 @@ if (!isset($_SESSION['id_user'])) {
        
     </div>
   
-    <footer id="newsletter">
-    <div class="container">
-      <div class="row">
-       
-        <div class="col-lg-6 offset-lg-3" style="opacity:0">
-          <form id="search" action="#" method="GET">
-            <div class="row">
-              <div class="col-lg-6 col-sm-6">
-                <fieldset>
-                  <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-6 col-sm-6">
-                <fieldset>
-                  <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
-                </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>Contact Us</h4>
-            <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
-            <p><a href="#">010-020-0340</a></p>
-            <p><a href="#">info@company.co</a></p>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>About Us</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Free Apps</a></li>
-              <li><a href="#">App Engine</a></li>
-              <li><a href="#">Programming</a></li>
-              <li><a href="#">Development</a></li>
-              <li><a href="#">App News</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">App Dev Team</a></li>
-              <li><a href="#">Digital Web</a></li>
-              <li><a href="#">Normal Apps</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="footer-widget">
-            <h4>SocialVision</h4>
-            <div class="logo">
-           <img src="../img/logoBrancoEquipe.png">
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-          </div>
-        </div>
-      
-      </div>
-    </div>
-
-</footer>
+  <?php include("../pag/footer.html");?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- alterar nome, sobrenome, email -->
@@ -447,11 +348,10 @@ if (!isset($_SESSION['id_user'])) {
       event.preventDefault(); // Impede o envio padrão do formulário
       var form_data = new FormData(this);
       $.ajax({
-<<<<<<< HEAD
+
         url: '../php/edit-user.php?id=<?php echo $usuario['id'];?>', // Arquivo PHP para processar os dados
-=======
-        url: '../php/edit-user.php?id=<?php echo $stmt['id'];?>', // Arquivo PHP para processar os dados
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
+
         type: 'POST',
         data: form_data,
         contentType: false,
@@ -473,11 +373,10 @@ if (!isset($_SESSION['id_user'])) {
       var form_data = new FormData(this);
 
       $.ajax({
-<<<<<<< HEAD
+
         url: '../php/fotoPerfil.php?id=<?php echo $usuario['id']?>', // Arquivo PHP para processar os dados
-=======
-        url: '../php/fotoPerfil.php?id=<?php echo $id?>', // Arquivo PHP para processar os dados
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
+
         type: 'POST',
         data: form_data,
         contentType: false,
@@ -498,11 +397,9 @@ if (!isset($_SESSION['id_user'])) {
       event.preventDefault(); // Impede o envio padrão do formulário
       var form_data = new FormData(this);
       $.ajax({
-<<<<<<< HEAD
+
         url: '../php/editarSenha.php?id=<?php echo $usuario['id'];?>', // Arquivo PHP para processar os dados
-=======
-        url: '../php/editarSenha.php?id=<?php echo $stmt['id'];?>', // Arquivo PHP para processar os dados
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
         type: 'POST',
         data: form_data,
         contentType: false,

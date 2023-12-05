@@ -214,7 +214,7 @@ window.onclick = function(event) {
   }
 }
 </script>
-<body>
+<body style="background-color:#F3F5F6;">
 
 <?php include("navbars.php");?>
    

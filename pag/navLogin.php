@@ -93,7 +93,7 @@ padding:0.5rem;
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
 
-              <li class="scroll-to-section"><a href="../pag/blog.php">Blog</a></li>
+              <li class="scroll-to-section"><a href="blog.php">Blog</a></li>
               <li class="scroll-to-section"><a href="../pag/clinicas.php">Clínicas</a></li>
  
 

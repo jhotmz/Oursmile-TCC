@@ -168,11 +168,42 @@ img {
   margin-top: 35px;
   text-align: center;
 }
+.buttonA{
+  display: inline-block;
+  border-radius: 4px;
+  background-color:#22B900;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 16px;
+  width: 140px;
+  transition: all 0.3s;
+  cursor: pointer;
+
+ }
+ .buttonA:hover{
+    background-color:#1C9601;
+ }
+ .buttonF{
+
+  border-radius: 4px;
+  background-color:#22B900;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  width: 140px;
+  transition: all 0.3s;
+  cursor: pointer;
+
+ }
     </style>
   </head>
   <body style="background-color:#F3F5F6;">
     <!-- NAV DO SITE -->
-<?php
+    <?php
 include("navbars.php");
 ?>
 
@@ -189,11 +220,11 @@ include("navbars.php");
       <!-- BOTÃO PARA ABRIR MODAL-->
       <div class="button-adm">
 
-<<<<<<< HEAD
-        <button class="buttonPerfil" id="myBtnPub" onclick="window.location.href='edit.php?id=<?php echo $id_post?>'">
-=======
-        <button id="myBtn" class="buttonPerfil" onclick="window.location.href='edit.php?id=<?php echo $id_post?>'">
->>>>>>> 49c320751d2840889e0f4fbe51c0ca6d801403db
+
+       
+
+        <button id="myBtnPub" class="buttonA">
+
 adicionar clínica
 </button>
       </div>
@@ -212,7 +243,7 @@ adicionar clínica
       <li class="nav-item">
         
       <div class="dropdown">
-  <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+  <button type="button" class="buttonF dropdown-toggle" data-bs-toggle="dropdown">
     Filtrar
   </button>
   <ul class="dropdown-menu">   
@@ -231,10 +262,14 @@ adicionar clínica
     
 
     <form class="example" action="">
-      <input type="text" name="busca" id="busca" placeholder="Pesquisar publicações" class="input"> 
-      <button type="submit" onclick="searchData()" id="btnP"><span class="material-symbols-outlined">
+    <div class="input-group mb-3">
+  <input type="text" name="busca" id="busca" class="form-control" placeholder="Pesquisar publicações" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="input-group-text" id="basic-addon2" type="submit" onclick="searchData()"><span class="material-symbols-outlined">
 search
 </span></button>
+  </div>
+</div>
 
     </form>
  

@@ -12,7 +12,7 @@ if (isset($_SESSION['id_user'])) {
 
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cadastrar.css">
-	<link rel="stylesheet" href="../css/navbar.css">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="../js/jquery-3.6.4.js"></script>
 
@@ -46,47 +46,18 @@ if (isset($_SESSION['id_user'])) {
 
 });
 
-	function myFunction() {
-		document.getElementById("myDropdown").classList.toggle("show");
-	  }
-	  
-	  // Close the dropdown if the user clicks outside of it
-	  window.onclick = function(event) {
-		if (!event.target.matches('.dropbtn')) {
-		  var dropdowns = document.getElementsByClassName("dropdown-content");
-		  var i;
-		  for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-			  openDropdown.classList.remove('show');
-			}
-		  }
-		}
-	  }
+	
 
 
 	  </script>
 </head>
 <body>
 	<p id="resp"></p>
-	<nav class="nav">
-	<img class="nav__collapser" src="https://raw.githubusercontent.com/JamminCoder/grid_navbar/master/menu.svg" alt="Collapse">
-	<img src="../img/logo.png" alt="" id="logotipo">
-
-	<!-- Put your collapsing content in here -->
-	<div class="nav__collapsable">
-		<a href="">Home</a>
-		<a href="#">Blog</a>
-		<a href="#">Clínicas</a>
-	
-		<div class="nav__cta">
-		</div>
-	</div>
-
-</nav><br><br>
+	<?php include("navLogin.php");?>
+	<br><br><br><br><br><br><br>
 	<section>
 		
-	<div class="container">
+	<div class="containerForm">
 		<div class="text">
 
 			<a href="../index.php"><img src="../img/logoHorizontal.png" alt=""></a>
@@ -149,6 +120,8 @@ if (isset($_SESSION['id_user'])) {
 
 	</section>
 
+
+	<?php include("footer.html");?>
 </body>
 </html>
 <?php }?>
